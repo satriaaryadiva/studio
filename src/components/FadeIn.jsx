@@ -4,7 +4,7 @@ import { createContext, useContext } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 const FadeInStaggerContext = createContext(false);
 
-const viewport = { once: true, margin: "0px 0px -200px" };
+const viewport = { once: true, margin: "0px 0px -100px" };
 
 const FadeIn = (props) => {
   const shouldReduceMotion = useReducedMotion();
@@ -19,10 +19,10 @@ const FadeIn = (props) => {
       {...(isInStaggerGroup
         ? {}
         : {
-            initial: "hidden",
-            whileInView: "visible",
-            viewport,
-          })}
+          initial: "hidden",
+          whileInView: "visible",
+          viewport,
+        })}
       {...props}
     />
   );

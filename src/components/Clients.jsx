@@ -26,15 +26,23 @@ const Clients = () => {
     <div className="mt-24 rounded-4xl bg-neutral-950 py-20 sm:mt-32 sm:py-32 lg:mt-56">
       <Container>
         <FadeIn className="flex items-center gap-x-8">
-          <h2 className="text-center font-display text-sm font-semibold tracking-wider text-white sm:text-left">
-            We have worked with hundreds of amazing people
+          <h2 className="text-center font-display text-2xl font-semibold tracking-wider text-white sm:text-left">
+            WHY UPLIFT?
           </h2>
+          <p className="mt-4 text-center text-sm text-neutral-300 sm:mt-0 sm:text-left">
+            UPLIFT bekerja dengan berbagai brand di berbagai industri, antara
+            lain, Food & Beverage, Lifestyle & Retail, Beauty & Wellness,
+            Property & Hospitality, Personal Brand & Startup.
+          </p>
           <div className="h-px flex-auto bg-neutral-800" />
         </FadeIn>
-        <FadeInStagger faster>
+        <FadeInStagger faster className="mt-16">
+          <h3 className="mb-8 text-center font-display text-lg font-semibold tracking-widest text-neutral-400">
+            BRANDS WE WORK WITH
+          </h3>
           <ul
             role="list"
-            className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4"
+            className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4"
           >
             {clients.map(([client, logo]) => (
               <li key={client}>

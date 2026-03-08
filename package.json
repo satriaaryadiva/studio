@@ -3,21 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@studio-freight/react-lenis": "^0.0.47",
     "autoprefixer": "10.4.15",
     "clsx": "^2.0.0",
     "eslint": "8.47.0",
-    "eslint-config-next": "13.4.18",
+    "eslint-config-next": "latest",
     "framer-motion": "^10.16.0",
-    "next": "13.4.18",
+    "next": "^16.1.6",
     "postcss": "8.4.28",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-icons": "^4.10.1",
     "tailwindcss": "3.3.3"
   }

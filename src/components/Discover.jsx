@@ -5,39 +5,34 @@ import { TagList, TagListItem } from "./TagList";
 
 const Discover = () => {
   return (
-    <Section title="Discover" image={{ src: imageWhiteboard, shape: 1 }}>
+    <Section title="1. Diagnosa & 2. Strategi" image={{ src: imageWhiteboard, shape: 1 }}>
       <div className="space-y-6 text-base text-neutral-600">
         <p>
-          We work closely with our clients to understand their{" "}
-          <strong className="font-semibold text-neutral-950">needs</strong> and
-          goals, embedding ourselves in their every day operations to understand
-          what makes their business tick.
+          Kami bekerja sama erat dengan klien kami untuk memahami{" "}
+          <strong className="font-semibold text-neutral-950">kebutuhan</strong> dan
+          tujuan mereka, menganalisis audiens, dan performa brand saat ini.
         </p>
         <p>
-          Our team of private investigators shadow the company director’s for
-          several weeks while our account managers focus on going through their
-          trash. Our senior security experts then perform social engineering
-          hacks to gain access to their{" "}
-          <strong className="font-semibold text-neutral-950">business</strong>
-          accounts — handing that information over to our forensic accounting
-          team.
+          Tim ahli kami melakukan riset mendalam untuk menemukan peluang yang
+          terlewatkan dan menyusun arah pemasaran yang{" "}
+          <strong className="font-semibold text-neutral-950">jelas</strong>,
+          relevan, dan dapat diukur untuk pertumbuhan jangka panjang.
         </p>
         <p>
-          Once the full audit is complete, we report back with a comprehensive
-          <strong className="font-semibold text-neutral-950">plan</strong> and,
-          more importantly, a budget.
+          Setelah audit penuh selesai, kami kembali dengan sebuah{" "}
+          <strong className="font-semibold text-neutral-950">rencana</strong> komprehensif
+          yang mencakup strategi konten, periklanan, dan aktivasi.
         </p>
       </div>
       <h3 className="mt-12 font-display text-base font-semibold text-neutral-950">
-        Included in this phase
+        Termasuk dalam fase ini
       </h3>
       <TagList className="mt-4">
-        <TagListItem>In-depth questionnaires</TagListItem>
-        <TagListItem>Feasibility studies</TagListItem>
-        <TagListItem>Blood samples</TagListItem>
-        <TagListItem>Employee surveys</TagListItem>
-        <TagListItem>Proofs-of-concept</TagListItem>
-        <TagListItem>Forensic audit</TagListItem>
+        <TagListItem>Analisis Brand & Audiens</TagListItem>
+        <TagListItem>Studi Kelayakan & Riset Pasar</TagListItem>
+        <TagListItem>Penyusunan Roadmap Strategis</TagListItem>
+        <TagListItem>Penentuan KPI & Target</TagListItem>
+        <TagListItem>Audit Performa Digital</TagListItem>
       </TagList>
     </Section>
   );

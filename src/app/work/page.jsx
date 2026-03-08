@@ -6,12 +6,12 @@ const WorkPage = () => {
     <>
       <PageIntro
         eyebrow="Our work"
-        title="Proven solutions for real-world problems."
+        title="Solusi terukur untuk pertumbuhan brand nyata."
       >
         <p>
-          We believe in efficiency and maximizing our resources to provide the
-          best value to our clients. The primary way we do that is by re-using
-          the same five projects we’ve been developing for the past decade.
+          Kami bangga dengan hasil kerja kami yang telah membantu berbagai brand
+          dari berbagai industri untuk mencapai level berikutnya melalui
+          strategi yang terintegrasi dan eksekusi yang kreatif.
         </p>
       </PageIntro>
     </>
