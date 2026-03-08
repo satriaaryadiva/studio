@@ -1,3 +1,4 @@
+import BlogSection from "@/components/BlogSection";
 import Container from "@/components/Container";
 import Cultures from "@/components/Cultures";
 import PageIntro from "@/components/PageIntro";
@@ -35,7 +36,9 @@ const AboutPage = () => {
         </StatList>
         <Process/>
       </Container>
+
       <Values/>
+      <BlogSection/>
       <Cultures />
     </>
   );
