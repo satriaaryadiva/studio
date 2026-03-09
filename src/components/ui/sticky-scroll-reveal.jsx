@@ -1,162 +1,93 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import { useMotionValueEvent, useScroll, motion, AnimatePresence } from "framer-motion";
-import clsx from "clsx";
+import React from "react";
+import { motion } from "framer-motion";
+import FadeIn from "@/components/FadeIn";
 
-export const StickyScroll = ({ content, contentClassName }) => {
-    const [activeCard, setActiveCard] = useState(0);
-    const ref = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        container: ref,
-        offset: ["start start", "end start"],
-    });
-    const cardLength = content.length;
-
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        const cardsBreakpoints = content.map((_, index) => index / (cardLength - 0.5));
-        const closestBreakpointIndex = cardsBreakpoints.reduce(
-            (acc, breakpoint, index) => {
-                const distance = Math.abs(latest - breakpoint);
-                if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
-                    return index;
-                }
-                return acc;
-            },
-            0
-        );
-        setActiveCard(closestBreakpointIndex);
-    });
-
-    const backgroundColors = [
-        "#0a0a0a",
-        "#0c1222",
-        "#0a0a0a",
-        "#110c1a",
-        "#0a0f0d",
-    ];
-
+export const StickyScroll = ({ content, title, subtitle }) => {
     return (
-        <motion.div
-            animate={{
-                backgroundColor: backgroundColors[activeCard % backgroundColors.length],
-            }}
-            transition={{ duration: 1, ease: "easeInOut" }}
-            className="relative grid grid-cols-1 lg:grid-cols-2 h-[45rem] overflow-y-auto rounded-3xl rounded-b-none p-8 md:px-14"
-            ref={ref}
-            style={{
-                
-                msOverflowStyle: "none",
-            }}
-        >
-            {/* Hide scrollbar */}
-            <style>{`
-        .sticky-scroll::-webkit-scrollbar { display: none; }
-      `}</style>
+        <section className="relative bg-neutral-950 py-24 sm:py-32">
+            {/* Section Header */}
+            <div className="px-8 md:px-24 mb-16 md:mb-24">
+                <FadeIn>
+                    <span className="text-[10px] tracking-[0.4em] font-bold uppercase text-white/40 block mb-4">
+                        {subtitle || "Proses Kami"}
+                    </span>
+                    <h2 className="font-display text-4xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
+                        {title || "What UPLIFT Do"}
+                    </h2>
+                </FadeIn>
+            </div>
 
-            {/* Left: Text Content */}
-            <div className="relative">
-                <div className="max-w-lg">
-                    {content.map((item, index) => (
-                        <div key={item.title + index} className="my-28 first:mt-14">
-                            {/* Step number */}
-                            <motion.div
-                                animate={{ opacity: activeCard === index ? 1 : 0.15 }}
-                                transition={{ duration: 0.5 }}
-                                className="mb-6 flex items-center gap-4"
-                            >
-                                <span
-                                    className="text-[11px] tracking-[0.3em] font-bold uppercase transition-colors duration-500"
-                                    style={{
-                                        color: activeCard === index ? "white" : "#525252",
-                                    }}
-                                >
+            {/* Vertical Content Stack */}
+            <div className="px-8 md:px-24 space-y-32 md:space-y-48">
+                {content.map((item, index) => (
+                    <div
+                        key={item.title + index}
+                        className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center"
+                    >
+                        {/* Left: Content Text */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{
+                                type: "spring",
+                                damping: 15,
+                                stiffness: 100,
+                                duration: 1
+                            }}
+                            className="order-2 lg:order-1"
+                        >
+                            <div className="mb-8 flex items-center gap-6">
+                                <span className="text-2xl font-display font-medium text-white/30 italic">
                                     {String(index + 1).padStart(2, "0")}
                                 </span>
-                                <div
-                                    className="h-px flex-1 max-w-[80px] transition-all duration-700"
-                                    style={{
-                                        background:
-                                            activeCard === index
-                                                ? "rgba(255,255,255,0.3)"
-                                                : "rgba(255,255,255,0.05)",
-                                        width: activeCard === index ? 80 : 40,
-                                    }}
-                                />
-                            </motion.div>
+                                <div className="h-px w-24 bg-white/10" />
+                            </div>
 
-                            {/* Title */}
-                            <motion.h2
-                                animate={{
-                                    opacity: activeCard === index ? 1 : 0.15,
-                                    y: activeCard === index ? 0 : 15,
-                                }}
-                                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                                className="text-2xl font-bold text-white md:text-3xl lg:text-4xl leading-tight text-freight"
-                            >
+                            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 text-freight tracking-tight leading-[1.1]">
                                 {item.title}
-                            </motion.h2>
+                            </h3>
 
-                            {/* Description */}
-                            <motion.p
-                                animate={{
-                                    opacity: activeCard === index ? 0.8 : 0.1,
-                                    y: activeCard === index ? 0 : 15,
-                                }}
-                                transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
-                                className="mt-5 max-w-sm text-[15px] leading-relaxed text-neutral-400"
-                            >
+                            <p className="max-w-xl text-lg md:text-2xl text-neutral-400 leading-relaxed font-light">
                                 {item.description}
-                            </motion.p>
+                            </p>
 
-                            {/* Progress dots */}
-                            <motion.div
-                                animate={{ opacity: activeCard === index ? 1 : 0 }}
-                                transition={{ duration: 0.4 }}
-                                className="mt-8 flex gap-2"
-                            >
-                                {content.map((_, i) => (
-                                    <div
-                                        key={i}
-                                        className="h-1 rounded-full transition-all duration-500"
-                                        style={{
-                                            width: i === activeCard ? 24 : 8,
-                                            backgroundColor:
-                                                i === activeCard
-                                                    ? "white"
-                                                    : "rgba(255,255,255,0.15)",
-                                        }}
-                                    />
-                                ))}
-                            </motion.div>
-                        </div>
-                    ))}
-                    <div className="h-[60rem]" />
-                </div>
-            </div>
-
-            {/* Right: Sticky Visual — centered and full */}
-            <div className="hidden lg:flex items-center justify-center sticky top-0 h-[42rem]">
-                <div
-                    className={clsx(
-                        "w-full h-[36rem] bg-attachment-fixed overflow-hidden rounded-3xl shadow-2xl",
-                        contentClassName
-                    )}
-                >
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={activeCard}
-                            initial={{ opacity: 0, scale: 1.05 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                            className="h-full w-full"
-                        >
-                            {content[activeCard].content ?? null}
+                            <div className="mt-12 group flex items-center gap-4 text-white/20 hover:text-white/80 transition-all duration-500 cursor-pointer w-fit">
+                                <div className="h-px w-12 bg-current" />
+                                <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Explore Solution</span>
+                            </div>
                         </motion.div>
-                    </AnimatePresence>
-                </div>
+
+                        {/* Right: Visual Content */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{
+                                type: "spring",
+                                damping: 12,
+                                stiffness: 90,
+                                duration: 1.2
+                            }}
+                            className="order-1 lg:order-2"
+                        >
+                            <div className="relative aspect-[4/3] md:aspect-[16/10] lg:aspect-square rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-neutral-900 border border-white/5 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)]">
+                                <div className="absolute inset-0 z-0">
+                                    {item.content}
+                                </div>
+                                <div className="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-transparent z-10" />
+                            </div>
+                        </motion.div>
+                    </div>
+                ))}
             </div>
-        </motion.div>
+
+            {/* Background Depth */}
+            <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-white/[0.01] rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
+            </div>
+        </section>
     );
 };

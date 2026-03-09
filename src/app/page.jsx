@@ -22,17 +22,13 @@ const whatWeDo = [
     description:
       "Kami mengelola kehadiran digital brand Anda dengan strategi konten yang konsisten, engagement yang aktif, dan pertumbuhan organik yang terukur di seluruh platform media sosial.",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+      <div className="relative h-full w-full overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800"
           alt="Social Media Management"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-cyan-400">01 — Social</span>
-          <p className="mt-2 text-white text-sm font-medium text-freight">Engagement & Pertumbuhan Organik</p>
-        </div>
+        <div className="absolute inset-0 bg-black/20" />
       </div>
     ),
   },
@@ -41,17 +37,13 @@ const whatWeDo = [
     description:
       "Tim kreatif kami memproduksi visual berkualitas tinggi yang bercerita. Dari fotografi produk hingga video sinematik, kami memastikan setiap konten menangkap esensi brand Anda.",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+      <div className="relative h-full w-full overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800"
           alt="Content Production"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-pink-400">02 — Production</span>
-          <p className="mt-2 text-white text-sm font-medium text-freight">Visual Storytelling Premium</p>
-        </div>
+        <div className="absolute inset-0 bg-black/20" />
       </div>
     ),
   },
@@ -60,17 +52,13 @@ const whatWeDo = [
     description:
       "Kami membangun identitas visual yang kuat dan kohesif. Dari logo hingga panduan gaya, kami memastikan brand Anda tampil menonjol dan meninggalkan kesan yang mendalam.",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+      <div className="relative h-full w-full overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800"
           alt="Branding & Creative Direction"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-orange-400">03 — Branding</span>
-          <p className="mt-2 text-white text-sm font-medium text-freight">Identitas yang Berkesan</p>
-        </div>
+        <div className="absolute inset-0 bg-black/20" />
       </div>
     ),
   },
@@ -79,17 +67,13 @@ const whatWeDo = [
     description:
       "Optimalkan ROI Anda dengan kampanye iklan berbasis data. Kami menganalisis perilaku audiens untuk menargetkan orang yang tepat dengan pesan yang tepat di waktu yang tepat.",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+      <div className="relative h-full w-full overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
           alt="Ad Strategy & Analytics"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-violet-400">04 — Ads</span>
-          <p className="mt-2 text-white text-sm font-medium text-freight">ROI Maksimal Berbasis Data</p>
-        </div>
+        <div className="absolute inset-0 bg-black/20" />
       </div>
     ),
   },
@@ -98,17 +82,13 @@ const whatWeDo = [
     description:
       "Ciptakan pengalaman brand yang nyata di dunia fisik. Kami merancang aktivasi offline yang menarik audiens dan menciptakan momen yang tak terlupakan.",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+      <div className="relative h-full w-full overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?auto=format&fit=crop&q=80&w=800"
           alt="Campaign & Offline Activation"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-emerald-400">05 — Activation</span>
-          <p className="mt-2 text-white text-sm font-medium text-freight">Pengalaman Real-World</p>
-        </div>
+        <div className="absolute inset-0 bg-black/20" />
       </div>
     ),
   },
@@ -117,17 +97,13 @@ const whatWeDo = [
     description:
       "Tingkatkan performa penjualan digital Anda. Kami mengoptimalkan setiap langkah perjalanan pelanggan untuk memastikan konversi yang lancar dan pertumbuhan bisnis.",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+      <div className="relative h-full w-full overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800"
           alt="Digital Optimization & E-Commerce"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-blue-400">06 — Commerce</span>
-          <p className="mt-2 text-white text-sm font-medium text-freight">Konversi & Skalabilitas Digital</p>
-        </div>
+        <div className="absolute inset-0 bg-black/20" />
       </div>
     ),
   },
@@ -136,17 +112,13 @@ const whatWeDo = [
     description:
       "Bangun platform digital yang cepat, aman, dan berorientasi pada pengguna. Kami mengembangkan website yang tidak hanya indah, tetapi juga fungsional dan responsif.",
     content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+      <div className="relative h-full w-full overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800"
           alt="Web Development"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-indigo-400">07 — Web</span>
-          <p className="mt-2 text-white text-sm font-medium text-freight">Teknologi Modern & UX Optimal</p>
-        </div>
+        <div className="absolute inset-0 bg-black/20" />
       </div>
     ),
   },
@@ -221,20 +193,12 @@ export default function Home() {
           </FadeIn>
         </Container>
 
-        {/* What UPLIFT Do — Sticky Scroll */}
-        <div className="mt-24 sm:mt-32">
-          <Container>
-            <FadeIn>
-              <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-neutral-400 block mb-4">
-                Layanan Kami
-              </span>
-              <h2 className="font-display text-3xl font-semibold tracking-tight text-neutral-950 sm:text-5xl mb-12">
-                What UPLIFT Do
-              </h2>
-            </FadeIn>
-          </Container>
-          <StickyScroll content={whatWeDo} />
-        </div>
+        {/* What UPLIFT Do — Vertical Services Reveal */}
+        <StickyScroll
+          content={whatWeDo}
+          title="What UPLIFT Do"
+          subtitle="Layanan Kami"
+        />
 
         <Clients />
         <Testimonials

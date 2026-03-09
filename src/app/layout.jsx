@@ -1,6 +1,6 @@
 import RootLayout from "@/components/RootLayout";
 import "./globals.css";
-import { Instrument_Sans, Instrument_Serif, DM_Serif_Display } from "next/font/google";
+import { Instrument_Sans, Instrument_Serif, Bricolage_Grotesque } from "next/font/google";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -16,9 +16,9 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
 });
 
-const dmSerifDisplay = DM_Serif_Display({
+const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "700", "800"],
   display: "swap",
   variable: "--font-freight",
 });
@@ -34,7 +34,7 @@ export default function Layout({ children }) {
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${instrumentSerif.variable} ${dmSerifDisplay.variable} h-full bg-neutral-950 text-base antialiased text-neutral-100`}
+      className={`${instrumentSans.variable} ${instrumentSerif.variable} ${bricolageGrotesque.variable} h-full bg-neutral-950 text-base antialiased text-neutral-100`}
     >
       <body className="flex min-h-full flex-col">
         <RootLayout>{children}</RootLayout>
