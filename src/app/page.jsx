@@ -4,13 +4,115 @@ import Container from "@/components/Container";
 import FadeIn from "@/components/FadeIn";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
-import Testimonials from "@/components/Testimonials";
-import Process from "@/components/Process";
+import { Timeline } from "@/components/ui/timeline";
 import Values from "@/components/Values";
 import logoPhobiaDark from "@/images/clients/phobia/logo-dark.svg";
 import GridPattern from "@/components/GridPattern";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import BlogRecommendation from "@/components/BlogRecommendation";
+import Testimonials from "@/components/Testimonials";
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
+import { processData } from "@/data/processData";
+
+
+const whatWeDo = [
+  {
+    title: "Brand Strategy & Identity",
+    description:
+      "Kami membangun fondasi brand yang kuat melalui riset mendalam, positioning yang tepat, dan identitas visual yang memorable. Setiap elemen dirancang untuk menciptakan koneksi emosional dengan audiens Anda.",
+    content: (
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800"
+          alt="Brand Strategy"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-cyan-400">01 — Strategy</span>
+          <p className="mt-2 text-white text-sm font-medium">Membangun identitas yang tak terlupakan</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Digital Marketing & Performance",
+    description:
+      "Dari paid ads hingga SEO, kami mengoptimalkan setiap channel digital untuk menghasilkan ROI maksimal. Data-driven approach memastikan setiap rupiah yang diinvestasikan memberikan hasil nyata.",
+    content: (
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+          alt="Digital Marketing"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-pink-400">02 — Performance</span>
+          <p className="mt-2 text-white text-sm font-medium">Data-driven ROI optimization</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Content Creation & Social Media",
+    description:
+      "Konten yang autentik dan engaging adalah kunci pertumbuhan organik. Tim kreatif kami merancang strategi konten yang konsisten dan relevan untuk setiap platform media sosial.",
+    content: (
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800"
+          alt="Content Creation"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-orange-400">03 — Content</span>
+          <p className="mt-2 text-white text-sm font-medium">Konten yang engage & mengkonversi</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Web & App Development",
+    description:
+      "Kami membangun pengalaman digital yang cepat, responsif, dan indah. Dari landing page hingga platform e-commerce, setiap produk dikembangkan dengan teknologi terkini dan UX yang optimal.",
+    content: (
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800"
+          alt="Web Development"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-violet-400">04 — Development</span>
+          <p className="mt-2 text-white text-sm font-medium">Pengalaman digital yang premium</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Analytics & Optimization",
+    description:
+      "Setiap keputusan didukung data. Kami memonitor, menganalisis, dan mengoptimalkan performa secara real-time untuk memastikan pertumbuhan yang berkelanjutan bagi brand Anda.",
+    content: (
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
+          alt="Analytics"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-emerald-400">05 — Analytics</span>
+          <p className="mt-2 text-white text-sm font-medium">Optimasi berbasis data real-time</p>
+        </div>
+      </div>
+    ),
+  },
+];
 
 export default function Home() {
   return (
@@ -22,7 +124,7 @@ export default function Home() {
         />
         <Container className="pt-24 sm:pt-32 lg:pt-5">
           <FadeIn className="flex flex-col items-center text-center">
-            {/* Large UPLIFT SVG */}
+            {/* Large Uplift SVG */}
             <div className="w-full max-w-7xl overflow-hidden">
               <motion.svg
                 viewBox="0 0 1000 200"
@@ -38,7 +140,7 @@ export default function Home() {
                   className="text-[180px] font-black tracking-[-0.05em] uppercase"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
-                  UPLIFT
+                  Uplift
                 </text>
               </motion.svg>
             </div>
@@ -76,10 +178,26 @@ export default function Home() {
         <Container className="mt-24 sm:mt-32">
           <FadeIn>
             <p className="max-w-3xl text-xl leading-relaxed text-neutral-600 mx-auto text-center">
-              UPLIFT membantu brand bertumbuh dengan strategi, konten, dan eksekusi yang terintegrasi. Kami mengangkat brand ke level berikutnya.
+              Uplift membantu brand bertumbuh dengan strategi, konten, dan eksekusi yang terintegrasi. Kami mengangkat brand ke level berikutnya.
             </p>
           </FadeIn>
         </Container>
+
+        {/* What UPLIFT Do — Sticky Scroll */}
+        <div className="mt-24 sm:mt-32">
+          <Container>
+            <FadeIn>
+              <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-neutral-400 block mb-4">
+                Layanan Kami
+              </span>
+              <h2 className="font-display text-3xl font-semibold tracking-tight text-neutral-950 sm:text-5xl mb-12">
+                What UPLIFT Do
+              </h2>
+            </FadeIn>
+          </Container>
+          <StickyScroll content={whatWeDo} />
+        </div>
+
         <Clients />
         <Testimonials
           className="mt-24 sm:mt-32 lg:mt-40"
@@ -91,8 +209,28 @@ export default function Home() {
         </Testimonials>
         <Services />
         <Pricing />
-        <Process />
+
+        {/* How UPLIFT Works — Timeline */}
+        <div className="mt-24 sm:mt-32">
+          <Container>
+            <FadeIn>
+              <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-neutral-400 block mb-4">
+                Proses Kami
+              </span>
+              <h2 className="font-display text-3xl font-semibold tracking-tight text-neutral-950 sm:text-5xl">
+                How UPLIFT Works
+              </h2>
+              <p className="mt-6 max-w-2xl text-lg text-neutral-600 leading-relaxed">
+                Empat fase yang teruji untuk mengangkat brand Anda ke level berikutnya.
+              </p>
+            </FadeIn>
+          </Container>
+          <div className="mt-16">
+            <Timeline data={processData} />
+          </div>
+        </div>
         <Values />
+        <BlogRecommendation />
       </div>
     </main>
   );

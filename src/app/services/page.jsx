@@ -19,7 +19,7 @@ export default function ServicesPage() {
         <main>
             <PageIntro
                 eyebrow="Our Services"
-                title="Apa yang UPLIFT bisa bantu untuk Brand Anda?"
+                title="Apa yang Uplift bisa bantu untuk Brand Anda?"
                 image="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=1074"
                 imagePosition="right"
             >

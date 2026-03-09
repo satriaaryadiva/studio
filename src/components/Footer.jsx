@@ -63,7 +63,7 @@ const Footer = () => {
               <div className="lg:col-span-7 flex flex-col items-start gap-12 sm:flex-row sm:items-center">
                 <div className="flex flex-col items-start gap-8 flex-none">
                   <Logo href="/" className="h-8 text-white">
-                    UPLIFT
+                    Uplift
                   </Logo>
                   <Ripple className="h-32 w-32 text-white sm:h-48 sm:w-48" />
                 </div>
@@ -84,7 +84,7 @@ const Footer = () => {
                 <Link href="/supply-chain" className="transition hover:text-white">Supply Chain Statement</Link>
               </div>
               <p>
-                © {new Date().getFullYear()}, UPLIFT. All Rights Reserved.
+                © {new Date().getFullYear()}, Uplift. All Rights Reserved.
               </p>
             </div>
           </FadeIn>

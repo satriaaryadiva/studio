@@ -1,6 +1,6 @@
 export function constructMetadata({
-  title = "Abdullah Agency ",
-  description = "Abdullah Agency is an open-source website.",
+  title = "Uplift Agency ",
+  description = "Uplift Agency is an open-source website.",
   image = "/agency.PNG",
   icons = "/favicon.ico",
   noIndex = false,
@@ -25,7 +25,7 @@ export function constructMetadata({
       creator: "@KING_IN_JUNGLE",
     },
     icons,
-    metadataBase: new URL("https://agency-website-abdullah.vercel.app/"),
+    metadataBase: new URL("https://agency-website-Uplift.vercel.app/"),
     themeColor: "#FFF",
     ...(noIndex && {
       robots: {

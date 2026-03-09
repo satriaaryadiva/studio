@@ -1,4 +1,4 @@
-@tailwind base;
+@import "tailwindcss";
 
 @font-face {
   font-family: "Mona Sans";
@@ -7,4 +7,47 @@
   font-style: normal;
   font-stretch: 75% 125%;
   src: url("../fonts//Mona-Sans.var.woff2");
+}
+
+/* Modern smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Premium selection color */
+::selection {
+  background-color: #171717;
+  color: white;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a3a3a3;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #737373;
+}
+
+/* Smooth page transitions */
+body {
+  overflow-x: hidden;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid #171717;
+  outline-offset: 2px;
 }

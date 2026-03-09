@@ -27,10 +27,10 @@ const Clients = () => {
       <Container>
         <FadeIn className="flex items-center gap-x-8">
           <h2 className="text-center font-display text-2xl font-semibold tracking-wider text-white sm:text-left">
-            WHY UPLIFT?
+            WHY Uplift?
           </h2>
           <p className="mt-4 text-center text-sm text-neutral-300 sm:mt-0 sm:text-left">
-            UPLIFT bekerja dengan berbagai brand di berbagai industri, antara
+            Uplift bekerja dengan berbagai brand di berbagai industri, antara
             lain, Food & Beverage, Lifestyle & Retail, Beauty & Wellness,
             Property & Hospitality, Personal Brand & Startup.
           </p>

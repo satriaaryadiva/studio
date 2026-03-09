@@ -17,12 +17,12 @@ const AboutPage = () => {
         </p>
         <div className="mt-10 max-w-2xl space-y-6 text-base">
           <p>
-            UPLIFT dimulai dengan visi untuk menyederhanakan kompleksitas pemasaran
+            Uplift dimulai dengan visi untuk menyederhanakan kompleksitas pemasaran
             dan memberikan hasil yang nyata bagi brand di era digital. Sejak awal,
             kami berkomitmen untuk menjadi partner yang transparan dan andal.
           </p>
           <p>
-            Di UPLIFT, kami lebih dari sekadar agensi — kami adalah perpanjangan
+            Di Uplift, kami lebih dari sekadar agensi — kami adalah perpanjangan
             dari tim Anda. Kami bekerja dengan dedikasi tinggi untuk memastikan
             brand Anda tidak hanya tumbuh, tapi juga mendominasi pasar.
           </p>
@@ -34,11 +34,11 @@ const AboutPage = () => {
           <StatListItem value="200+" label="Campaigns Launched" />
           <StatListItem value="10M+" label="Reach Generated" />
         </StatList>
-        <Process/>
+        <Process />
       </Container>
 
-      <Values/>
-      <BlogSection/>
+      <Values />
+      <BlogSection />
       <Cultures />
     </>
   );

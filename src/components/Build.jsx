@@ -14,7 +14,7 @@ const Build = () => {
         <p>
           Setiap klien didampingi oleh manajer akun khusus untuk menjaga jalur
           komunikasi tetap terbuka dan memastikan setiap detail eksekusi
-          berjalan sesuai dengan standar kualitas UPLIFT.
+          berjalan sesuai dengan standar kualitas Uplift.
         </p>
         <p>
           Kami fokus pada penciptaan aset kreatif yang tidak hanya indah secara

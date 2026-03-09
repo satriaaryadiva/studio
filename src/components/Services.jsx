@@ -10,7 +10,7 @@ const Services = () => {
   return (
     <>
       <SectionIntro
-        eyebrow="WHAT UPLIFT DO?"
+        eyebrow="WHAT Uplift DO?"
         title="Menyediakan solusi pemasaran omni-channel untuk pertumbuhan brand Anda."
         className="mt-24 sm:mt-32 lg:mt-40"
       >

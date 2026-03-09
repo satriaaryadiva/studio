@@ -8,7 +8,7 @@ const Process = () => {
     return (
         <div className="relative mt-24 pt-24 sm:mt-32 sm:pt-32 lg:mt-40 lg:pt-40">
             <SectionIntro
-                eyebrow="HOW UPLIFT WORK"
+                eyebrow="HOW Uplift WORK"
                 title="Proses kerja kami yang terstruktur untuk hasil maksimal."
             >
                 <p>

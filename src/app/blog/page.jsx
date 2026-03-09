@@ -1,3 +1,5 @@
+import BlogRecommendation from "@/components/BlogRecommendation";
+import BlogSection from "@/components/BlogSection";
 import PageIntro from "@/components/PageIntro";
 
 const BlogPage = () => {
@@ -9,6 +11,8 @@ const BlogPage = () => {
           yang efektif untuk pertumbuhan brand Anda.
         </p>
       </PageIntro>
+      <BlogRecommendation />
+      <BlogSection />
     </>
   );
 };
