@@ -157,7 +157,7 @@ export const processData = [
         title: "Optimize & Scale",
         content: (
             <div className="space-y-6">
-                <p className="text-black font-bold text-base leading-relaxed">
+                <p className="text-neutral-500 text-base leading-relaxed font-medium">
                     Kami tidak berhenti di eksekusi. Setiap kampanye dimonitor secara real-time,
                     dianalisis, dan dioptimalkan untuk pertumbuhan jangka panjang.
                 </p>
@@ -165,10 +165,10 @@ export const processData = [
                 {/* Stats */}
                 <div className="flex gap-3 flex-wrap">
                     <div className="rounded-full bg-gradient-to-r from-emerald-500/10 to-lime-500/10 border border-emerald-500/20 px-4 py-2">
-                        <span className="text-emerald-400 text-xs font-bold">10M+ Reach</span>
+                        <span className="text-emerald-600 text-xs font-bold">10M+ Reach</span>
                     </div>
                     <div className="rounded-full bg-gradient-to-r from-emerald-500/10 to-lime-500/10 border border-emerald-500/20 px-4 py-2">
-                        <span className="text-emerald-400 text-xs font-bold">Real-Time Data</span>
+                        <span className="text-emerald-600 text-xs font-bold">Real-Time Data</span>
                     </div>
                 </div>
 
@@ -180,19 +180,19 @@ export const processData = [
                         "Analisis ROI per channel & campaign",
                         "Iterasi strategi berdasarkan data",
                     ].map((item) => (
-                        <div key={item} className="flex items-start gap-3 rounded-xl bg-white/5 border border-white/10 p-4">
+                        <div key={item} className="flex items-start gap-3 rounded-xl bg-neutral-50 border border-neutral-100 p-4 hover:border-neutral-200 transition-colors">
                             <div className="h-5 w-5 rounded-full bg-gradient-to-br from-emerald-500 to-lime-500 flex items-center justify-center flex-none mt-0.5">
                                 <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                 </svg>
                             </div>
-                            <p className="text-black text-sm">{item}</p>
+                            <p className="text-neutral-700 text-sm">{item}</p>
                         </div>
                     ))}
                 </div>
 
                 {/* Image */}
-                <div className="rounded-2xl overflow-hidden shadow-lg">
+                <div className="rounded-2xl overflow-hidden shadow-lg border border-neutral-100">
                     <img
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
                         alt="Optimize phase"

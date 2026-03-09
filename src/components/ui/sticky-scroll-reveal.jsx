@@ -7,41 +7,25 @@ export const StickyScroll = ({ content, contentClassName }) => {
     const [activeCard, setActiveCard] = useState(0);
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
+        target: ref,
         container: ref,
         offset: ["start start", "end start"],
     });
     const cardLength = content.length;
 
-    const itemRefs = useRef([]);
-
-    useMotionValueEvent(scrollYProgress, "change", () => {
-        const container = ref.current;
-        if (!container) return;
-
-        const containerCenter = container.clientHeight / 2;
-
-        let closestIndex = 0;
-        let minDistance = Infinity;
-
-        itemRefs.current.forEach((item, index) => {
-            if (!item) return;
-            const rect = item.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-
-            // Position of item relative to container top
-            const itemRelativeTop = rect.top - containerRect.top;
-            const itemCenter = itemRelativeTop + rect.height / 2;
-
-            const distance = Math.abs(itemCenter - containerCenter);
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestIndex = index;
-            }
-        });
-
-        if (closestIndex !== activeCard) {
-            setActiveCard(closestIndex);
-        }
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        const cardsBreakpoints = content.map((_, index) => index / (cardLength - 0.5));
+        const closestBreakpointIndex = cardsBreakpoints.reduce(
+            (acc, breakpoint, index) => {
+                const distance = Math.abs(latest - breakpoint);
+                if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
+                    return index;
+                }
+                return acc;
+            },
+            0
+        );
+        setActiveCard(closestBreakpointIndex);
     });
 
     const backgroundColors = [
@@ -58,10 +42,10 @@ export const StickyScroll = ({ content, contentClassName }) => {
                 backgroundColor: backgroundColors[activeCard % backgroundColors.length],
             }}
             transition={{ duration: 1, ease: "easeInOut" }}
-            className="relative grid grid-cols-1 lg:grid-cols-2 h-[45rem] overflow-y-auto rounded-3xl rounded-b-none p-8 md:p-14"
+            className="relative grid grid-cols-1 lg:grid-cols-2 h-[45rem] overflow-y-auto rounded-3xl rounded-b-none p-8 md:px-14"
             ref={ref}
             style={{
-              
+                
                 msOverflowStyle: "none",
             }}
         >
@@ -74,11 +58,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
             <div className="relative">
                 <div className="max-w-lg">
                     {content.map((item, index) => (
-                        <div
-                            key={item.title + index}
-                            ref={(el) => (itemRefs.current[index] = el)}
-                            className="my-2 first:mt-14"
-                        >
+                        <div key={item.title + index} className="my-28 first:mt-14">
                             {/* Step number */}
                             <motion.div
                                 animate={{ opacity: activeCard === index ? 1 : 0.15 }}
@@ -151,7 +131,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
                             </motion.div>
                         </div>
                     ))}
-                    <div className="h-[25rem]" />
+                    <div className="h-[60rem]" />
                 </div>
             </div>
 
