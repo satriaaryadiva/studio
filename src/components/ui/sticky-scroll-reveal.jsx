@@ -12,19 +12,36 @@ export const StickyScroll = ({ content, contentClassName }) => {
     });
     const cardLength = content.length;
 
-    useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        const cardsBreakpoints = content.map((_, index) => index / cardLength);
-        const closestBreakpointIndex = cardsBreakpoints.reduce(
-            (acc, breakpoint, index) => {
-                const distance = Math.abs(latest - breakpoint);
-                if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
-                    return index;
-                }
-                return acc;
-            },
-            0
-        );
-        setActiveCard(closestBreakpointIndex);
+    const itemRefs = useRef([]);
+
+    useMotionValueEvent(scrollYProgress, "change", () => {
+        const container = ref.current;
+        if (!container) return;
+
+        const containerCenter = container.clientHeight / 2;
+
+        let closestIndex = 0;
+        let minDistance = Infinity;
+
+        itemRefs.current.forEach((item, index) => {
+            if (!item) return;
+            const rect = item.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+
+            // Position of item relative to container top
+            const itemRelativeTop = rect.top - containerRect.top;
+            const itemCenter = itemRelativeTop + rect.height / 2;
+
+            const distance = Math.abs(itemCenter - containerCenter);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestIndex = index;
+            }
+        });
+
+        if (closestIndex !== activeCard) {
+            setActiveCard(closestIndex);
+        }
     });
 
     const backgroundColors = [
@@ -41,10 +58,10 @@ export const StickyScroll = ({ content, contentClassName }) => {
                 backgroundColor: backgroundColors[activeCard % backgroundColors.length],
             }}
             transition={{ duration: 1, ease: "easeInOut" }}
-            className="relative grid grid-cols-1 lg:grid-cols-2 h-[42rem] overflow-y-auto rounded-3xl rounded-b-none p-8 md:p-14"
+            className="relative grid grid-cols-1 lg:grid-cols-2 h-[45rem] overflow-y-auto rounded-3xl rounded-b-none p-8 md:p-14"
             ref={ref}
             style={{
-                scrollbarWidth: "none",
+              
                 msOverflowStyle: "none",
             }}
         >
@@ -57,7 +74,11 @@ export const StickyScroll = ({ content, contentClassName }) => {
             <div className="relative">
                 <div className="max-w-lg">
                     {content.map((item, index) => (
-                        <div key={item.title + index} className="my-28 first:mt-14">
+                        <div
+                            key={item.title + index}
+                            ref={(el) => (itemRefs.current[index] = el)}
+                            className="my-2 first:mt-14"
+                        >
                             {/* Step number */}
                             <motion.div
                                 animate={{ opacity: activeCard === index ? 1 : 0.15 }}
@@ -91,7 +112,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
                                     y: activeCard === index ? 0 : 15,
                                 }}
                                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                                className="text-2xl font-bold text-white md:text-3xl lg:text-4xl leading-tight"
+                                className="text-2xl font-bold text-white md:text-3xl lg:text-4xl leading-tight text-freight"
                             >
                                 {item.title}
                             </motion.h2>
@@ -130,7 +151,7 @@ export const StickyScroll = ({ content, contentClassName }) => {
                             </motion.div>
                         </div>
                     ))}
-                    <div className="h-72" />
+                    <div className="h-[25rem]" />
                 </div>
             </div>
 

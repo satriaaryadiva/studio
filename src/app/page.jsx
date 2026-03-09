@@ -18,66 +18,123 @@ import { processData } from "@/data/processData";
 
 const whatWeDo = [
   {
-    title: "Brand Strategy & Identity",
+    title: "Manajemen Media Sosial",
     description:
-      "Kami membangun fondasi brand yang kuat melalui riset mendalam, positioning yang tepat, dan identitas visual yang memorable. Setiap elemen dirancang untuk menciptakan koneksi emosional dengan audiens Anda.",
-    content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl">
-        <img
-          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800"
-          alt="Brand Strategy"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-cyan-400">01 — Strategy</span>
-          <p className="mt-2 text-white text-sm font-medium">Membangun identitas yang tak terlupakan</p>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Digital Marketing & Performance",
-    description:
-      "Dari paid ads hingga SEO, kami mengoptimalkan setiap channel digital untuk menghasilkan ROI maksimal. Data-driven approach memastikan setiap rupiah yang diinvestasikan memberikan hasil nyata.",
-    content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl">
-        <img
-          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
-          alt="Digital Marketing"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-pink-400">02 — Performance</span>
-          <p className="mt-2 text-white text-sm font-medium">Data-driven ROI optimization</p>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Content Creation & Social Media",
-    description:
-      "Konten yang autentik dan engaging adalah kunci pertumbuhan organik. Tim kreatif kami merancang strategi konten yang konsisten dan relevan untuk setiap platform media sosial.",
+      "Kami mengelola kehadiran digital brand Anda dengan strategi konten yang konsisten, engagement yang aktif, dan pertumbuhan organik yang terukur di seluruh platform media sosial.",
     content: (
       <div className="relative h-full w-full overflow-hidden rounded-2xl">
         <img
           src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800"
-          alt="Content Creation"
+          alt="Social Media Management"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-orange-400">03 — Content</span>
-          <p className="mt-2 text-white text-sm font-medium">Konten yang engage & mengkonversi</p>
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-cyan-400">01 — Social</span>
+          <p className="mt-2 text-white text-sm font-medium text-freight">Engagement & Pertumbuhan Organik</p>
         </div>
       </div>
     ),
   },
   {
-    title: "Web & App Development",
+    title: "Produksi Konten (Foto & Video)",
     description:
-      "Kami membangun pengalaman digital yang cepat, responsif, dan indah. Dari landing page hingga platform e-commerce, setiap produk dikembangkan dengan teknologi terkini dan UX yang optimal.",
+      "Tim kreatif kami memproduksi visual berkualitas tinggi yang bercerita. Dari fotografi produk hingga video sinematik, kami memastikan setiap konten menangkap esensi brand Anda.",
+    content: (
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800"
+          alt="Content Production"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-pink-400">02 — Production</span>
+          <p className="mt-2 text-white text-sm font-medium text-freight">Visual Storytelling Premium</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Branding & Arahan Kreatif",
+    description:
+      "Kami membangun identitas visual yang kuat dan kohesif. Dari logo hingga panduan gaya, kami memastikan brand Anda tampil menonjol dan meninggalkan kesan yang mendalam.",
+    content: (
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800"
+          alt="Branding & Creative Direction"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-orange-400">03 — Branding</span>
+          <p className="mt-2 text-white text-sm font-medium text-freight">Identitas yang Berkesan</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Strategi Iklan & Analisis Data",
+    description:
+      "Optimalkan ROI Anda dengan kampanye iklan berbasis data. Kami menganalisis perilaku audiens untuk menargetkan orang yang tepat dengan pesan yang tepat di waktu yang tepat.",
+    content: (
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+          alt="Ad Strategy & Analytics"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-violet-400">04 — Ads</span>
+          <p className="mt-2 text-white text-sm font-medium text-freight">ROI Maksimal Berbasis Data</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Campaign & Aktivasi Offline",
+    description:
+      "Ciptakan pengalaman brand yang nyata di dunia fisik. Kami merancang aktivasi offline yang menarik audiens dan menciptakan momen yang tak terlupakan.",
+    content: (
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?auto=format&fit=crop&q=80&w=800"
+          alt="Campaign & Offline Activation"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-emerald-400">05 — Activation</span>
+          <p className="mt-2 text-white text-sm font-medium text-freight">Pengalaman Real-World</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Optimalisasi Digital & E-Commerce",
+    description:
+      "Tingkatkan performa penjualan digital Anda. Kami mengoptimalkan setiap langkah perjalanan pelanggan untuk memastikan konversi yang lancar dan pertumbuhan bisnis.",
+    content: (
+      <div className="relative h-full w-full overflow-hidden rounded-2xl">
+        <img
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800"
+          alt="Digital Optimization & E-Commerce"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute bottom-6 left-6 right-6">
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-blue-400">06 — Commerce</span>
+          <p className="mt-2 text-white text-sm font-medium text-freight">Konversi & Skalabilitas Digital</p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Pengembangan Website",
+    description:
+      "Bangun platform digital yang cepat, aman, dan berorientasi pada pengguna. Kami mengembangkan website yang tidak hanya indah, tetapi juga fungsional dan responsif.",
     content: (
       <div className="relative h-full w-full overflow-hidden rounded-2xl">
         <img
@@ -87,27 +144,8 @@ const whatWeDo = [
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-violet-400">04 — Development</span>
-          <p className="mt-2 text-white text-sm font-medium">Pengalaman digital yang premium</p>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Analytics & Optimization",
-    description:
-      "Setiap keputusan didukung data. Kami memonitor, menganalisis, dan mengoptimalkan performa secara real-time untuk memastikan pertumbuhan yang berkelanjutan bagi brand Anda.",
-    content: (
-      <div className="relative h-full w-full overflow-hidden rounded-2xl">
-        <img
-          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
-          alt="Analytics"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-emerald-400">05 — Analytics</span>
-          <p className="mt-2 text-white text-sm font-medium">Optimasi berbasis data real-time</p>
+          <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-indigo-400">07 — Web</span>
+          <p className="mt-2 text-white text-sm font-medium text-freight">Teknologi Modern & UX Optimal</p>
         </div>
       </div>
     ),
@@ -137,7 +175,7 @@ export default function Home() {
                   x="50%"
                   y="160"
                   textAnchor="middle"
-                  className="text-[180px] font-black tracking-[-0.05em] uppercase"
+                  className="text-[180px]  text-freight font-black tracking-[-0.05em] uppercase"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   Uplift
@@ -150,7 +188,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="mt-12 max-w-4xl font-display text-4xl font-normal leading-tight tracking-tight text-neutral-950 sm:text-6xl"
+              className="mt-12 max-w-4xl font-display text-4xl font-normal leading-tight text-freight tracking-tight text-neutral-950 sm:text-6xl"
             >
               We’re a digital-first design agency working at the intersection of creativity and technology.
             </motion.p>

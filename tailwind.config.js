@@ -15,6 +15,7 @@ module.exports = {
         sans: ["var(--font-instrument-sans)", ...defaultTheme.fontFamily.sans],
         display: ["var(--font-instrument-sans)", ...defaultTheme.fontFamily.sans],
         serif: ["var(--font-instrument-serif)", ...defaultTheme.fontFamily.serif],
+        freight: ["var(--font-freight)", ...defaultTheme.fontFamily.serif],
       },
     },
   },

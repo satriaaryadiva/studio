@@ -112,7 +112,7 @@ function TimelineItem({ item, index, total }) {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-display text-2xl font-bold text-neutral-950 md:text-4xl lg:text-5xl mb-6 leading-tight">
+                <h3 className="font-display text-2xl font-bold text-neutral-950 md:text-4xl lg:text-5xl mb-6 leading-tight text-freight">
                     {item.title}
                 </h3>
 
