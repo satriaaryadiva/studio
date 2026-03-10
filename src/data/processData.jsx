@@ -37,15 +37,6 @@ export const processData = [
                         </div>
                     ))}
                 </div>
-
-                {/* Image */}
-                <div className="rounded-2xl overflow-hidden shadow-lg">
-                    <img
-                        src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800"
-                        alt="Discovery phase"
-                        className="w-full h-56 object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                </div>
             </div>
         ),
     },
@@ -86,15 +77,6 @@ export const processData = [
                         </div>
                     ))}
                 </div>
-
-                {/* Image */}
-                <div className="rounded-2xl overflow-hidden shadow-lg">
-                    <img
-                        src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
-                        alt="Strategy phase"
-                        className="w-full h-56 object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                </div>
             </div>
         ),
     },
@@ -131,24 +113,6 @@ export const processData = [
                             <p className="text-neutral-400 text-xs mt-1">{item.desc}</p>
                         </div>
                     ))}
-                </div>
-
-                {/* Image grid */}
-                <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-2xl overflow-hidden shadow-lg">
-                        <img
-                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400"
-                            alt="Team collaboration"
-                            className="w-full h-36 object-cover hover:scale-105 transition-transform duration-700"
-                        />
-                    </div>
-                    <div className="rounded-2xl overflow-hidden shadow-lg">
-                        <img
-                            src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=400"
-                            alt="Creative work"
-                            className="w-full h-36 object-cover hover:scale-105 transition-transform duration-700"
-                        />
-                    </div>
                 </div>
             </div>
         ),
@@ -189,15 +153,6 @@ export const processData = [
                             <p className="text-neutral-700 text-sm">{item}</p>
                         </div>
                     ))}
-                </div>
-
-                {/* Image */}
-                <div className="rounded-2xl overflow-hidden shadow-lg border border-neutral-100">
-                    <img
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
-                        alt="Optimize phase"
-                        className="w-full h-56 object-cover hover:scale-105 transition-transform duration-700"
-                    />
                 </div>
             </div>
         ),

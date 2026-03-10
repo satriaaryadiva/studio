@@ -9,9 +9,7 @@
   src: url("../fonts//Mona-Sans.var.woff2");
 }
 
-/* Modern smooth scrolling */
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -44,6 +42,13 @@ html {
 /* Smooth page transitions */
 body {
   overflow-x: hidden;
+  cursor: none;
+}
+
+a,
+button,
+[role="button"] {
+  cursor: none;
 }
 
 /* Focus visible for accessibility */

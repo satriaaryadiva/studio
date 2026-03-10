@@ -4,236 +4,106 @@ import Container from "@/components/Container";
 import FadeIn from "@/components/FadeIn";
 import Services from "@/components/Services";
 import Pricing from "@/components/Pricing";
-import { Timeline } from "@/components/ui/timeline";
-import Values from "@/components/Values";
+import ExecutionMethods from "@/components/ExecutionMethods";
 import logoPhobiaDark from "@/images/clients/phobia/logo-dark.svg";
-import GridPattern from "@/components/GridPattern";
-import Link from "next/link";
-import { motion } from "framer-motion";
 import BlogRecommendation from "@/components/BlogRecommendation";
 import Testimonials from "@/components/Testimonials";
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
-import { processData } from "@/data/processData";
+import Hero from "@/components/Hero";
+import ParallaxScroll from "@/components/ParallaxScroll";
+import SectionHeader from "@/components/SectionHeader";
+import SectionDivider from "@/components/SectionDivider";
 
 
 const whatWeDo = [
   {
-    title: "Manajemen Media Sosial",
-    description:
-      "Kami mengelola kehadiran digital brand Anda dengan strategi konten yang konsisten, engagement yang aktif, dan pertumbuhan organik yang terukur di seluruh platform media sosial.",
-    content: (
-      <div className="relative h-full w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800"
-          alt="Social Media Management"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </div>
-    ),
+    title: "Socmed Management",
+    category: "MANAGEMENT",
+    size: "large",
+    gridSpan: "col-span-12 md:col-span-7",
+    offset: "md:mt-0",
+    description: "Kami mengelola kehadiran digital brand Anda dengan strategi konten yang konsisten dan engagement aktif.",
+    content: <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800" className="h-full w-full object-cover" />
   },
   {
-    title: "Produksi Konten (Foto & Video)",
-    description:
-      "Tim kreatif kami memproduksi visual berkualitas tinggi yang bercerita. Dari fotografi produk hingga video sinematik, kami memastikan setiap konten menangkap esensi brand Anda.",
-    content: (
-      <div className="relative h-full w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800"
-          alt="Content Production"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </div>
-    ),
+    title: "Content Production",
+    category: "CREATIVE",
+    size: "small",
+    gridSpan: "col-span-12 md:col-span-4 md:col-start-9",
+    offset: "md:mt-24",
+    description: "Tim kreatif kami memproduksi visual berkualitas tinggi yang bercerita.",
+    content: <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=800" className="h-full w-full object-cover" />
   },
   {
-    title: "Branding & Arahan Kreatif",
-    description:
-      "Kami membangun identitas visual yang kuat dan kohesif. Dari logo hingga panduan gaya, kami memastikan brand Anda tampil menonjol dan meninggalkan kesan yang mendalam.",
-    content: (
-      <div className="relative h-full w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800"
-          alt="Branding & Creative Direction"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </div>
-    ),
+    title: "Digital Marketing",
+    category: "STRATEGY",
+    size: "medium",
+    gridSpan: "col-span-12 md:col-span-6",
+    offset: "md:-mt-12",
+    description: "Optimalkan ROI Anda dengan kampanye iklan berbasis data.",
+    content: <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" className="h-full w-full object-cover" />
   },
   {
-    title: "Strategi Iklan & Analisis Data",
-    description:
-      "Optimalkan ROI Anda dengan kampanye iklan berbasis data. Kami menganalisis perilaku audiens untuk menargetkan orang yang tepat dengan pesan yang tepat di waktu yang tepat.",
-    content: (
-      <div className="relative h-full w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
-          alt="Ad Strategy & Analytics"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </div>
-    ),
+    title: "Branding Design",
+    category: "IDENTITY",
+    size: "small",
+    gridSpan: "col-span-12 md:col-span-5 md:col-start-8",
+    offset: "md:mt-0",
+    description: "Kami membangun identitas visual yang kuat dan kohesif.",
+    content: <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" className="h-full w-full object-cover" />
   },
   {
-    title: "Campaign & Aktivasi Offline",
-    description:
-      "Ciptakan pengalaman brand yang nyata di dunia fisik. Kami merancang aktivasi offline yang menarik audiens dan menciptakan momen yang tak terlupakan.",
-    content: (
-      <div className="relative h-full w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?auto=format&fit=crop&q=80&w=800"
-          alt="Campaign & Offline Activation"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </div>
-    ),
+    title: "Offline Activation",
+    category: "EXPERIENCE",
+    size: "large",
+    gridSpan: "col-span-12 md:col-span-8",
+    offset: "md:mt-12",
+    description: "Ciptakan pengalaman brand yang nyata di dunia fisik.",
+    content: <img src="https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?auto=format&fit=crop&q=80&w=800" className="h-full w-full object-cover" />
   },
   {
-    title: "Optimalisasi Digital & E-Commerce",
-    description:
-      "Tingkatkan performa penjualan digital Anda. Kami mengoptimalkan setiap langkah perjalanan pelanggan untuk memastikan konversi yang lancar dan pertumbuhan bisnis.",
-    content: (
-      <div className="relative h-full w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800"
-          alt="Digital Optimization & E-Commerce"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </div>
-    ),
-  },
-  {
-    title: "Pengembangan Website",
-    description:
-      "Bangun platform digital yang cepat, aman, dan berorientasi pada pengguna. Kami mengembangkan website yang tidak hanya indah, tetapi juga fungsional dan responsif.",
-    content: (
-      <div className="relative h-full w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800"
-          alt="Web Development"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </div>
-    ),
+    title: "E-Commerce Opt",
+    category: "GROWTH",
+    size: "medium",
+    gridSpan: "col-span-12 md:col-span-4 md:col-start-9",
+    offset: "md:-mt-24",
+    description: "Tingkatkan performa penjualan digital Anda.",
+    content: <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800" className="h-full w-full object-cover" />
   },
 ];
 
 export default function Home() {
   return (
     <main className="text-black">
-      <div className="relative isolate">
-        <GridPattern
-          className="absolute inset-0 -z-10 h-full w-full fill-neutral-100 stroke-neutral-950/5 [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
-          yOffset={-256}
-        />
-        <Container className="pt-24 sm:pt-32 lg:pt-5">
-          <FadeIn className="flex flex-col items-center text-center">
-            {/* Large Uplift SVG */}
-            <div className="w-full max-w-7xl overflow-hidden">
-              <motion.svg
-                viewBox="0 0 1000 200"
-                initial={{ opacity: 0, y: 100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full h-auto fill-neutral-950"
-              >
-                <text
-                  x="50%"
-                  y="160"
-                  textAnchor="middle"
-                  className="text-[180px]  text-freight font-black tracking-[-0.05em] uppercase"
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                >
-                  Uplift
-                </text>
-              </motion.svg>
-            </div>
+      <Hero />
 
-            {/* Tagline */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="mt-12 max-w-4xl font-display text-4xl font-normal leading-tight text-freight tracking-tight text-neutral-950 sm:text-6xl"
-            >
-              We’re a digital-first design agency working at the intersection of creativity and technology.
-            </motion.p>
+      {/* What UPLIFT Do — Parallax Sections */}
+      <ParallaxScroll
+        content={whatWeDo}
+        title="What UPLIFT Do"
+        subtitle="Layanan Kami"
+      />
 
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
-              className="mt-16 flex justify-center"
-            >
-              <Link
-                href="/work"
-                className="group flex items-center gap-3 rounded-full bg-neutral-950 px-10 py-5 text-lg font-bold text-white transition-all hover:bg-neutral-800 hover:scale-105 active:scale-95 shadow-2xl"
-              >
-                View All Work
-                <svg viewBox="0 0 16 6" className="h-2 w-4 transition-transform group-hover:translate-x-1">
-                  <path d="M16 3 10 .5v2H0v1h10v2L16 3Z" fill="white" />
-                </svg>
-              </Link>
-            </motion.div>
-          </FadeIn>
-        </Container>
-
-        <Container className="mt-24 sm:mt-32">
-          <FadeIn>
-            <p className="max-w-3xl text-xl leading-relaxed text-neutral-600 mx-auto text-center">
-              Uplift membantu brand bertumbuh dengan strategi, konten, dan eksekusi yang terintegrasi. Kami mengangkat brand ke level berikutnya.
-            </p>
-          </FadeIn>
-        </Container>
-
-        {/* What UPLIFT Do — Vertical Services Reveal */}
-        <StickyScroll
-          content={whatWeDo}
-          title="What UPLIFT Do"
-          subtitle="Layanan Kami"
-        />
-
-        <Clients />
-        <Testimonials
-          className="mt-24 sm:mt-32 lg:mt-40"
-          client={{ name: "Phobia", logo: logoPhobiaDark }}
-        >
-          The team at Studio went above and beyond with our onboarding, even
-          finding a way to access the user microphone without triggering one of
-          those annoying permission dialogs.
-        </Testimonials>
-        <Services />
-        <Pricing />
-
-        {/* How UPLIFT Works — Timeline */}
-        <div className="mt-24 sm:mt-32">
-          <Container>
-            <FadeIn>
-              <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-neutral-400 block mb-4">
-                Proses Kami
-              </span>
-              <h2 className="font-display text-3xl font-semibold tracking-tight text-neutral-950 sm:text-5xl">
-                How UPLIFT Works
-              </h2>
-              <p className="mt-6 max-w-2xl text-lg text-neutral-600 leading-relaxed">
-                Empat fase yang teruji untuk mengangkat brand Anda ke level berikutnya.
-              </p>
-            </FadeIn>
-          </Container>
-          <div className="mt-16">
-            <Timeline data={processData} />
-          </div>
-        </div>
-        <Values />
-        <BlogRecommendation />
-      </div>
+      <SectionHeader
+        label="Our Partnerships"
+        title="Trusted by Innovative Brands"
+        backgroundText="UPLIFT PARTNERS"
+      />
+      <SectionDivider rows={["CREATIVE", "STRATEGY", "IDENTITY", "PRODUCTION"]} />
+      <Clients />
+      <Testimonials
+        className="mt-24 sm:mt-32 lg:mt-40"
+        client={{ name: "Phobia", logo: logoPhobiaDark }}
+      >
+        The team at Studio went above and beyond with our onboarding, even
+        finding a way to access the user microphone without triggering one of
+        those annoying permission dialogs.
+      </Testimonials>
+      
+      <Services />
+      <Pricing />
+<SectionDivider rows={["CREATIVE", "STRATEGY", "IDENTITY", "PRODUCTION"]} />
+      <ExecutionMethods />
+      <BlogRecommendation />
     </main>
   );
 }

@@ -34,7 +34,7 @@ export default function Layout({ children }) {
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${instrumentSerif.variable} ${bricolageGrotesque.variable} h-full bg-neutral-950 text-base antialiased text-neutral-100`}
+      className={`${instrumentSans.variable} ${instrumentSerif.variable} ${bricolageGrotesque.variable} h-full   text-base antialiased  `}
     >
       <body className="flex min-h-full flex-col">
         <RootLayout>{children}</RootLayout>
