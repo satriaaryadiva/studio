@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from "react";
 import Container from "./Container";
 import Link from "next/link";
 
-const MagneticButton = ({ children, href }) => {
+export const MagneticButton = ({ children, href }) => {
     const ref = useRef(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -90,7 +90,7 @@ export default function Hero() {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-[100vh] w-full bg-neutral-100 overflow-visible"
+            className="relative min-h-[100vh] w-full bg-brand-taupe overflow-visible"
         >
             {/* Noise Overlay */}
             <div className="pointer-events-none absolute inset-0 z-10 opacity-[0.03] mix-blend-overlay">
@@ -113,8 +113,8 @@ export default function Hero() {
                     style={{ x, skew, scale, opacity }}
                     className="whitespace-nowrap pointer-events-none select-none"
                 >
-                    <span className="text-[25vw] md:text-[15vw] font-black uppercase tracking-tighter text-neutral-900/40">
-                       uplift your brand
+                    <span className="text-[25vw] md:text-[15vw]   uppercase font-black tracking-tighter text-[#9b7a60]">
+                        uplift your brand
                     </span>
                 </motion.div>
             </div>
@@ -123,7 +123,7 @@ export default function Hero() {
             <div className="relative flex flex-col pt-32 md:pt-28 pb-32 md:pb-28 z-20">
                 <Container>
                     <div className="flex flex-col max-w-7xl">
-                        <h1 className="text-6xl md:text-9xl font-black text-black leading-[0.9] tracking-tighter font-freight uppercase">
+                        <h1 className="text-6xl md:text-7xl font-black text-black leading-[0.9] tracking-tighter font-freight uppercase">
                             <WordReveal
                                 text="Turning Vision"
                                 className="block"
@@ -144,13 +144,13 @@ export default function Hero() {
                             </span>
                             <WordReveal
                                 text="focused"
-                                className="italic font-light text-neutral-500 font-serif block md:mt-4 normal-case"
+                                className="italic font-light text-[#9b7a60] font-serif block md:mt-4 normal-case"
                                 delay={0.6}
                             />
                         </h1>
 
                         <motion.h2
-                            className="text-6xl md:text-9xl font-black text-yellow-600 leading-[0.9] tracking-tighter mt-2 font-freight uppercase"
+                            className="text-6xl md:text-7xl font-black   leading-[0.9] tracking-tighter mt-2 font-freight uppercase"
                         >
                             <WordReveal
                                 text="digital solutions"

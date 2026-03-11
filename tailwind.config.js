@@ -8,6 +8,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        brand: {
+          taupe: "#9b7a60",
+          slate: "#546166",
+        },
+      },
       borderRadius: {
         "4xl": "2.5rem",
       },

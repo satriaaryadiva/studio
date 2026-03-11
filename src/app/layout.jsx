@@ -34,9 +34,9 @@ export default function Layout({ children }) {
   return (
     <html
       lang="en"
-      className={`${instrumentSans.variable} ${instrumentSerif.variable} ${bricolageGrotesque.variable} h-full   text-base antialiased  `}
+      className={`${instrumentSans.variable} ${instrumentSerif.variable} ${bricolageGrotesque.variable} h-full text-base antialiased overflow-x-hidden`}
     >
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col  overflow-x-hidden w-full max-w-[100vw]">
         <RootLayout>{children}</RootLayout>
       </body>
     </html>

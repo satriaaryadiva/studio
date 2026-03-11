@@ -18,7 +18,7 @@ const MethodItem = ({ method, index, isOpen, onClick }) => {
                     <span className="text-sm font-black text-yellow-600 font-freight">
                         {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase font-freight transition-transform duration-500 group-hover:translate-x-4">
+                    <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter text-[#9b7a60] uppercase font-freight transition-transform duration-500 group-hover:translate-x-4">
                         {method.title}
                     </h3>
                 </div>

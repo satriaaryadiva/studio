@@ -23,11 +23,11 @@ export default function ParallaxScroll({ content, title, subtitle }) {
     const isMobile = windowWidth < 768;
     const ITEM_WIDTH = isMobile ? 320 : 500;
     const GAP = isMobile ? 24 : 80;
-    
+
     // Total items = Service cards + 1 for the Intro Slide Card
     const itemsCount = content.length + 1;
     const totalDistance = (itemsCount - 1) * (ITEM_WIDTH + GAP);
-    
+
     // --- PHASED SCROLL TIMELINE ---
     // 0.00 - 0.15: Intro Visuals
     // 0.15 - 0.78: Horizontal Track Translation
@@ -53,11 +53,11 @@ export default function ParallaxScroll({ content, title, subtitle }) {
 
     return (
         <div ref={containerRef} className="relative h-[850vh] bg-neutral-950 font-freight">
-            
+
             <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden pointer-events-none">
-                
+
                 {/* 1. SEAMLESS INTRO PHASE */}
-                <motion.section 
+                <motion.section
                     style={{ opacity: introOpacity, y: introY }}
                     className="absolute inset-x-0 top-0 bottom-0 z-30 flex flex-col justify-center items-center text-center px-8"
                 >
@@ -76,20 +76,20 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                 </motion.section>
 
                 {/* 2. CORE HORIZONTAL PHASE */}
-                <motion.div 
+                <motion.div
                     style={{ opacity: trackOpacity }}
                     className="relative z-20 w-full flex items-center justify-center pointer-events-auto"
                 >
-                    <div 
+                    <div
                         className="relative mx-auto flex items-center justify-start overflow-visible"
                         style={{ width: `${ITEM_WIDTH}px` }}
                     >
-                        <motion.div 
-                            className="flex will-change-transform" 
+                        <motion.div
+                            className="flex will-change-transform"
                             style={{ x: smoothX, gap: `${GAP}px` }}
                         >
                             {/* SLIDE 0: TITLE CARD - Ultra Premium Glass */}
-                            <div 
+                            <div
                                 className="flex-shrink-0 flex flex-col justify-center items-center text-center p-12 rounded-[3.5rem] bg-white/[0.03] border border-white/10 backdrop-blur-2xl shadow-[0_0_100px_rgba(0,0,0,0.8)] relative overflow-hidden group"
                                 style={{ width: `${ITEM_WIDTH}px`, height: isMobile ? "450px" : "650px" }}
                             >
@@ -109,7 +109,7 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                                     style={{ width: `${ITEM_WIDTH}px`, height: isMobile ? "450px" : "650px" }}
                                 >
                                     {/* Visual content with Internal Parallax Effect */}
-                                    <motion.div 
+                                    <motion.div
                                         style={{ x: imageParallax }}
                                         className="absolute inset-y-0 -left-20 -right-20 z-0 transition-transform duration-1000 group-hover:scale-110"
                                     >
@@ -117,12 +117,12 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                                             {item.content}
                                         </div>
                                     </motion.div>
-                                    
+
                                     {/* Deep Dynamic Gradient Overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-95 group-hover:opacity-85 transition-opacity duration-700" />
-                                    
+
                                     <div className="absolute bottom-12 left-12 z-10 pr-12">
-                                        <motion.span 
+                                        <motion.span
                                             initial={{ opacity: 0.5 }}
                                             whileHover={{ opacity: 1 }}
                                             className="text-[11px] font-bold text-yellow-600 mb-4 block tracking-[0.4em] uppercase"
@@ -136,7 +136,7 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                                             {item.description}
                                         </p>
                                     </div>
-                                    
+
                                     {/* Ghost Number Reveal on Hover */}
                                     <div className="absolute top-12 right-12 z-10 opacity-0 group-hover:opacity-20 transition-opacity duration-1000">
                                         <span className="text-4xl font-black text-white tracking-tighter italic">
@@ -150,32 +150,32 @@ export default function ParallaxScroll({ content, title, subtitle }) {
 
                     {/* Progress indicator - Refined Design */}
                     <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-8">
-                        <span className="text-[9px] font-black text-white/20 tracking-widest uppercase">Start</span>
+                        <span className="text-[9px] font-black text-white   tracking-widest uppercase">Start</span>
                         <div className="w-48 h-[1rem] bg-white/5 overflow-hidden rounded-full relative">
-                            <motion.div 
+                            <motion.div
                                 className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-yellow-600 to-yellow-400"
                                 style={{ width: useTransform(scrollYProgress, [0.15, 0.78], ["0%", "100%"]) }}
                             />
                         </div>
-                        <span className="text-[9px] font-black text-white/20 tracking-widest uppercase">End</span>
+                        <span className="text-[9px] font-black text-white  tracking-widest uppercase">End</span>
                     </div>
                 </motion.div>
 
                 {/* 3. CINEMATIC OUTRO PHASE (UPLIFT Reveal) */}
-                <motion.section 
+                <motion.section
                     style={{ y: outroY, opacity: outroOpacity, scale: outroScale }}
                     className="absolute inset-0 z-40 flex flex-col justify-center items-center text-center bg-neutral-950 px-8"
                 >
-                    <motion.div 
+                    <motion.div
                         initial={{ tracking: "-0.5em" }}
                         animate={{ tracking: "calc(-0.5em + 1vw)" }}
                         className="relative overflow-hidden"
                     >
-                        <span className="text-white/5 text-[15rem] md:text-[30rem] font-black tracking-tighter uppercase leading-none select-none">
+                        <span className="text-white/5 text-[15rem] md:text-[30rem] font-black text-[#9b7a60] tracking-tighter font-freight uppercase leading-none select-none">
                             UPLIFT
                         </span>
                     </motion.div>
-                    
+
                     <div className="flex flex-col gap-3 -mt-10 md:-mt-32">
                         <p className="text-yellow-600 text-2xl font-black uppercase tracking-[0.6em] animate-pulse">
                             Uplift Your Brand
