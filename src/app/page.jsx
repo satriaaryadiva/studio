@@ -73,7 +73,7 @@ const whatWeDo = [
 
 export default function Home() {
   return (
-    <main className="text-black">
+    <main className="text-black" style={{ overflowX: "clip" }}>
       <Hero />
 
       {/* What UPLIFT Do — Parallax Sections */}
@@ -98,10 +98,10 @@ export default function Home() {
         finding a way to access the user microphone without triggering one of
         those annoying permission dialogs.
       </Testimonials>
-      
+
       <Services />
       <Pricing />
-<SectionDivider rows={["CREATIVE", "STRATEGY", "IDENTITY", "PRODUCTION"]} />
+      <SectionDivider rows={["CREATIVE", "STRATEGY", "IDENTITY", "PRODUCTION"]} />
       <ExecutionMethods />
       <BlogRecommendation />
     </main>

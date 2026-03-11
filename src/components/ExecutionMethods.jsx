@@ -56,8 +56,8 @@ export default function ExecutionMethods() {
     const [openIndex, setOpenIndex] = useState(0);
 
     return (
-        <section className="bg-neutral-950 py-32 md:py-48 overflow-visible relative">
-            <Container>
+        <section className="bg-neutral-950 py-24 md:py-32 relative overflow-x-clip flex items-center">
+            <Container className="w-full">
                 <div className="flex flex-col lg:flex-row gap-20 lg:gap-32">
                     {/* Left Column - Sticky Content */}
                     <div className="lg:w-1/3">

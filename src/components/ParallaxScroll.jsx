@@ -52,14 +52,14 @@ export default function ParallaxScroll({ content, title, subtitle }) {
     const imageParallax = useTransform(scrollYProgress, [0.15, 0.78], [100, -100]);
 
     return (
-        <div ref={containerRef} className="relative h-[850vh] bg-neutral-950 font-freight overflow-clip">
+        <div ref={containerRef} className="relative h-[850vh] bg-neutral-950 font-freight" style={{ overflowX: "clip" }}>
 
             <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden pointer-events-none">
 
                 {/* 1. SEAMLESS INTRO PHASE */}
                 <motion.section
                     style={{ opacity: introOpacity, y: introY }}
-                    className="absolute inset-x-0 top-0 bottom-0 z-30 flex flex-col justify-center items-center text-center px-8"
+                    className="absolute inset-x-0 top-0 bottom-0 z-30 flex flex-col justify-center items-center text-center px-8 overflow-hidden"
                 >
                     <span className="text-[10px] tracking-[0.8em] font-black uppercase text-yellow-600/60 block mb-6 px-4 py-1 rounded-full border border-yellow-600/20 bg-yellow-600/5">
                         {subtitle || "SERVICE EXPERTISE"}
@@ -150,13 +150,14 @@ export default function ParallaxScroll({ content, title, subtitle }) {
 
                     {/* Progress indicator - Refined Design */}
                     <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-8">
-                        <span className="text-[9px] font-black text-white/50 tracking-widest uppercase">Start</span>
-                        <div className="w-48 h-[1rem] bg-white/5 overflow-hidden rounded-full relative">
+                        <span className="text-[9px] font-black text-white/80 tracking-widest uppercase">Start</span>
+                        <div className="w-48 h-[1rem] bg-white/20 overflow-hidden rounded-full relative">
                             <motion.div
                                 className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-yellow-600 to-yellow-400"
+                                style={{ width: useTransform(scrollYProgress, [0.15, 0.78], ["0%", "100%"]) }}
                             />
                         </div>
-                        <span className="text-[9px] font-black text-white/50 t /50ing-widest uppercase">End</span>
+                        <span className="text-[9px] font-black text-white/80 tracking-widest uppercase">End</span>
                     </div>
                 </motion.div>
 

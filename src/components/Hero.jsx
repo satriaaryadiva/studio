@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef, useState } from "react";
 import Container from "./Container";
 import Link from "next/link";
 
@@ -17,10 +17,7 @@ export const MagneticButton = ({ children, href }) => {
         setPosition({ x: middleX * 0.3, y: middleY * 0.3 });
     };
 
-    const reset = () => {
-        setPosition({ x: 0, y: 0 });
-    };
-
+    const reset = () => setPosition({ x: 0, y: 0 });
     const { x, y } = position;
 
     return (
@@ -33,7 +30,7 @@ export const MagneticButton = ({ children, href }) => {
         >
             <Link
                 href={href}
-                className="group flex items-center gap-3 rounded-full bg-white px-8 py-4  text-lg font-bold text-black transition-all hover:bg-neutral-200 shadow-2xl border border-neutral-200"
+                className="group flex items-center gap-3 rounded-full bg-white px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-bold text-black transition-all hover:bg-neutral-200 shadow-xl border border-neutral-200"
             >
                 {children}
                 <svg viewBox="0 0 16 6" className="h-2 w-4 transition-transform group-hover:translate-x-1">
@@ -49,15 +46,11 @@ const WordReveal = ({ text, className, delay = 0 }) => {
     return (
         <span className={className}>
             {words.map((word, i) => (
-                <span key={i} className="inline-block overflow-hidden mr-[0.2em] last:mr-0">
+                <span key={i} className="inline-block overflow-hidden mr-[0.15em] last:mr-0">
                     <motion.span
                         initial={{ y: "100%" }}
                         animate={{ y: 0 }}
-                        transition={{
-                            duration: 0.8,
-                            delay: delay + i * 0.1,
-                            ease: [0.33, 1, 0.68, 1],
-                        }}
+                        transition={{ duration: 0.8, delay: delay + i * 0.1, ease: [0.33, 1, 0.68, 1] }}
                         className="inline-block"
                     >
                         {word}
@@ -75,121 +68,182 @@ export default function Hero() {
         offset: ["start start", "end start"],
     });
 
-    // Smoother scroll interactions
     const smoothProgress = useSpring(scrollYProgress, {
         stiffness: 100,
         damping: 30,
-        restDelta: 0.001
+        restDelta: 0.001,
     });
 
-    const x = useTransform(smoothProgress, [0, 1], ["0%", "-40%"]);
-    const skew = useTransform(smoothProgress, [0, 1], [0, -5]);
-    const scale = useTransform(smoothProgress, [0, 1], [1, 1.1]);
-    const opacity = useTransform(smoothProgress, [0, 0.8], [1, 0]);
+    const bgX = useTransform(smoothProgress, [0, 1], ["0%", "-65%"]);
+    const bgOpacity = useTransform(smoothProgress, [0, 0.7], [1, 0]);
 
     return (
         <section
             ref={containerRef}
-            className="relative min-h-[100vh] w-full bg-brand-taupe overflow-visible"
+            className="relative w-full min-h-dvh bg-brand-taupe"
         >
-            {/* Noise Overlay */}
+            {/* Noise texture */}
             <div className="pointer-events-none absolute inset-0 z-10 opacity-[0.03] mix-blend-overlay">
                 <div className="h-full w-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
             </div>
 
-            {/* Floating Parallax Elements */}
-            <motion.div
-                style={{ y: useTransform(smoothProgress, [0, 1], [0, -200]) }}
-                className="absolute top-1/4 right-[10%] w-64 h-64 rounded-full bg-yellow-500/10 blur-3xl pointer-events-none"
-            />
-            <motion.div
-                style={{ y: useTransform(smoothProgress, [0, 1], [0, 150]) }}
-                className="absolute bottom-1/4 left-[5%] w-96 h-96 rounded-full bg-neutral-900/5 blur-3xl pointer-events-none"
-            />
-
-            {/* Sticky Background Text */}
-            <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-                <motion.div
-                    style={{ x, skew, scale, opacity }}
-                    className="whitespace-nowrap pointer-events-none select-none"
-                >
-                    <span className="text-[25vw] md:text-[15vw]   uppercase font-black tracking-tighter text-[#9b7a60]">
-                        uplift your brand
-                    </span>
-                </motion.div>
+            {/* Glow blobs */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-[20%] right-[-8%] w-40 h-40 md:w-72 md:h-72 rounded-full bg-white/25 blur-3xl" />
+                <div className="absolute bottom-[15%] left-[-8%] w-56 h-56 md:w-[28rem] md:h-[28rem] rounded-full bg-neutral-900/5 blur-3xl" />
             </div>
 
-            {/* Foreground Content */}
-            <div className="relative flex flex-col pt-32 md:pt-28 pb-32 md:pb-28 z-20">
-                <Container>
-                    <div className="flex flex-col max-w-7xl">
-                        <h1 className="text-6xl md:text-7xl font-black text-black leading-[0.9] tracking-tighter font-freight uppercase">
-                            <WordReveal
-                                text="Turning Vision"
-                                className="block"
-                            />
-                            <span className="flex items-center gap-4">
+            {/* =========================================
+                DESKTOP ONLY: Sticky bg text layer
+            ========================================= */}
+            <div className="hidden md:block">
+                <div className="sticky top-0 h-dvh w-full overflow-hidden pointer-events-none">
+                    <motion.div
+                        style={{ x: bgX, opacity: bgOpacity }}
+                        className="absolute inset-0 flex items-center"
+                    >
+                        <span
+                            className="whitespace-nowrap text-[13vw] uppercase font-black tracking-tighter select-none"
+                            style={{ color: "rgba(155,122,96,0.55)" }}
+                        >
+                            uplift your brand&nbsp;&nbsp;uplift your brand
+                        </span>
+                    </motion.div>
+                </div>
+
+                {/* Desktop foreground (absolute over sticky) */}
+                <div className="absolute inset-0 z-20 flex flex-col justify-center">
+                    <Container>
+                        <div className="flex flex-col">
+                            <motion.span
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3, duration: 0.6 }}
+                                className="text-[10px] font-black uppercase tracking-[0.5em] text-black/35 mb-8 block"
+                            >
+                                Creative Digital Agency
+                            </motion.span>
+                            <h1 className="text-[clamp(3rem,6vw,5rem)] font-black text-black leading-[0.88] tracking-tighter font-freight uppercase">
+                                <WordReveal text="Turning Vision" className="block" />
+                                <WordReveal text="Into Reality." delay={0.3} className="block" />
                                 <WordReveal
-                                    text="Into Reality."
-                                    delay={0.3}
+                                    text="focused"
+                                    className="italic font-light text-[#9b7a60] font-serif block mt-3 normal-case"
+                                    delay={0.6}
                                 />
-                                <motion.span
-                                    initial={{ scale: 0, rotate: -45 }}
-                                    animate={{ scale: 1, rotate: 0 }}
-                                    transition={{ delay: 0.8, type: "spring" }}
-                                    className="hidden md:inline-block text-yellow-600"
-                                >
-                                    →
-                                </motion.span>
-                            </span>
+                            </h1>
+                            <h2 className="text-[clamp(3rem,6vw,5rem)] font-black leading-[0.88] tracking-tighter mt-2 font-freight uppercase">
+                                <WordReveal text="digital solutions" delay={0.9} />
+                            </h2>
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 1.5, duration: 0.8 }}
+                                className="mt-14 flex"
+                            >
+                                <MagneticButton href="/work">View All Work</MagneticButton>
+                            </motion.div>
+                        </div>
+                    </Container>
+                    <div className="absolute left-8 bottom-10 flex flex-col items-center gap-3">
+                        <span className="[writing-mode:vertical-lr] text-[9px] font-bold uppercase tracking-[0.4em] text-black/30">Scroll</span>
+                        <div className="w-px h-16 bg-black/10 relative overflow-hidden rounded-full">
+                            <motion.div
+                                animate={{ y: ["-100%", "100%"] }}
+                                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                                className="absolute top-0 left-0 w-full h-1/2"
+                                style={{ background: "#9b7a60" }}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* =========================================
+                MOBILE ONLY: Stacked layout
+            ========================================= */}
+            <div className="md:hidden flex flex-col min-h-dvh pt-44 pb-12">
+                <Container>
+                    <div className="flex flex-col">
+                        {/* Eyebrow */}
+                        <motion.span
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3, duration: 0.6 }}
+                            className="text-[9px] font-black uppercase tracking-[0.5em] text-black/35 mb-5 block"
+                        >
+                            Creative Digital Agency
+                        </motion.span>
+
+                        {/* Headline */}
+                        <h1 className="text-[clamp(2.4rem,11vw,3.5rem)] font-black text-black leading-[0.88] tracking-tighter font-freight uppercase">
+                            <WordReveal text="Turning Vision" className="block" />
+                            <WordReveal text="Into Reality." delay={0.3} className="block" />
                             <WordReveal
                                 text="focused"
-                                className="italic font-light text-[#9b7a60] font-serif block md:mt-4 normal-case"
+                                className="italic font-light text-[#9b7a60] font-serif block mt-1 normal-case"
                                 delay={0.6}
                             />
                         </h1>
+                        <h2 className="text-[clamp(2.4rem,11vw,3.5rem)] font-black leading-[0.88] tracking-tighter mt-1 font-freight uppercase">
+                            <WordReveal text="digital solutions" delay={0.9} />
+                        </h2>
 
-                        <motion.h2
-                            className="text-6xl md:text-7xl font-black   leading-[0.9] tracking-tighter mt-2 font-freight uppercase"
+                        {/* Short description */}
+                        <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.1, duration: 0.6 }}
+                            className="mt-5 text-sm text-black/45 max-w-[270px] leading-relaxed"
                         >
-                            <WordReveal
-                                text="digital solutions"
-                                delay={0.9}
-                            />
-                        </motion.h2>
+                            Strategi digital &amp; kreatif yang terukur untuk brand Anda berkembang.
+                        </motion.p>
 
+                        {/* CTA */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 1.5, duration: 0.8 }}
-                            className="mt-16 flex"
+                            className="mt-8 flex"
                         >
-                            <MagneticButton href="/work">
-                                View All Work
-                            </MagneticButton>
+                            <MagneticButton href="/work">View All Work</MagneticButton>
                         </motion.div>
                     </div>
                 </Container>
 
-                {/* Scroll Indicator */}
-                <div className="absolute left-8 bottom-12 hidden md:flex flex-col items-center gap-4">
-                    <span className="[writing-mode:vertical-lr] text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-500">
-                        Scroll
-                    </span>
-                    <div className="w-[1px] h-20 bg-neutral-200 relative overflow-hidden">
-                        <motion.div
-                            animate={{
-                                y: ["-100%", "100%"]
-                            }}
-                            transition={{
-                                duration: 2.5,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                            className="absolute top-0 left-0 w-full h-1/2 bg-yellow-600"
-                        />
-                    </div>
-                </div>
+                {/* Big decorative text BELOW the CTA — mobile only */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1, duration: 0.6 }}
+                    className="mt-auto pt-16 overflow-hidden"
+                >
+                    <motion.div
+                        style={{ x: bgX }}
+                        className="whitespace-nowrap"
+                    >
+                        <span
+                            className="text-[22vw] uppercase font-black tracking-tighter select-none block leading-none"
+                            style={{ color: "rgba(155,122,96,0.5)" }}
+                        >
+                            uplift your brand&nbsp;&nbsp;uplift your brand
+                        </span>
+                    </motion.div>
+                </motion.div>
+
+                {/* Mobile scroll hint */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2.2, duration: 1 }}
+                    className="flex justify-center mt-6"
+                >
+                    <motion.div
+                        animate={{ y: [0, 8, 0] }}
+                        transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                        className="w-px h-8 bg-gradient-to-b from-black/30 to-transparent"
+                    />
+                </motion.div>
             </div>
         </section>
     );

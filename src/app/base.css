@@ -13,6 +13,9 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Premium selection color */
@@ -42,13 +45,23 @@ html {
 /* Smooth page transitions */
 body {
   overflow-x: hidden;
-  cursor: none;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-a,
-button,
-[role="button"] {
-  cursor: none;
+/* Custom cursor — desktop only (mouse pointer) */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    cursor: none;
+  }
 }
 
 /* Focus visible for accessibility */

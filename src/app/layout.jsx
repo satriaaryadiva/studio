@@ -36,7 +36,7 @@ export default function Layout({ children }) {
       lang="en"
       className={`${instrumentSans.variable} ${instrumentSerif.variable} ${bricolageGrotesque.variable} h-full text-base antialiased overflow-x-hidden`}
     >
-      <body className="flex min-h-full flex-col  overflow-x-hidden w-full max-w-[100vw]">
+      <body className="flex min-h-full flex-col overflow-x-hidden w-full m-0 p-0 max-w-full">
         <RootLayout>{children}</RootLayout>
       </body>
     </html>

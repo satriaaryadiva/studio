@@ -66,7 +66,7 @@ export default function CustomCursor() {
 
             {/* Inner Core - Perfectly instant using raw motion values */}
             <motion.div
-                className="fixed top-0 left-0 w-1.5 h-1.5 bg-red-400 rounded-full translate-x-[-50%] translate-y-[-50%]"
+                className="fixed top-0 left-0 w-9 h-9 bg-white rounded-full translate-x-[-50%] translate-y-[-50%]"
                 style={{
                     x: mouseX,
                     y: mouseY,
