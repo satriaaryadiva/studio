@@ -53,24 +53,29 @@ export default function CustomCursor() {
     }, [mouseX, mouseY]);
 
     return (
-        <div className="fixed inset-0 pointer-events-none z-[9999] mix-blend-difference">
-            {/* Outer Ring - Chases slightly with tight spring */}
+        <div className="fixed inset-0 pointer-events-none z-[9999]">
+            {/* Outer Ring — follows with spring, grows on hover */}
             <motion.div
-                className="fixed top-0 left-0 w-12 h-12 border border-white rounded-full translate-x-[-50%] translate-y-[-50%]"
+                className="fixed top-0 left-0 rounded-full translate-x-[-50%] translate-y-[-50%] border border-[#9E8976]"
                 style={{
                     x: cursorX,
                     y: cursorY,
-                    scale: isHovering ? 2.2 : isClicked ? 0.8 : 1,
+                    width: isHovering ? 48 : isClicked ? 20 : 32,
+                    height: isHovering ? 48 : isClicked ? 20 : 32,
+                    opacity: isHovering ? 0.8 : 0.5,
+                    transition: "width 0.25s ease, height 0.25s ease, opacity 0.25s ease",
                 }}
             />
 
-            {/* Inner Core - Perfectly instant using raw motion values */}
+            {/* Inner dot — perfectly instant */}
             <motion.div
-                className="fixed top-0 left-0 w-9 h-9 bg-white rounded-full translate-x-[-50%] translate-y-[-50%]"
+                className="fixed top-0 left-0 w-2 h-2 rounded-full bg-[#9E8976] translate-x-[-50%] translate-y-[-50%]"
                 style={{
                     x: mouseX,
                     y: mouseY,
-                    scale: isHovering ? 4 : isClicked ? 1.5 : 1,
+                    scale: isClicked ? 0.5 : 1,
+                    opacity: isHovering ? 0 : 1,
+                    transition: "scale 0.1s ease, opacity 0.2s ease",
                 }}
             />
         </div>

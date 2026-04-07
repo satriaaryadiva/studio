@@ -1,43 +1,171 @@
-import React from "react";
-import SectionIntro from "./SectionIntro";
+"use client";
+
+import { motion } from "framer-motion";
 import Container from "./Container";
-import { GridList, GridListItem } from "./GridList";
-import GridPattern from "./GridPattern";
 
-const Process = () => {
-    return (
-        <div className="relative mt-24 pt-24 sm:mt-32 sm:pt-32 lg:mt-40 lg:pt-40">
-            <SectionIntro
-                eyebrow="HOW Uplift WORK"
-                title="Proses kerja kami yang terstruktur untuk hasil maksimal."
-            >
-                <p>
-                    Kami memadukan data, strategi, dan kreativitas dalam setiap langkah
-                    untuk memastikan brand Anda mencapai target audiens yang tepat.
-                </p>
-            </SectionIntro>
-            <Container className="mt-24">
-                <GridList>
-                    <GridListItem title="1. Diagnosa">
-                        Menganalisis brand, audiens, dan performa saat ini.
-                    </GridListItem>
-                    <GridListItem title="2. Strategi">
-                        Menyusun arah pemasaran yang jelas, relevan, dan dapat diukur.
-                    </GridListItem>
-                    <GridListItem title="3. Eksekusi">
-                        Produksi konten, visual, iklan, dan campaign secara terarah.
-                    </GridListItem>
-                    <GridListItem title="4. Optimasi">
-                        Mengolah data dan menyempurnakan performa.
-                    </GridListItem>
-                    <GridListItem title="5. Scale">
-                        Mengembangkan strategi yang terbukti berhasil untuk pertumbuhan
-                        jangka panjang.
-                    </GridListItem>
-                </GridList>
-            </Container>
+const steps = [
+  {
+    id: "01",
+    title: "Diagnosa & Strategi",
+    description: "Menganalisis brand, audiens, dan performa saat ini untuk menyusun arah pemasaran yang jelas, relevan, dan terukur.",
+    image: "https://images.unsplash.com/photo-1542744173-8e7e5141b2b1?auto=format&fit=crop&q=80&w=1200",
+    color: "#9E8976",
+  },
+  {
+    id: "02",
+    title: "Eksekusi Kreatif",
+    description: "Produksi konten visual, copywriting, dan kampanye yang terarah sesuai identitas brand dan channel tujuan.",
+    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=1200",
+    color: "#7a8a7e",
+  },
+  {
+    id: "03",
+    title: "Analisa & Optimasi",
+    description: "Mengolah data secara berkala dan menyempurnakan performa setiap channel untuk efisiensi budget dan konversi maksimal.",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
+    color: "#8a7a6a",
+  },
+  {
+    id: "04",
+    title: "Scale & Growth",
+    description: "Mengembangkan strategi yang terbukti berhasil menjadi sistem yang stabil untuk pertumbuhan brand jangka panjang.",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1200",
+    color: "#6a7a8a",
+  },
+];
+
+function StepRow({ s, index }) {
+  const isEven = index % 2 === 0;
+
+  return (
+    <div className={`flex flex-col lg:flex-row gap-12 lg:gap-24 items-center mb-32 lg:mb-48 ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
+      
+      {/* Image Panel */}
+      <motion.div
+        initial={{ opacity: 0, x: isEven ? -40 : 40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true }}
+        className="w-full lg:col-span-6 overflow-hidden rounded-[2.5rem] aspect-[16/10] bg-neutral-900 border border-white/5 relative group"
+      >
+        <img
+          src={s.image}
+          alt={s.title}
+          className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity" />
+        
+        {/* Caption watermark */}
+        <div className="absolute bottom-8 left-8 right-8 pointer-events-none select-none">
+          <span className="text-[6rem] md:text-[8rem] font-black font-freight text-white opacity-5 leading-none transition-opacity group-hover:opacity-10">
+            {s.id}
+          </span>
         </div>
-    );
-};
+      </motion.div>
 
-export default Process;
+      {/* Content Panel */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true }}
+        className="w-full lg:col-span-6 flex flex-col gap-6"
+      >
+        <div className="flex items-center gap-4 mb-2">
+            <span className="text-[11px] font-sans font-black uppercase tracking-[0.6em] text-[#9E8976]">Phase {s.id}</span>
+            <div className="h-px flex-1 bg-white/10" />
+        </div>
+        
+        <h3 className="text-4xl md:text-5xl lg:text-6xl font-black font-freight text-white uppercase tracking-tighter leading-[0.9]">
+          {s.title}
+        </h3>
+        
+        <p className="text-base md:text-lg text-white/40 font-sans leading-relaxed max-w-xl">
+          {s.description}
+        </p>
+        
+        {/* Chips for "human" feeling */}
+        <div className="mt-4 flex flex-wrap gap-2">
+          {index === 0 && ["Research", "Discovery", "Foundation"].map(t => <span key={t} className="px-3 py-1 bg-white/5 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/40">{t}</span>)}
+          {index === 1 && ["Design", "Content", "Production"].map(t => <span key={t} className="px-3 py-1 bg-white/5 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/40">{t}</span>)}
+          {index === 2 && ["Analytics", "Strategy", "A/B Testing"].map(t => <span key={t} className="px-3 py-1 bg-white/5 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/40">{t}</span>)}
+          {index === 3 && ["Execution", "Stability", "Expansion"].map(t => <span key={t} className="px-3 py-1 bg-white/5 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/40">{t}</span>)}
+        </div>
+      </motion.div>
+      
+    </div>
+  );
+}
+
+export default function Process() {
+  return (
+    <section id="process" className="bg-neutral-950 py-28 md:py-40 border-t border-white/5">
+      <Container>
+        
+        {/* Header Section */}
+        <div className="max-w-4xl mb-24 lg:mb-32">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-4 mb-8"
+          >
+            <div className="h-px w-10 bg-[#9E8976]" />
+            <span className="text-[11px] font-sans font-bold uppercase tracking-[0.6em] text-[#9E8976]">
+              Workflow Ecosystem
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9] tracking-tighter font-freight uppercase"
+          >
+            How UPLIFT <br />
+            <span className="text-[#9E8976]">Constructs Growth.</span>
+          </motion.h2>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mt-8 text-base md:text-lg text-white/40 leading-relaxed font-sans max-w-xl"
+          >
+            Proses kerja kami yang terstruktur dirancang untuk memastikan brand Anda mencapai target audiens yang tepat dengan dampak yang terukur.
+          </motion.p>
+        </div>
+
+        {/* Steps sequence */}
+        <div className="mt-20">
+          {steps.map((s, i) => (
+            <StepRow key={s.id} s={s} index={i} />
+          ))}
+        </div>
+
+        {/* Bottom CTA for about page */}
+        <motion.div
+           initial={{ opacity: 0, scale: 0.95 }}
+           whileInView={{ opacity: 1, scale: 1 }}
+           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+           viewport={{ once: true }}
+           className="mt-12 bg-white/[0.03] border border-white/10 rounded-[3rem] p-12 text-center"
+        >
+            <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase font-freight mb-6">
+                Ready to stabilize your brand growth?
+            </h3>
+            <a
+              href="/contact"
+              className="inline-flex items-center px-8 py-4 bg-[#9E8976] rounded-full text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-[#9E8976] transition-all duration-300 shadow-xl shadow-[#9E8976]/20"
+            >
+              Start Discovery Session →
+            </a>
+        </motion.div>
+
+      </Container>
+    </section>
+  );
+}

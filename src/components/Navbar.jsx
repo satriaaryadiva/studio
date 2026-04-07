@@ -23,16 +23,44 @@ const Header = ({
     toggleRef,
     isFloating = false
 }) => {
+    const desktopLinks = [
+        { href: "/work", label: "Our Work" },
+        { href: "/services", label: "Services" },
+        { href: "/about", label: "About Us" },
+        { href: "/blog", label: "Blog" },
+    ];
+
     const content = (
         <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href={"/"} aria-label="Home" className="z-50" onClick={() => expanded && onToggle()}>
                 <Logo invert={invert}>Uplift Agency</Logo>
             </Link>
-            <div className="flex items-center gap-x-6 md:gap-x-8 z-50">
-                <MagneticButton href={"/contact"} invert={invert} className="hidden md:inline-flex py-2.5 px-6 border-white/20 hover:bg-white hover:text-black transition-colors" onClick={() => expanded && onToggle()}>
+
+            {/* Desktop: inline nav links */}
+            <nav className="hidden md:flex items-center gap-x-8">
+                {desktopLinks.map((link) => (
+                    <Link
+                        key={link.href}
+                        href={link.href}
+                        className={clsx(
+                            "text-sm font-bold uppercase tracking-[0.15em] transition-colors duration-200",
+                            invert
+                                ? "text-white hover:text-white"
+                                : "text-black hover:text-black"
+                        )}
+                    >
+                        {link.label}
+                    </Link>
+                ))}
+            </nav>
+
+            {/* Right: CTA + hamburger (hamburger: mobile only) */}
+            <div className="flex items-center gap-x-4 md:gap-x-6 z-50">
+                <MagneticButton href={"/contact"} invert={invert} className="py-2.5 px-6 border-white/20 hover:bg-white hover:text-black transition-colors" onClick={() => expanded && onToggle()}>
                     Contact us
                 </MagneticButton>
+                {/* Hamburger — mobile only */}
                 <button
                     ref={toggleRef}
                     type="button"
@@ -40,7 +68,7 @@ const Header = ({
                     aria-expanded={expanded.toString()}
                     aria-controls={panelId}
                     className={clsx(
-                        "group -m-2.5 rounded-full p-3 transition-colors duration-300",
+                        "md:hidden group -m-2.5 rounded-full p-3 transition-colors duration-300",
                         invert ? "hover:bg-white/10" : "hover:bg-neutral-950/10"
                     )}
                     aria-label="Toggle navigation"
@@ -87,7 +115,7 @@ const NavigationItem = ({ href, children, index, onClick }) => {
                 >
                     {children}
                 </motion.span>
-                <span className="absolute left-0 bottom-2 md:bottom-4 w-full h-[2px] md:h-2 bg-yellow-600 origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100" />
+                <span className="absolute left-0 bottom-2 md:bottom-4 w-full h-[2px] md:h-2 bg-[#9E8976] origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100" />
             </Link>
         </motion.div>
     );
@@ -211,10 +239,22 @@ export default function Navbar() {
     const lenis = useLenis();
     const { scrollY } = useScroll();
 
-    // Preserve initial entrance delay, but switch to snappy animation afterward
+    // The entrance delay only fires on the absolute first load of the session.
+    // On subsequent page navigations (which remount due to key={pathName}), the
+    // navbar appears instantly to avoid the "sometimes invisible" flicker.
     useEffect(() => {
-        const timer = setTimeout(() => setIsInitialLoad(false), 3500);
-        return () => clearTimeout(timer);
+        const hasLoaded = sessionStorage.getItem("navbar_loaded");
+        if (hasLoaded) {
+            // Already visited once — skip delay entirely
+            setIsInitialLoad(false);
+        } else {
+            // First visit — sync with preloader (2.2s loader + 1.2s slide-out)
+            const timer = setTimeout(() => {
+                setIsInitialLoad(false);
+                sessionStorage.setItem("navbar_loaded", "1");
+            }, 3500);
+            return () => clearTimeout(timer);
+        }
     }, []);
 
     // Track scroll direction

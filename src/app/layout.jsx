@@ -1,40 +1,33 @@
 import RootLayout from "@/components/RootLayout";
 import "./globals.css";
-import { Instrument_Sans, Instrument_Serif, Bricolage_Grotesque } from "next/font/google";
+import { Poppins } from "next/font/google";
 
-const instrumentSans = Instrument_Sans({
+// Poppins — body & UI font (brand guideline)
+const poppins = Poppins({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
-  variable: "--font-instrument-sans",
+  variable: "--font-poppins",
 });
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  display: "swap",
-  variable: "--font-instrument-serif",
-});
-
-const bricolageGrotesque = Bricolage_Grotesque({
-  subsets: ["latin"],
-  weight: ["400", "700", "800"],
-  display: "swap",
-  variable: "--font-freight",
-});
+// NOTE: Orinoe (headline font) is loaded via @font-face in base.css
+// Place Orinoe.woff2 in src/fonts/ to activate it.
 
 export const metadata = {
   title: {
-    template: "Uplift",
-    default: "Uplift",
+    template: "%s | UPLIFT Agency",
+    default: "UPLIFT Agency — Omnichannel Marketing Agency in Medan",
   },
+  description:
+    "UPLIFT is an omnichannel marketing agency based in Medan. From social media, website development, and content production to e-commerce and event activation.",
+  keywords: ["creative agency Medan", "digital marketing Medan", "omnichannel agency", "based in Medan"],
 };
 
 export default function Layout({ children }) {
   return (
     <html
-      lang="en"
-      className={`${instrumentSans.variable} ${instrumentSerif.variable} ${bricolageGrotesque.variable} h-full text-base antialiased overflow-x-hidden`}
+      lang="id"
+      className={`${poppins.variable} h-full antialiased overflow-x-hidden`}
     >
       <body className="flex min-h-full flex-col overflow-x-hidden w-full m-0 p-0 max-w-full">
         <RootLayout>{children}</RootLayout>

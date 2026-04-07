@@ -10,18 +10,30 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          taupe: "#9b7a60",
-          slate: "#546166",
+          // Official UPLIFT palette
+          cream:    "#F9F2E7",   // F9F2E7 - CREAM (light bg)
+          brown:    "#9E8976",   // 9E8976 - COKLAT (primary accent)
+          gray:     "#505F62",   // 505F62 - GRAYSCALE (dark text / contrast)
+          // Legacy aliases (keeps existing code working)
+          taupe:    "#9E8976",   // maps to brown
+          slate:    "#505F62",   // maps to gray
         },
       },
       borderRadius: {
         "4xl": "2.5rem",
       },
       fontFamily: {
-        sans: ["var(--font-instrument-sans)", ...defaultTheme.fontFamily.sans],
-        display: ["var(--font-instrument-sans)", ...defaultTheme.fontFamily.sans],
-        serif: ["var(--font-instrument-serif)", ...defaultTheme.fontFamily.serif],
-        freight: ["var(--font-freight)", ...defaultTheme.fontFamily.serif],
+        // ── UPLIFT Brand Fonts ──────────────────────────────
+        // ARINOE — all headlines, display, titles (Tailwind class: font-freight / font-headline / font-orinoe / font-display)
+        orinoe:   ["Arinoe", "Georgia", ...defaultTheme.fontFamily.serif],
+        headline: ["Arinoe", "Georgia", ...defaultTheme.fontFamily.serif],
+        display:  ["Arinoe", "Georgia", ...defaultTheme.fontFamily.serif],   // overrides old "font-display" → now Arinoe
+        freight:  ["Arinoe", "Georgia", ...defaultTheme.fontFamily.serif],   // legacy alias
+        serif:    ["Arinoe", "Georgia", ...defaultTheme.fontFamily.serif],
+        // POPPINS — body text, UI, paragraphs, labels (Tailwind class: font-sans / font-poppins / font-body)
+        poppins:  ["var(--font-poppins)", ...defaultTheme.fontFamily.sans],
+        sans:     ["var(--font-poppins)", ...defaultTheme.fontFamily.sans],
+        body:     ["var(--font-poppins)", ...defaultTheme.fontFamily.sans],
       },
     },
   },

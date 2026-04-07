@@ -1,35 +1,48 @@
+import React from "react";
+import AboutUplift from "@/components/AboutUplift";
 import BlogSection from "@/components/BlogSection";
 import Container from "@/components/Container";
 import Cultures from "@/components/Cultures";
-import PageIntro from "@/components/PageIntro";
-import Process from "@/components/Process";
+import HeroMarquee from "@/components/HeroMarquee";
 import SectionHeader from "@/components/SectionHeader";
-import { StatList, StatListItem } from "@/components/StatList";
+import Process from "@/components/Process";
 import Values from "@/components/Values";
-import React from "react";
+import { StatList, StatListItem } from "@/components/StatList";
 
-const AboutPage = () => {
+export default function AboutPage() {
   return (
-    <>
-    <SectionHeader 
-    label="About us"
-    title="Kekuatan kami adalah kolaborasi"
-    backgroundText="UPLIFT STUDIO"
-    />
-      <Container className="mt-16">
+    <main className="bg-neutral-950">
+      {/* 1. Header Hero */}
+      <SectionHeader 
+        label="About Uplift"
+        title="Kekuatan kami adalah kolaborasi"
+        backgroundText="UPLIFT STUDIO"
+      />
+      
+      {/* 2. Marquee & Core About */}
+      <HeroMarquee />
+      <AboutUplift />
+      
+      {/* 3. Global Stats */}
+      <Container>
         <StatList>
-          <StatListItem value="50+" label="Brands Partnered" />
-          <StatListItem value="200+" label="Campaigns Launched" />
-          <StatListItem value="10M+" label="Reach Generated" />
+          <StatListItem index={0} value="50+" label="Brands Partnered" />
+          <StatListItem index={1} value="200+" label="Campaigns Launched" />
+          <StatListItem index={2} value="10M+" label="Reach Generated" />
         </StatList>
-        <Process />
       </Container>
-
+      
+      {/* 4. Workflow / Process */}
+      <Process />
+      
+      {/* 5. Our Values */}
       <Values />
+      
+      {/* 6. Insights / Blog */}
       <BlogSection />
+      
+      {/* 7. Culture Summary */}
       <Cultures />
-    </>
+    </main>
   );
-};
-
-export default AboutPage;
+}

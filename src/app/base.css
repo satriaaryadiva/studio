@@ -1,12 +1,42 @@
 @import "tailwindcss";
 
+/* =======================================================
+   ARINOE (Orinoe) — Display/Headline Font (UPLIFT Brand)
+   Source: public/Arinoe.ttf (loaded from Next.js public folder)
+   Used via: font-headline, font-orinoe, font-freight classes
+======================================================= */
 @font-face {
-  font-family: "Mona Sans";
-  font-weight: 200 900;
-  font-display: block;
+  font-family: "Arinoe";
+  font-weight: 100 900;
+  font-display: swap;
   font-style: normal;
-  font-stretch: 75% 125%;
-  src: url("../fonts//Mona-Sans.var.woff2");
+  src: url("/Arinoe.ttf") format("truetype");
+}
+
+/* =======================================================
+   TAILWIND v4 THEME — custom font-family tokens
+   In v4, tailwind.config.js fontFamily is ignored.
+   Define tokens here with @theme to generate utilities.
+======================================================= */
+@theme {
+  /* ARINOE — headline font (generates font-freight, font-headline, etc.) */
+  --font-orinoe:   "Arinoe", Georgia, serif;
+  --font-headline: "Arinoe", Georgia, serif;
+  --font-display:  "Arinoe", Georgia, serif;
+  --font-freight:  "Arinoe", Georgia, serif;
+  --font-serif:    "Arinoe", Georgia, serif;
+
+  /* POPPINS — body font (generates font-sans, font-poppins, font-body) */
+  /* --font-poppins is injected by Next.js font system from layout.jsx */
+  --font-sans:     var(--font-poppins), "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-body:     var(--font-poppins), "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand colours */
+  --color-brand-cream: #F9F2E7;
+  --color-brand-brown: #9E8976;
+  --color-brand-gray:  #505F62;
+  --color-brand-taupe: #9E8976;
+  --color-brand-slate: #505F62;
 }
 
 html {
@@ -18,11 +48,23 @@ html {
   max-width: 100%;
 }
 
-/* Premium selection color */
+/* ====================================================
+   UPLIFT Brand Palette
+   F9F2E7 Cream · 9E8976 Coklat · 505F62 Grayscale
+   Fonts: Bebas Neue (Headline) · Poppins (Body)
+==================================================== */
+:root {
+  --brand-cream: #F9F2E7;
+  --brand-brown: #9E8976;
+  --brand-gray:  #505F62;
+}
+
+/* Selection — brand brown */
 ::selection {
-  background-color: #171717;
+  background-color: #9E8976;
   color: white;
 }
+
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {

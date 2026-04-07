@@ -18,7 +18,8 @@ const Logo = ({ invert, href, className, children, ...props }) => {
   return (
     <h2
       className={clsx(
-        "cursor-pointer text-2xl font-semibold duration-300",
+        "cursor-pointer text-2xl font-black tracking-tighter uppercase font-freight duration-300",
+        invert ? "text-white hover:text-[#9E8976]" : "text-black hover:text-[#9E8976]",
         className
       )}
       {...props}
