@@ -1,0 +1,7 @@
+@import "./base.css";
+
+@layer utilities {
+    .text-freight {
+        font-family: var(--font-freight), serif;
+    }
+}
