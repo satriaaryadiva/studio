@@ -46,9 +46,9 @@ export default function PageHero({
           <div className="lg:col-span-6 relative z-10">
             {/* Label */}
             <motion.div
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="flex items-center gap-4 mb-6"
             >
               <div className="h-px w-8 bg-[#9E8976]" />
@@ -59,9 +59,9 @@ export default function PageHero({
 
             {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 28 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-black font-freight uppercase tracking-tighter leading-[0.85] text-theme mb-8"
             >
               {title}
@@ -70,9 +70,9 @@ export default function PageHero({
             {/* Description */}
             {description && (
               <motion.p
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.25 }}
+                transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 className="text-base md:text-lg text-theme-2 font-sans leading-relaxed max-w-lg"
               >
                 {description}
@@ -83,9 +83,9 @@ export default function PageHero({
           {/* ── Right: Image ── */}
           {image && (
             <motion.div
-              initial={{ opacity: 0, x: 40, scale: 0.97 }}
+              initial={{ opacity: 0, x: 30, scale: 0.98 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="lg:col-span-6 relative"
             >
               <div className="relative aspect-[4/3] lg:aspect-[5/4] rounded-3xl overflow-hidden bg-neutral-900 shadow-2xl group">

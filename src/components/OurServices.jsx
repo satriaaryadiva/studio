@@ -6,14 +6,33 @@ import Container from "./Container";
 import Link from "next/link";
 
 import { servicesData } from "@/constants";
+import { 
+  HiOutlineHashtag, 
+  HiOutlineVideoCamera, 
+  HiOutlineSparkles, 
+  HiOutlineChartBar, 
+  HiOutlineTicket, 
+  HiOutlineRocketLaunch, 
+  HiOutlineCodeBracket 
+} from "react-icons/hi2";
+
+const serviceIcons = {
+  "social-media": <HiOutlineHashtag className="w-5 h-5" />,
+  "content-production": <HiOutlineVideoCamera className="w-5 h-5" />,
+  "branding": <HiOutlineSparkles className="w-5 h-5" />,
+  "ads-strategy": <HiOutlineChartBar className="w-5 h-5" />,
+  "offline-campaign": <HiOutlineTicket className="w-5 h-5" />,
+  "digital-optimization": <HiOutlineRocketLaunch className="w-5 h-5" />,
+  "web-development": <HiOutlineCodeBracket className="w-5 h-5" />,
+};
 
 // ── Desktop: hover-reveal image panel ──────────────────────────────
 function ServiceListItem({ s, index, isActive, onHover }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1.2, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true }}
       onMouseEnter={() => onHover(index)}
       className="group relative border-t border-theme cursor-default overflow-hidden"
@@ -28,13 +47,15 @@ function ServiceListItem({ s, index, isActive, onHover }) {
         flex items-center gap-10 py-8 transition-all duration-700 relative z-10
         ${isActive ? "pl-6" : "pl-0"}
       `}>
-        {/* Number */}
-        <span className={`
-          text-[11px] font-sans font-black tracking-[0.5em] flex-none w-10 transition-colors duration-500
-          ${isActive ? "text-[#9E8976]" : "text-theme-3"}
-        `}>
-          0{index + 1}
-        </span>
+        {/* Number + Icon */}
+        <div className="flex flex-col items-center gap-4 flex-none w-10">
+          <span className={`text-[11px] font-sans font-black tracking-[0.4em] transition-colors duration-500 ${isActive ? "text-[#9E8976]" : "text-theme-3"}`}>
+            0{index + 1}
+          </span>
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 ${isActive ? "bg-[#9E8976] text-white" : "bg-theme-chip text-[#9E8976] group-hover:bg-[#9E8976]/10"}`}>
+            {serviceIcons[s.id]}
+          </div>
+        </div>
 
         {/* Title + Short */}
         <div className="flex-1 min-w-0">
@@ -108,6 +129,12 @@ function MobileServiceCard({ s, index }) {
       <div className="aspect-[16/8] overflow-hidden relative group">
         <img src={s.image} alt={s.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+        
+        {/* Icon overlay */}
+        <div className="absolute top-4 right-4 w-8 h-8 rounded-lg bg-white/10 backdrop-blur-md flex items-center justify-center text-white/70">
+          {serviceIcons[s.id]}
+        </div>
+
         <div className="absolute bottom-4 left-5 flex flex-col gap-1">
           <span className="text-[9px] font-sans font-black uppercase tracking-[0.4em] text-[#9E8976]">
             {s.id.replace("-", " ")}
@@ -306,9 +333,18 @@ export default function OurServices() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-28 md:mt-40 bg-theme-muted border border-theme p-12 md:p-16 rounded-[4rem] text-center flex flex-col items-center gap-10"
+          className="mt-28 md:mt-40 relative overflow-hidden bg-theme-muted border border-theme p-12 md:p-16 rounded-[4rem] text-center flex flex-col items-center gap-10"
           style={{ boxShadow: "var(--theme-card-shadow)" }}
         >
+          {/* Background graphic */}
+          <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+             <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+               <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                 <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+               </pattern>
+               <rect width="100" height="100" fill="url(#grid)" />
+             </svg>
+          </div>
           <div className="max-w-2xl">
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-black font-freight text-theme uppercase tracking-tighter leading-tight mb-6">
               Butuh strategi khusus untuk <br />

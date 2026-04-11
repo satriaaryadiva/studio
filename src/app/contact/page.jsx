@@ -109,9 +109,9 @@ export default function ContactPage() {
 
           {/* LEFT: Contact Info */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-4 space-y-10"
           >
             <div>
@@ -160,9 +160,9 @@ export default function ContactPage() {
 
           {/* RIGHT: Form */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.35 }}
+            transition={{ duration: 1.2, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-8"
           >
             <div className="bg-white rounded-3xl shadow-xl shadow-neutral-200/60 p-8 md:p-12">

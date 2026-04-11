@@ -25,10 +25,10 @@ export default function Layout({ children }) {
   return (
     <html
       lang="id"
-      className={`${poppins.variable} h-full antialiased overflow-x-hidden`}
+      className={`${poppins.variable} h-full antialiased overflow-x-hidden bg-neutral-50 dark:bg-black`}
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col overflow-x-hidden w-full m-0 p-0 max-w-full">
+      <body className="flex min-h-full flex-col overflow-x-hidden w-full m-0 p-0 max-w-full mx-2 sm:mx-6 md:mx-10 lg:mx-14 bg-theme shadow-[0_0_80px_rgba(0,0,0,0.1)] dark:shadow-none">
         {/*
           Anti-flash script: reads saved theme from localStorage and
           applies data-theme to <html> BEFORE the first paint so users

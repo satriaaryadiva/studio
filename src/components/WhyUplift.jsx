@@ -76,11 +76,11 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -102,9 +102,9 @@ export default function WhyUplift() {
           </motion.span>
 
           <motion.h2
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
             className="text-4xl md:text-5xl lg:text-[3.6rem] font-black font-freight uppercase tracking-tighter leading-[0.9] text-theme mb-6"
           >
@@ -113,9 +113,9 @@ export default function WhyUplift() {
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.12 }}
+            transition={{ duration: 1.2, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
             className="text-base md:text-lg text-theme-2 font-sans leading-relaxed"
           >

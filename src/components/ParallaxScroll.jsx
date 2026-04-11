@@ -42,6 +42,11 @@ export default function ParallaxScroll({ content, title, subtitle }) {
 
     const imageParallax = useTransform(scrollYProgress, [0.15, 0.78], [100, -100]);
 
+    // ── PROGRESS INDICATOR LOGIC ──
+    const rawProgress = useTransform(scrollYProgress, [0.15, 0.78], [0, 1]);
+    const smoothProgress = useSpring(rawProgress, { stiffness: 100, damping: 30, mass: 1 });
+    const progressPercentage = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
+
     return (
         <div ref={containerRef} className="relative h-[850vh] bg-theme font-freight" style={{ overflowX: "clip" }}>
 
@@ -134,16 +139,28 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                         </motion.div>
                     </div>
 
-                    {/* Progress indicator */}
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8">
-                        <span className="text-[10px] font-black text-theme-3 tracking-widest uppercase">01</span>
-                        <div className="w-48 h-[2px] bg-theme-surface overflow-hidden rounded-full relative border border-theme">
-                            <motion.div
-                                className="absolute top-0 left-0 bottom-0 bg-[#9E8976]"
-                                style={{ width: useTransform(scrollYProgress, [0.15, 0.78], ["0%", "100%"]) }}
+                    {/* Progress indicator — Scrub Line & Knob */}
+                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 w-[240px] md:w-[320px]">
+                        <span className="text-[10px] font-black text-theme-3 tracking-widest uppercase flex-none">01</span>
+                        
+                        <div className="flex-1 h-8 flex items-center relative">
+                            {/* Track background */}
+                            <div className="absolute inset-x-0 h-px bg-theme-border-md opacity-20" />
+                            
+                            {/* Active track filling */}
+                            <motion.div 
+                                className="absolute left-0 h-px bg-[#9E8976] origin-left"
+                                style={{ width: progressPercentage }}
+                            />
+                            
+                            {/* Knob / dot */}
+                            <motion.div 
+                                className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#9E8976] border-2 border-theme-surface shadow-lg"
+                                style={{ left: progressPercentage, x: "-50%" }}
                             />
                         </div>
-                        <span className="text-[10px] font-black text-theme-3 tracking-widest uppercase">0{content.length}</span>
+
+                        <span className="text-[10px] font-black text-theme-3 tracking-widest uppercase flex-none">0{content.length}</span>
                     </div>
                 </motion.div>
 

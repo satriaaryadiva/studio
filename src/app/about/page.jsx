@@ -8,6 +8,7 @@ import Clients from "@/components/Clients";
 import FAQ from "@/components/FAQ";
 import ConsultationForm from "@/components/ConsultationForm";
 import PageHero from "@/components/PageHero";
+import { HiOutlineGlobeAlt, HiOutlineUsers, HiOutlineLightBulb, HiOutlineChartBar } from "react-icons/hi2";
 
 // ─── Data ────────────────────────────────────────────────────────────
 const stats = [
@@ -21,22 +22,26 @@ const values = [
   {
     num: "01",
     title: "Ecosystem Thinking",
-    body: "Kami tidak melihat setiap channel secara terpisah. Setiap strategi dirancang agar saling memperkuat — dari konten hingga commerce, dari awareness hingga loyalitas.",
+    body: "Kami tidak melihat setiap channel secara terpisah. Setiap strategi dirancang agar saling memperkuat.",
+    icon: <HiOutlineGlobeAlt className="w-6 h-6" />
   },
   {
     num: "02",
     title: "Human-Led, Data-Driven",
-    body: "Data memberi arah, kreativitas memberi nyawa. Setiap keputusan kami pijaki dengan angka, tapi digerakkan oleh intuisi dan empati manusia.",
+    body: "Data memberi arah, kreativitas memberi nyawa. Kami pijaki dengan angka, digerakkan oleh empati.",
+    icon: <HiOutlineUsers className="w-6 h-6" />
   },
   {
     num: "03",
     title: "Radical Ownership",
-    body: "Kami tidak hanya mengeksekusi perintah. Kami mengambil tanggung jawab penuh atas setiap karya, mulai dari strategi hingga laporan hasil.",
+    body: "Kami mengambil tanggung jawab penuh atas setiap karya, mulai dari strategi hingga laporan hasil.",
+    icon: <HiOutlineLightBulb className="w-6 h-6" />
   },
   {
     num: "04",
     title: "Growth by System",
-    body: "Pertumbuhan yang sustainable bukan dari kerja keras sesaat, tapi dari sistem yang bisa diulang, diukur, dan ditingkatkan secara konsisten.",
+    body: "Pertumbuhan sustainable bukan dari kerja keras sesaat, tapi dari sistem yang bisa diulang.",
+    icon: <HiOutlineChartBar className="w-6 h-6" />
   },
 ];
 
@@ -96,13 +101,13 @@ const cultureItems = [
 // ─── Helpers ─────────────────────────────────────────────────────────
 function FadeUp({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-8% 0px" });
+  const inView = useInView(ref, { once: true, margin: "-12% 0px" });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -142,21 +147,41 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           2. STORY
       ══════════════════════════════════════════════ */}
-      <section className="py-28 md:py-44 border-b border-theme">
+      <section className="py-28 md:py-44 border-b border-theme overflow-hidden">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-            <div className="lg:col-span-5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+            
+            {/* Left: Image */}
+            <div className="lg:col-span-6">
               <FadeUp>
-                <SectionLabel>Our Story</SectionLabel>
-                <h2 className="text-4xl md:text-5xl font-black font-freight uppercase tracking-tighter leading-[0.9] text-theme">
-                  Bermula dari<br />Satu Keyakinan
-                </h2>
+                <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-neutral-900 border border-theme shadow-2xl">
+                  <img 
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" 
+                    alt="UPLIFT workspace"
+                    className="w-full h-full object-cover grayscale opacity-80"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  
+                  {/* Local watermark */}
+                  <div className="absolute bottom-10 left-10">
+                    <p className="text-[5vw] font-black font-freight text-white opacity-10 leading-none pointer-events-none">2021</p>
+                  </div>
+                </div>
               </FadeUp>
             </div>
 
-            <div className="lg:col-span-6 lg:col-start-7 flex flex-col gap-6">
+            {/* Right: Content */}
+            <div className="lg:col-span-6 flex flex-col gap-6">
+              <FadeUp>
+                <SectionLabel>Our Story</SectionLabel>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-freight uppercase tracking-tighter leading-[0.9] text-theme mb-8">
+                  Bermula dari<br />
+                  <span className="text-[#9E8976]">Satu Keyakinan.</span>
+                </h2>
+              </FadeUp>
+
               <FadeUp delay={0.08}>
-                <p className="text-base md:text-lg text-theme leading-relaxed font-sans font-semibold">
+                <p className="text-lg md:text-xl text-theme leading-relaxed font-sans font-semibold">
                   Kami lahir dari frustrasi terhadap agency yang menjual channel tapi tidak membangun sistem.
                 </p>
               </FadeUp>
@@ -171,6 +196,7 @@ export default function AboutPage() {
                 </p>
               </FadeUp>
             </div>
+
           </div>
         </Container>
       </section>
@@ -221,6 +247,9 @@ export default function AboutPage() {
                   <div className="flex items-center gap-4">
                     <span className="text-[11px] font-sans font-black tracking-[0.4em] text-[#9E8976]">{v.num}</span>
                     <div className="h-px flex-1 bg-theme-border group-hover:bg-[#9E8976]/30 transition-colors duration-500" />
+                    <div className="w-10 h-10 rounded-xl bg-theme-chip flex items-center justify-center text-[#9E8976] group-hover:bg-[#9E8976] group-hover:text-white transition-all duration-500">
+                      {v.icon}
+                    </div>
                   </div>
                   <div className="flex flex-col gap-4">
                     <h3 className="text-3xl font-black font-freight uppercase tracking-tight text-theme leading-tight group-hover:text-[#9E8976] transition-colors duration-300">
@@ -315,8 +344,18 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           9. VISION CTA — always dark
       ══════════════════════════════════════════════ */}
-      <section className="bg-[#0a0a0a] py-28 md:py-44">
-        <Container>
+      <section className="relative bg-[#0a0a0a] py-28 md:py-44 overflow-hidden">
+        {/* Background visual */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200" 
+            alt=""
+            className="w-full h-full object-cover opacity-20 grayscale brightness-50"
+          />
+          <div className="absolute inset-0 bg-neutral-950/80" />
+        </div>
+
+        <Container className="relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
               <span className="text-[11px] font-sans font-black uppercase tracking-[0.6em] text-[#9E8976] block mb-8">Our Vision</span>

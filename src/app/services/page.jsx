@@ -10,17 +10,36 @@ import Process from "@/components/Process";
 import FAQ from "@/components/FAQ";
 import ConsultationForm from "@/components/ConsultationForm";
 import PageHero from "@/components/PageHero";
+import { 
+  HiOutlineHashtag, 
+  HiOutlineVideoCamera, 
+  HiOutlineSparkles, 
+  HiOutlineChartBar, 
+  HiOutlineTicket, 
+  HiOutlineRocketLaunch, 
+  HiOutlineCodeBracket 
+} from "react-icons/hi2";
+
+const serviceIcons = {
+  "social-media": <HiOutlineHashtag className="w-5 h-5" />,
+  "content-production": <HiOutlineVideoCamera className="w-5 h-5" />,
+  "branding": <HiOutlineSparkles className="w-5 h-5" />,
+  "ads-strategy": <HiOutlineChartBar className="w-5 h-5" />,
+  "offline-campaign": <HiOutlineTicket className="w-5 h-5" />,
+  "digital-optimization": <HiOutlineRocketLaunch className="w-5 h-5" />,
+  "web-development": <HiOutlineCodeBracket className="w-5 h-5" />,
+};
 
 // ─── Helpers ─────────────────────────────────────────────────────────
 function FadeUp({ children, delay = 0, className = "" }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-8% 0px" });
+  const inView = useInView(ref, { once: true, margin: "-12% 0px" });
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1.2, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -46,17 +65,22 @@ function ServiceCard({ service, index, isActive, onClick }) {
       transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
       viewport={{ once: true }}
       onClick={onClick}
-      className={`group relative cursor-pointer border-t border-theme py-8 md:py-10 transition-colors duration-500
+      className={`group relative cursor-pointer border-t border-theme py-8 md:py-10 transition-colors duration-700
         ${isActive ? "bg-[#9E8976]/[0.04]" : "hover:bg-[#9E8976]/[0.02]"}`}
     >
       {/* Left accent */}
-      <div className={`absolute left-0 top-0 bottom-0 w-[2px] bg-[#9E8976] transition-transform duration-500 origin-top ${isActive ? "scale-y-100" : "scale-y-0"}`} />
+      <div className={`absolute left-0 top-0 bottom-0 w-[2px] bg-[#9E8976] transition-transform duration-700 origin-top ${isActive ? "scale-y-100" : "scale-y-0"}`} />
 
       <div className="flex items-start gap-6 md:gap-10 pl-6 md:pl-8">
-        {/* Number */}
-        <span className={`text-[11px] font-sans font-black tracking-[0.5em] flex-none w-8 transition-colors duration-500 ${isActive ? "text-[#9E8976]" : "text-theme-3"}`}>
-          0{index + 1}
-        </span>
+        {/* Number + Icon */}
+        <div className="flex flex-col items-center gap-4 flex-none w-10">
+          <span className={`text-[11px] font-sans font-black tracking-[0.4em] transition-colors duration-500 ${isActive ? "text-[#9E8976]" : "text-theme-3"}`}>
+            0{index + 1}
+          </span>
+          <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 ${isActive ? "bg-[#9E8976] text-white" : "bg-theme-chip text-[#9E8976] group-hover:bg-[#9E8976]/10"}`}>
+            {serviceIcons[service.id]}
+          </div>
+        </div>
 
         {/* Title/Content */}
         <div className="flex-1 min-w-0">
@@ -77,11 +101,11 @@ function ServiceCard({ service, index, isActive, onClick }) {
                 </p>
 
                 {/* Features */}
-                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
                   {service.features.slice(0, 6).map((f, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#9E8976] mt-1.5 flex-none" />
-                      <span className="text-[12px] text-theme-2 leading-tight font-sans">{f}</span>
+                    <div key={i} className="flex items-start gap-4 group/item">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#9E8976] mt-2 flex-none group-hover/item:scale-150 transition-transform" />
+                      <span className="text-[13px] text-theme-2 leading-tight font-sans group-hover/item:text-theme transition-colors">{f}</span>
                     </div>
                   ))}
                 </div>

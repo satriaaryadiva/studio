@@ -304,7 +304,7 @@ export default function Navbar() {
 
     return (
         <>
-            <header className="fixed inset-x-0 top-0 z-[90] pointer-events-none">
+            <header className="fixed inset-x-2 sm:inset-x-6 md:inset-x-10 lg:inset-x-14 top-0 z-[90] pointer-events-none">
                 <motion.div
                     initial={{ y: "-100%" }}
                     animate={{ y: hidden && !expanded ? "-100%" : "0%" }}
