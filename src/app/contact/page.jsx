@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Container from "@/components/Container";
 import Link from "next/link";
+import PageHero from "@/components/PageHero";
 
 const services = [
   "Social Media Handling",
@@ -89,46 +90,18 @@ export default function ContactPage() {
   const [sent, setSent] = useState(false);
 
   return (
-    <div className="bg-[#F9F2E7] min-h-screen">
+    <main className="bg-theme text-theme">
 
       {/* ── HERO HEADER ── */}
-      <div className="bg-neutral-950 pt-40 pb-24 md:pb-32 relative overflow-hidden">
-        {/* Watermark */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-          <span className="text-[18vw] font-headline font-black uppercase tracking-tighter text-white/[0.025] whitespace-nowrap leading-none">
-            CONTACT
-          </span>
-        </div>
-        <Container className="relative z-10">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="block text-[11px] font-bold uppercase tracking-[0.6em] text-[#9E8976] mb-6"
-          >
-            Mulai Konsultasi Gratis
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="font-headline text-5xl md:text-7xl lg:text-8xl font-black text-white font-freight uppercase tracking-tight leading-[0.88]"
-          >
-            Let's Build the <br />
-            <span className="text-[#9E8976]">Right System</span><br />
-            for Your Brand
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-8 text-base md:text-lg text-neutral-400 max-w-xl leading-relaxed"
-          >
-            Ceritakan tantangan bisnis Anda. Tim kami akan membantu merancang ekosistem omnichannel
-            yang tepat untuk brand Anda — baik di Medan maupun seluruh Indonesia.
-          </motion.p>
-        </Container>
-      </div>
+      <PageHero
+        label="Mulai Konsultasi Gratis"
+        title={<>Let's Build the<br /><span className="text-[#9E8976]">Right System</span><br />for Your Brand</>}
+        description="Ceritakan tantangan bisnis Anda. Tim kami akan membantu merancang ekosistem omnichannel yang tepat untuk brand Anda — baik di Medan maupun seluruh Indonesia."
+        image="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1200"
+        imageAlt="UPLIFT Digital Strategy Meeting"
+        badge={{ value: "24h", label: "Response Time" }}
+        watermark="CONTACT"
+      />
 
       {/* ── MAIN CONTENT ── */}
       <Container className="py-20 md:py-32">
@@ -291,6 +264,6 @@ export default function ContactPage() {
         </Container>
       </div>
 
-    </div>
+    </main>
   );
 }

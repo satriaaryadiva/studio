@@ -18,20 +18,20 @@ export default function AboutUplift() {
   const smoothX = useSpring(bgX, { stiffness: 60, damping: 20 });
 
   return (
-    <section ref={ref} id="about" className="relative bg-neutral-950 overflow-hidden py-32 md:py-40">
+    <section ref={ref} id="about" className="relative bg-theme overflow-hidden py-32 md:py-20">
 
       {/* Decorative watermark */}
       <div className="absolute inset-0 flex items-end pointer-events-none select-none overflow-hidden pb-2">
         <motion.span
-          style={{ x: smoothX }}
-          className="text-[15vw] font-black tracking-tighter text-white/[0.025] whitespace-nowrap leading-none font-freight uppercase"
+          style={{ x: smoothX, color: "var(--theme-watermark)" }}
+          className="text-[15vw] font-black tracking-tighter whitespace-nowrap leading-none font-freight uppercase no-theme-transition"
         >
           omnichannel growth&nbsp;&nbsp;omnichannel growth
         </motion.span>
       </div>
 
       {/* Glow accent */}
-      <div className="absolute top-1/3 left-0 w-[40vw] h-[40vw] rounded-full bg-[#9E8976]/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-0 w-[40vw] h-[40vw] rounded-full blur-[120px] pointer-events-none" style={{ backgroundColor: "var(--theme-glow)" }} />
 
       <Container className="relative z-10">
 
@@ -58,7 +58,7 @@ export default function AboutUplift() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl lg:text-[3.8rem] font-black text-white leading-[0.9] tracking-tighter font-freight uppercase"
+              className="text-4xl md:text-5xl lg:text-[3.8rem] font-black text-theme leading-[0.9] tracking-tighter font-freight uppercase"
             >
               Your Omnichannel{" "}
               <span className="text-[#9E8976]">Growth Partner</span>{" "}
@@ -66,7 +66,7 @@ export default function AboutUplift() {
             </motion.h2>
 
             {/* Stats */}
-            <div className="mt-14 grid grid-cols-3 gap-6 border-t border-white/10 pt-10">
+            <div className="mt-14 grid grid-cols-3 gap-6 border-t border-theme-md pt-10">
               {stats.map((s, i) => (
                 <motion.div
                   key={s.label}
@@ -75,8 +75,8 @@ export default function AboutUplift() {
                   transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <p className="text-4xl font-black text-white font-freight leading-none">{s.value}</p>
-                  <p className="text-[10px] font-sans font-bold uppercase tracking-[0.35em] text-neutral-500 mt-2 leading-tight">{s.label}</p>
+                  <p className="text-4xl font-black text-theme font-freight leading-none">{s.value}</p>
+                  <p className="text-[10px] font-sans font-bold uppercase tracking-[0.35em] text-theme-2 mt-2 leading-tight">{s.label}</p>
                 </motion.div>
               ))}
             </div>
@@ -91,10 +91,10 @@ export default function AboutUplift() {
             >
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-3 text-sm font-sans font-bold text-white/60 hover:text-white transition-colors"
+                className="group inline-flex items-center gap-3 text-sm font-sans font-bold text-theme-2 hover:text-[#9E8976] transition-colors"
               >
                 Mulai Konsultasi
-                <span className="w-8 h-px bg-white/30 group-hover:w-12 group-hover:bg-white transition-all duration-300" />
+                <span className="w-8 h-px bg-current opacity-30 group-hover:w-12 group-hover:opacity-100 transition-all duration-300" />
               </Link>
             </motion.div>
           </div>
@@ -122,8 +122,8 @@ export default function AboutUplift() {
                 transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
                 className={p.large
-                  ? "text-xl md:text-2xl font-semibold text-white leading-relaxed font-sans"
-                  : "text-base md:text-lg text-neutral-400 leading-relaxed font-sans"
+                  ? "text-xl md:text-2xl font-semibold text-theme leading-relaxed font-sans"
+                  : "text-base md:text-lg text-theme-2 leading-relaxed font-sans"
                 }
               >
                 {p.text}
@@ -141,7 +141,7 @@ export default function AboutUplift() {
               {["Medan", "Social Media", "Website", "E-Commerce", "Produksi", "Event", "Omnichannel"].map((tag) => (
                 <span
                   key={tag}
-                  className="text-[9px] font-sans font-bold uppercase tracking-[0.35em] text-neutral-600 border border-neutral-800 rounded-full px-3 py-1"
+                  className="text-[9px] font-sans font-bold uppercase tracking-[0.35em] text-theme-chip bg-theme-chip border border-theme-chip rounded-full px-3 py-1"
                 >
                   {tag}
                 </span>

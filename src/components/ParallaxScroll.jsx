@@ -25,58 +25,48 @@ export default function ParallaxScroll({ content, title, subtitle }) {
     const GAP = isMobile ? 24 : 56;
     const CARD_HEIGHT = isMobile ? 420 : 580;
 
-    // Total items = Service cards + 1 for the Intro Slide Card
     const itemsCount = content.length + 1;
     const totalDistance = (itemsCount - 1) * (ITEM_WIDTH + GAP);
-
-    // --- PHASED SCROLL TIMELINE ---
-    // 0.00 - 0.15: Intro Visuals
-    // 0.15 - 0.78: Horizontal Track Translation
-    // 0.80 - 0.98: Final UPLIFT Outro
 
     const x = useTransform(scrollYProgress, [0.15, 0.78], [0, -totalDistance]);
     const smoothX = useSpring(x, { stiffness: 100, damping: 30, mass: 1 });
 
-    // Intro Phase
     const introOpacity = useTransform(scrollYProgress, [0, 0.05, 0.12, 0.18], [0, 1, 1, 0]);
     const introY = useTransform(scrollYProgress, [0, 0.18], [20, -20]);
 
-    // Track Opacity
     const trackOpacity = useTransform(scrollYProgress, [0.12, 0.20, 0.78, 0.88], [0, 1, 1, 0]);
 
-    // Outro Phase
     const outroY = useTransform(scrollYProgress, [0.80, 0.95], ["100vh", "0vh"]);
     const outroOpacity = useTransform(scrollYProgress, [0.80, 0.85], [0, 1]);
     const outroScale = useTransform(scrollYProgress, [0.85, 1], [0.95, 1]);
 
-    // Individual Card Internal Parallax
     const imageParallax = useTransform(scrollYProgress, [0.15, 0.78], [100, -100]);
 
     return (
-        <div ref={containerRef} className="relative h-[850vh] bg-neutral-950 font-freight" style={{ overflowX: "clip" }}>
+        <div ref={containerRef} className="relative h-[850vh] bg-theme font-freight" style={{ overflowX: "clip" }}>
 
             <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden pointer-events-none pt-20">
 
-                {/* 1. SEAMLESS INTRO PHASE */}
+                {/* 1. INTRO PHASE */}
                 <motion.section
                     style={{ opacity: introOpacity, y: introY }}
                     className="absolute inset-x-0 top-0 bottom-0 z-30 flex flex-col justify-center items-center text-center px-8 overflow-hidden"
                 >
-                    <span className="text-sm tracking-[0.5em] font-black uppercase text-[#9E8976] block mb-6 px-6 py-2 rounded-full border border-[#9E8976]/20 bg-[#9E8976]/5">
+                    <span className="text-sm tracking-[0.5em] font-black uppercase text-[#9E8976] block mb-6 px-6 py-2 rounded-full border border-[#9E8976]/20 bg-[#9E8976]/8">
                         {subtitle || "SERVICE EXPERTISE"}
                     </span>
-                    <h1 className="text-6xl md:text-9xl font-black text-white tracking-tighter uppercase leading-none font-freight">
+                    <h1 className="text-6xl md:text-9xl font-black text-theme tracking-tighter uppercase leading-none font-freight">
                         {title || "What UPLIFT Do"}
                     </h1>
                     <div className="mt-12 flex flex-col items-center gap-4">
                         <div className="w-px h-12 bg-gradient-to-b from-[#9E8976] to-transparent animate-pulse" />
-                        <span className="text-white/40 text-[10px] font-black uppercase tracking-[0.4em]">
+                        <span className="text-theme-2 text-[10px] font-black uppercase tracking-[0.4em]">
                             Scroll to uncover
                         </span>
                     </div>
                 </motion.section>
- 
-                {/* 2. CORE HORIZONTAL PHASE */}
+
+                {/* 2. HORIZONTAL TRACK PHASE */}
                 <motion.div
                     style={{ opacity: trackOpacity }}
                     className="relative z-20 w-full flex items-center justify-center pointer-events-auto"
@@ -89,20 +79,20 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                             className="flex will-change-transform"
                             style={{ x: smoothX, gap: `${GAP}px` }}
                         >
-                            {/* SLIDE 0: TITLE CARD */}
+                            {/* SLIDE 0: TITLE CARD — light themed */}
                             <div
-                                className="flex-shrink-0 flex flex-col justify-center items-center text-center p-8 rounded-[3rem] bg-white/[0.02] border border-white/5 backdrop-blur-3xl shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative overflow-hidden group"
-                                style={{ width: `${ITEM_WIDTH}px`, height: `${CARD_HEIGHT}px` }}
+                                className="flex-shrink-0 flex flex-col justify-center items-center text-center p-8 rounded-[3rem] bg-theme-surface border border-theme backdrop-blur-3xl relative overflow-hidden group"
+                                style={{ width: `${ITEM_WIDTH}px`, height: `${CARD_HEIGHT}px`, boxShadow: "var(--theme-card-shadow)" }}
                             >
                                 <div className="absolute inset-0 bg-gradient-to-br from-[#9E8976]/10 via-transparent to-transparent opacity-50" />
-                                <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase leading-[0.85] z-10 font-freight">
+                                <h2 className="text-4xl md:text-6xl font-black text-theme tracking-tighter uppercase leading-[0.85] z-10 font-freight">
                                     {title || "What UPLIFT Do"}
                                 </h2>
                                 <div className="mt-10 w-20 h-[2px] bg-gradient-to-r from-transparent via-[#9E8976] to-transparent z-10" />
                                 <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#9E8976]/5 blur-[100px] rounded-full" />
                             </div>
 
-                            {/* SLIDES 1 to N: CONTENT CARDS */}
+                            {/* SLIDES 1 to N: IMAGE CARDS — always dark (photo bg) */}
                             {content.map((item, index) => (
                                 <div
                                     key={index}
@@ -119,7 +109,7 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                                         </div>
                                     </motion.div>
 
-                                    {/* Gradient overlay — even darker for text protection */}
+                                    {/* Gradient overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-80" />
 
                                     {/* Text content */}
@@ -146,43 +136,38 @@ export default function ParallaxScroll({ content, title, subtitle }) {
 
                     {/* Progress indicator */}
                     <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8">
-                        <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">01</span>
-                        <div className="w-48 h-[2px] bg-white/5 overflow-hidden rounded-full relative">
+                        <span className="text-[10px] font-black text-theme-3 tracking-widest uppercase">01</span>
+                        <div className="w-48 h-[2px] bg-theme-surface overflow-hidden rounded-full relative border border-theme">
                             <motion.div
                                 className="absolute top-0 left-0 bottom-0 bg-[#9E8976]"
                                 style={{ width: useTransform(scrollYProgress, [0.15, 0.78], ["0%", "100%"]) }}
                             />
                         </div>
-                        <span className="text-[10px] font-black text-white/20 tracking-widest uppercase">0{content.length}</span>
+                        <span className="text-[10px] font-black text-theme-3 tracking-widest uppercase">0{content.length}</span>
                     </div>
                 </motion.div>
 
-                {/* 3. CINEMATIC OUTRO PHASE (UPLIFT Reveal) */}
+                {/* 3. OUTRO PHASE */}
                 <motion.section
                     style={{ y: outroY, opacity: outroOpacity, scale: outroScale }}
-                    className="absolute inset-0 z-40 flex flex-col justify-center items-center text-center bg-neutral-950 px-8"
+                    className="absolute inset-0 z-40 flex flex-col justify-center items-center text-center bg-theme px-8"
                 >
-                    <motion.div
-                        initial={{ tracking: "-0.5em" }}
-                        animate={{ tracking: "calc(-0.5em + 1vw)" }}
-                        className="relative overflow-hidden"
-                    >
-                        <span className="text-[#9E8976] text-[15rem] md:text-[30rem] font-black  tracking-tighter font-freight uppercase leading-none select-none">
+                    <motion.div className="relative overflow-hidden">
+                        <span className="text-white dark:text-[#9E8976] text-[15rem] md:text-[30rem] font-black tracking-tighter font-freight uppercase leading-none select-none">
                             UPLIFT
                         </span>
                     </motion.div>
 
                     <div className="flex flex-col gap-3 -mt-10 md:-mt-32">
-                        <p className="text-white text-2xl font-black uppercase tracking-[0.6em] animate-pulse">
+                        <p className="text-theme text-2xl font-black uppercase tracking-[0.6em] animate-pulse">
                             Omnichannel Marketing Agency in Medan
-
                         </p>
                         <div className="mt-4 flex items-center justify-center gap-6">
-                            <div className="h-px w-8 bg-white/20" />
-                            <p className="text-neutral-500 text-[10px] uppercase tracking-[1em] font-medium opacity-50">
+                            <div className="h-px w-8 border-theme-md opacity-50" />
+                            <p className="text-theme-2 text-[10px] uppercase tracking-[1em] font-medium opacity-50">
                                 Available 2024
                             </p>
-                            <div className="h-px w-8 bg-white/20" />
+                            <div className="h-px w-8 border-theme-md opacity-50" />
                         </div>
                     </div>
                 </motion.section>

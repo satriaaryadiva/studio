@@ -1,6 +1,7 @@
 import RootLayout from "@/components/RootLayout";
 import "./globals.css";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 
 // Poppins — body & UI font (brand guideline)
 const poppins = Poppins({
@@ -9,9 +10,6 @@ const poppins = Poppins({
   display: "swap",
   variable: "--font-poppins",
 });
-
-// NOTE: Orinoe (headline font) is loaded via @font-face in base.css
-// Place Orinoe.woff2 in src/fonts/ to activate it.
 
 export const metadata = {
   title: {
@@ -28,8 +26,22 @@ export default function Layout({ children }) {
     <html
       lang="id"
       className={`${poppins.variable} h-full antialiased overflow-x-hidden`}
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col overflow-x-hidden w-full m-0 p-0 max-w-full">
+        {/*
+          Anti-flash script: reads saved theme from localStorage and
+          applies data-theme to <html> BEFORE the first paint so users
+          never see a flash of the wrong theme.
+          strategy="beforeInteractive" runs it during SSR/hydration.
+        */}
+        <Script
+          id="uplift-theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('uplift-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
+          }}
+        />
         <RootLayout>{children}</RootLayout>
       </body>
     </html>

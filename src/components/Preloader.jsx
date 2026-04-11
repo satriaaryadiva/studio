@@ -48,9 +48,11 @@ export default function Preloader() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5, duration: 1 }}
-                        className="absolute bottom-12 text-[10px] text-[#9b7a60] uppercase tracking-[0.5em] font-medium"
+                        className="absolute bottom-12 text-2xl text-[#9e8976] uppercase   font-bold"
                     >
-                        Awakening the Experience
+                       Build, Scale, and
+Systemize Your Brand
+with UPLIFT
                     </motion.p>
                 </motion.div>
             )}

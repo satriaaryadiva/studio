@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import Container from "./Container";
 import Link from "next/link";
 
-export const MagneticButton = ({ children, href }) => {
+export const MagneticButton = ({ children, href, invert = false, className = "", onClick }) => {
     const ref = useRef(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -30,11 +30,16 @@ export const MagneticButton = ({ children, href }) => {
         >
             <Link
                 href={href}
-                className="group flex items-center gap-3 rounded-full bg-white px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-bold text-black transition-all hover:bg-neutral-200 shadow-xl border border-neutral-200"
+                onClick={onClick}
+                className={`group flex items-center gap-3 rounded-full px-6 py-3 md:px-8 md:py-4 text-sm md:text-base font-bold transition-all shadow-lg ${
+                    invert
+                        ? "bg-white text-black hover:bg-neutral-200 border border-neutral-200"
+                        : "bg-[#1A1612] text-white hover:bg-[#9E8976] border border-[#1A1612]"
+                } ${className}`}
             >
                 {children}
-                <svg viewBox="0 0 16 6" className="h-2 w-4 transition-transform group-hover:translate-x-1">
-                    <path d="M16 3 10 .5v2H0v1h10v2L16 3Z" fill="black" />
+                <svg viewBox="0 0 16 6" className="h-2 w-4 transition-transform group-hover:translate-x-1" fill="currentColor">
+                    <path d="M16 3 10 .5v2H0v1h10v2L16 3Z" />
                 </svg>
             </Link>
         </motion.div>
