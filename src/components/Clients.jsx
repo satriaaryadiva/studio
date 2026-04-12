@@ -3,9 +3,7 @@
 import { motion } from "framer-motion";
 import Container from "./Container";
 import Link from "next/link";
-import Image from "next/image";
 
-// Placeholder for client logos - in a real scenario, use actual assets
 const clientLogos = [
   { name: "Pupuk Kaltim", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_Pupuk_Kaltim.svg/1200px-Logo_Pupuk_Kaltim.svg.png" },
   { name: "Hufa", src: "https://www.hufa.co.id/wp-content/uploads/2018/01/logo-hufa.png" },
@@ -23,7 +21,7 @@ const clientLogos = [
 
 export default function Clients() {
   return (
-    <section id="clients" className="bg-neutral-950 py-24 md:py-40">
+    <section id="clients" className="bg-theme-muted py-24 md:py-40">
       <Container>
         <div className="max-w-4xl mx-auto text-center mb-20 md:mb-28">
           <motion.span
@@ -40,7 +38,7 @@ export default function Clients() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter leading-[0.9] font-freight uppercase"
+            className="text-4xl md:text-5xl lg:text-6xl font-black text-theme tracking-tighter leading-[0.9] font-freight uppercase"
           >
             We've also proudly<br />
             <span className="text-[#9E8976]">partnered with</span>
@@ -55,15 +53,20 @@ export default function Clients() {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
               viewport={{ once: true }}
-              className="w-full max-w-[140px] flex items-center justify-center opacity-40 hover:opacity-100 transition-all duration-300 group"
+              className="w-full max-w-[140px] flex items-center justify-center group"
+              style={{ opacity: 0.45 }}
+              onMouseEnter={e => e.currentTarget.style.opacity = 1}
+              onMouseLeave={e => e.currentTarget.style.opacity = 0.45}
             >
+              {/* Filter adapts via CSS variable: dark=invert, light=grayscale */}
               <img
                 src={client.src}
                 alt={client.name}
-                className="max-h-12 md:max-h-14 w-auto object-contain filter invert brightness-200 group-hover:scale-110 transition-transform duration-500"
+                className="max-h-12 md:max-h-14 w-auto object-contain group-hover:scale-110 transition-transform duration-500"
+                style={{ filter: "var(--logo-filter)" }}
                 onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.nextSibling.style.display = 'block';
+                  e.target.style.display = "none";
+                  e.target.nextSibling.style.display = "block";
                 }}
               />
               <span className="hidden text-[10px] font-sans font-bold uppercase tracking-widest text-[#9E8976]/60 text-center select-none">
@@ -82,7 +85,7 @@ export default function Clients() {
         >
           <Link
             href="/work"
-            className="group relative inline-flex items-center gap-4 px-12 py-6 bg-[#9E8976] rounded-full text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-white hover:bg-white hover:text-[#9E8976] transition-all duration-500 shadow-2xl shadow-[#9E8976]/20"
+            className="group relative inline-flex items-center gap-4 px-12 py-6 bg-[#9E8976] rounded-full text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-white hover:bg-[#1A1612] transition-all duration-500 shadow-2xl shadow-[#9E8976]/20"
           >
             See What Works
             <svg viewBox="0 0 16 6" className="h-2 w-5 transition-transform group-hover:translate-x-1.5" fill="currentColor">

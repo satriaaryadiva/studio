@@ -20,23 +20,28 @@ function FAQItem({ faq, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, delay: index * 0.03 }}
       viewport={{ once: true }}
-      className="border-t border-white/10"
+      style={{ borderTopColor: "var(--theme-faq-border)" }}
+      className="border-t"
     >
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-start gap-4 py-8 text-left group"
         aria-expanded={open}
       >
-        <span className="text-[10px] font-sans font-bold tracking-[0.4em] text-white/20 pt-1.5 flex-none w-8 group-hover:text-[#9E8976] transition-colors">
+        <span className="text-[10px] font-sans font-bold tracking-[0.4em] text-theme-3 pt-1.5 flex-none w-8 group-hover:text-[#9E8976] transition-colors">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <span className={`flex-1 text-base md:text-lg font-bold font-sans tracking-tight leading-tight transition-colors duration-300 ${open ? 'text-[#9E8976]' : 'text-white/80 group-hover:text-white'}`}>
+        <span className={`flex-1 text-base md:text-lg font-bold font-sans tracking-tight leading-tight transition-colors duration-300 ${open ? "text-[#9E8976]" : "text-theme group-hover:text-theme"}`}>
           {faq.q}
         </span>
         <motion.div
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.25 }}
-          className={`flex-none mt-0.5 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${open ? 'border-[#9E8976] text-[#9E8976]' : 'border-white/10 text-white/20 group-hover:border-white/30 group-hover:text-white'}`}
+          className={`flex-none mt-0.5 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${
+            open
+              ? "border-[#9E8976] text-[#9E8976]"
+              : "border-theme-md text-theme-3 group-hover:border-theme-pill group-hover:text-theme-2"
+          }`}
         >
           <svg viewBox="0 0 16 16" fill="currentColor" className="w-3 h-3">
             <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
@@ -45,20 +50,20 @@ function FAQItem({ faq, index }) {
       </button>
       <AnimatePresence initial={false}>
         {open && (
-            <motion.div
-              key="a"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="overflow-hidden"
-            >
-              <div className="pb-8 pl-12">
-                <p className="text-sm md:text-base text-white/50 leading-relaxed max-w-3xl font-sans">
-                  {faq.a}
-                </p>
-              </div>
-            </motion.div>
+          <motion.div
+            key="a"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="pb-8 pl-12">
+              <p className="text-sm md:text-base text-theme-2 leading-relaxed max-w-3xl font-sans">
+                {faq.a}
+              </p>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.div>
@@ -67,7 +72,7 @@ function FAQItem({ faq, index }) {
 
 export default function FAQ() {
   return (
-    <section id="faq" className="bg-neutral-950 py-28 md:py-44 border-t border-white/5">
+    <section id="faq" className="bg-theme-surface py-28 md:py-44 border-t border-theme">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 mb-20">
           <div className="lg:col-span-6">
@@ -83,35 +88,35 @@ export default function FAQ() {
                 FAQ
               </span>
             </motion.div>
-            
+
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[0.9] tracking-tighter font-freight uppercase"
+              className="text-4xl md:text-5xl lg:text-6xl font-black text-theme leading-[0.9] tracking-tighter font-freight uppercase"
             >
               Frequently Asked <br />
               <span className="text-[#9E8976]">Questions</span>
             </motion.h2>
           </div>
-          
+
           <div className="lg:col-span-5 lg:col-start-8 flex items-end">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-base text-white/40 leading-relaxed font-sans"
+              className="text-base text-theme-2 leading-relaxed font-sans"
             >
               Segala hal yang perlu Anda ketahui sebelum membangun ekosistem brand bersama UPLIFT, partner kreatif omnichannel Anda di Medan.
             </motion.p>
           </div>
         </div>
-        
+
         <div className="max-w-4xl">
           {faqs.map((faq, i) => <FAQItem key={i} faq={faq} index={i} />)}
-          <div className="border-t border-white/10" />
+          <div style={{ borderTopColor: "var(--theme-faq-border)" }} className="border-t" />
         </div>
       </Container>
     </section>

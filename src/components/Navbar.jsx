@@ -13,6 +13,8 @@ import Offices from "./Offices";
 import SocialMedia from "./SocialMedia";
 import { useLenis } from "@studio-freight/react-lenis";
 import { MagneticButton } from "./Hero";
+import ThemeToggle from "./ThemeToggle";
+import { useTheme } from "./ThemeContext";
 
 const Header = ({
     panelId,
@@ -23,11 +25,15 @@ const Header = ({
     toggleRef,
     isFloating = false
 }) => {
+    const { theme } = useTheme();
+    const isLight = theme === "light";
+
     const desktopLinks = [
-        { href: "/work", label: "Our Work" },
-        { href: "/services", label: "Services" },
         { href: "/about", label: "About Us" },
+        { href: "/services", label: "Services" },
+        { href: "/work", label: "Portfolio" },
         { href: "/blog", label: "Blog" },
+        { href: "/contact", label: "Contact" },
     ];
 
     const content = (
@@ -46,8 +52,10 @@ const Header = ({
                         className={clsx(
                             "text-sm font-bold uppercase tracking-[0.15em] transition-colors duration-200",
                             invert
-                                ? "text-white hover:text-white"
-                                : "text-black hover:text-black"
+                                ? "text-white hover:text-[#9E8976]"
+                                : (isLight
+                                    ? "text-[#1A1612] hover:text-[#9E8976]"
+                                    : "text-white hover:text-[#9E8976]")
                         )}
                     >
                         {link.label}
@@ -55,9 +63,16 @@ const Header = ({
                 ))}
             </nav>
 
-            {/* Right: CTA + hamburger (hamburger: mobile only) */}
-            <div className="flex items-center gap-x-4 md:gap-x-6 z-50">
-                <MagneticButton href={"/contact"} invert={invert} className="py-2.5 px-6 border-white/20 hover:bg-white hover:text-black transition-colors" onClick={() => expanded && onToggle()}>
+            {/* Right: Theme Toggle + CTA + hamburger */}
+            <div className="flex items-center gap-x-3 md:gap-x-4 z-50">
+                {/* Theme toggle — only on main header (not inside fullscreen menu) */}
+                {!invert && <ThemeToggle />}
+
+                <MagneticButton
+                    href={"/contact"}
+                    invert={invert}
+                    onClick={() => expanded && onToggle()}
+                >
                     Contact us
                 </MagneticButton>
                 {/* Hamburger — mobile only */}
@@ -69,7 +84,7 @@ const Header = ({
                     aria-controls={panelId}
                     className={clsx(
                         "md:hidden group -m-2.5 rounded-full p-3 transition-colors duration-300",
-                        invert ? "hover:bg-white/10" : "hover:bg-neutral-950/10"
+                        invert ? "hover:bg-white/10" : (isLight ? "hover:bg-[#1A1612]/8" : "hover:bg-neutral-950/10")
                     )}
                     aria-label="Toggle navigation"
                 >
@@ -77,8 +92,10 @@ const Header = ({
                         className={clsx(
                             "h-7 w-7 transition-all duration-300 group-hover:scale-110",
                             invert
-                                ? "fill-white group-hover:fill-yellow-500"
-                                : "fill-neutral-950 group-hover:fill-yellow-600"
+                                ? "fill-white group-hover:fill-[#9E8976]"
+                                : (isLight
+                                    ? "fill-[#1A1612] group-hover:fill-[#9E8976]"
+                                    : "fill-neutral-950 group-hover:fill-yellow-600")
                         )}
                     />
                 </button>
@@ -88,7 +105,13 @@ const Header = ({
 
     if (isFloating) {
         return (
-            <div className="w-full bg-neutral-950/70 backdrop-blur-2xl border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-colors duration-500">
+            <div
+                className="w-full backdrop-blur-2xl border-b shadow-sm transition-colors duration-500"
+                style={{
+                    backgroundColor: invert ? "rgba(10,10,10,0.75)" : "var(--theme-navbar-bg)",
+                    borderColor: invert ? "rgba(255,255,255,0.05)" : "var(--theme-navbar-border)",
+                }}
+            >
                 <Container className="py-5">{content}</Container>
             </div>
         );
@@ -123,10 +146,11 @@ const NavigationItem = ({ href, children, index, onClick }) => {
 
 const Navigation = ({ onClick }) => {
     const links = [
-        { href: "/work", label: "Our Work" },
-        { href: "/services", label: "Services" },
         { href: "/about", label: "About Us" },
-        { href: "/blog", label: "Blog" }
+        { href: "/services", label: "Services" },
+        { href: "/work", label: "Portfolio" },
+        { href: "/blog", label: "Blog" },
+        { href: "/contact", label: "Contact" }
     ];
 
     return (
@@ -165,7 +189,7 @@ const FullScreenMenu = ({ expanded, setExpanded, panelId, closeRef }) => {
                     </div>
 
                     <Container
-                        className="flex-1 flex flex-col md:flex-row justify-between pt-32 pb-16 md:pb-4 overflow-y-auto overflow-x-hidden   relative z-40"
+                        className="flex-1 flex flex-col md:flex-row justify-between pt-32 pb-16 md:pb-4 overflow-y-auto overflow-x-hidden relative z-40"
                         data-lenis-prevent="true"
                     >
                         <div className="flex-1 flex flex-col justify-center relative z-10">
@@ -195,7 +219,6 @@ const FullScreenMenu = ({ expanded, setExpanded, panelId, closeRef }) => {
                             </div>
                         </motion.div>
 
-                        {/* Decorative background element for the menu */}
                         <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
@@ -209,7 +232,6 @@ const FullScreenMenu = ({ expanded, setExpanded, panelId, closeRef }) => {
                             className="absolute -bottom-1/2 -right-1/4 w-[100vw] md:w-[50vw] h-[100vw] md:h-[50vw] rounded-full border border-yellow-600/20 pointer-events-none bg-yellow-600/5 blur-3xl"
                         />
 
-                        {/* Huge watermark */}
                         <motion.div
                             initial={{ opacity: 0, y: 100 }}
                             animate={{ opacity: 0.02, y: 0 }}
@@ -239,16 +261,11 @@ export default function Navbar() {
     const lenis = useLenis();
     const { scrollY } = useScroll();
 
-    // The entrance delay only fires on the absolute first load of the session.
-    // On subsequent page navigations (which remount due to key={pathName}), the
-    // navbar appears instantly to avoid the "sometimes invisible" flicker.
     useEffect(() => {
         const hasLoaded = sessionStorage.getItem("navbar_loaded");
         if (hasLoaded) {
-            // Already visited once — skip delay entirely
             setIsInitialLoad(false);
         } else {
-            // First visit — sync with preloader (2.2s loader + 1.2s slide-out)
             const timer = setTimeout(() => {
                 setIsInitialLoad(false);
                 sessionStorage.setItem("navbar_loaded", "1");
@@ -257,22 +274,19 @@ export default function Navbar() {
         }
     }, []);
 
-    // Track scroll direction
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious();
         if (latest > previous && latest > 150) {
-            setHidden(true); // Scrolling down - hide it
+            setHidden(true);
         } else {
-            setHidden(false); // Scrolling up or near top - show it
+            setHidden(false);
         }
     });
 
-    // Close menu on route change
     useEffect(() => {
         setExpanded(false);
     }, [pathname]);
 
-    // Prevent scrolling when menu is open, handle Lenis properly
     useEffect(() => {
         if (expanded) {
             document.body.style.overflow = "hidden";
@@ -282,7 +296,6 @@ export default function Navbar() {
             if (lenis) lenis.start();
         }
 
-        // Cleanup on unmount
         return () => {
             document.body.style.overflow = "unset";
             if (lenis) lenis.start();
@@ -291,7 +304,7 @@ export default function Navbar() {
 
     return (
         <>
-            <header className="fixed inset-x-0 top-0 z-[90] pointer-events-none">
+            <header className="fixed inset-x-2 sm:inset-x-6 md:inset-x-10 lg:inset-x-14 top-0 z-[90] pointer-events-none">
                 <motion.div
                     initial={{ y: "-100%" }}
                     animate={{ y: hidden && !expanded ? "-100%" : "0%" }}
@@ -302,7 +315,7 @@ export default function Navbar() {
                 >
                     <Header
                         isFloating={true}
-                        invert={true}
+                        invert={false}
                         panelId={panelId}
                         icon={HiMenuAlt4}
                         toggleRef={openRef}

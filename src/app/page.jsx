@@ -9,6 +9,8 @@ import Clients from "@/components/Clients";
 import ConsultationForm from "@/components/ConsultationForm";
 import ParallaxScroll from "@/components/ParallaxScroll";
 import SectionDivider from "@/components/SectionDivider";
+import WhyUplift from "@/components/WhyUplift";
+import PortfolioCarousel from "@/components/PortfolioCarousel";
 
 import { servicesData } from "@/constants";
 
@@ -45,6 +47,12 @@ export default function Home() {
 
       {/* 2 · About UPLIFT */}
       <AboutUplift />
+
+      {/* 2.5 · Why UPLIFT */}
+      <WhyUplift />
+
+      {/* 2.7 · Portfolio Carousel */}
+      <PortfolioCarousel />
 
       {/* 3 · Visual Parallax — services overview */}
       <ParallaxScroll

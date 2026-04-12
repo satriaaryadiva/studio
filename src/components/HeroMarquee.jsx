@@ -38,10 +38,10 @@ const bottomLoop = [...BOTTOM_ITEMS, ...BOTTOM_ITEMS];
 
 export default function HeroMarquee() {
   return (
-    <div className="bg-neutral-950 border-y border-white/5 overflow-hidden py-0 select-none">
+    <div className="bg-theme-muted border-y border-theme overflow-hidden py-0 select-none no-theme-transition">
 
       {/* ── Row 1: scrolls left ── */}
-      <div className="relative flex overflow-hidden border-b border-white/5">
+      <div className="relative flex overflow-hidden border-b border-theme">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{ duration: 30, ease: "linear", repeat: Infinity }}
@@ -52,10 +52,10 @@ export default function HeroMarquee() {
               key={i}
               className="inline-flex items-center gap-5 px-6 py-4"
             >
-              <span className="text-[11px] font-sans font-black uppercase tracking-[0.4em] text-white/35">
+              <span className="text-[11px] font-sans font-black uppercase tracking-[0.4em] text-theme-marquee">
                 {item}
               </span>
-              <span className="w-1 h-1 rounded-full bg-[#9E8976]/60 flex-none" />
+              <span className="w-1 h-1 rounded-full flex-none" style={{ backgroundColor: "rgba(158,137,118,0.60)" }} />
             </span>
           ))}
         </motion.div>
@@ -78,11 +78,11 @@ export default function HeroMarquee() {
                   UPLIFT
                 </span>
               ) : (
-                <span className="text-[11px] font-sans font-bold uppercase tracking-[0.4em] text-white/20">
+                <span className="text-[11px] font-sans font-bold uppercase tracking-[0.4em] text-theme-marquee-2">
                   {item}
                 </span>
               )}
-              <span className="w-px h-3 bg-white/10 flex-none" />
+              <span className="w-px h-3 flex-none border-theme-md opacity-50" />
             </span>
           ))}
         </motion.div>
