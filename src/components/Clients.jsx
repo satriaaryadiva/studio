@@ -5,18 +5,18 @@ import Container from "./Container";
 import Link from "next/link";
 
 const clientLogos = [
-  { name: "Pupuk Kaltim", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_Pupuk_Kaltim.svg/1200px-Logo_Pupuk_Kaltim.svg.png" },
-  { name: "Hufa", src: "https://www.hufa.co.id/wp-content/uploads/2018/01/logo-hufa.png" },
-  { name: "Mayapada Hospital", src: "https://mayapadahospital.com/assets/img/logo-mayapada.png" },
-  { name: "Mandiri Tunas Finance", src: "https://www.mtf.co.id/assets/images/logo_mtf.png" },
-  { name: "PLN Nusantara Power", src: "https://plnnusantarapower.co.id/wp-content/uploads/2022/10/logo-pln-nusantara-power.png" },
-  { name: "GranDhika", src: "https://grandhika-hotel.com/wp-content/uploads/2021/04/Logo-Hotel-GranDhika-2021.png" },
-  { name: "Petrosida Gresik", src: "https://petrosida-gresik.com/assets/img/logo-petrosida.png" },
-  { name: "Tresno Joyo", src: "https://www.tresnojoyo.id/wp-content/uploads/2021/04/logo-tresnojoyo.png" },
-  { name: "SpanSet", src: "https://www.spanset.com/themes/custom/spanset/logo.svg" },
-  { name: "Visalux", src: "https://visalux-lighting.com/wp-content/uploads/2020/07/VISALUX-LOGO.png" },
-  { name: "Luwak", src: "https://kopiluwak.id/wp-content/uploads/2020/09/cropped-logo-kopi-luwak-1.png" },
-  { name: "Delovery", src: "https://www.delovery.com/wp-content/uploads/2022/01/logo-delovery.png" },
+  { name: "Pupuk Kaltim", src: "https://images.unsplash.com/photo-1606011387228-4ce9a6b107e?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "Hufa", src: "https://images.unsplash.com/photo-1557672172-298e090bd0f1?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "Mayapada Hospital", src: "https://images.unsplash.com/photo-1558591710-4b4fb24eac0e?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "Mandiri Tunas Finance", src: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "PLN Nusantara Power", src: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "GranDhika", src: "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "Petrosida Gresik", src: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "Tresno Joyo", src: "https://images.unsplash.com/photo-1518818419601-12c8b8b0eec8?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "SpanSet", src: "https://images.unsplash.com/photo-1533158307587-828f0a72fc6e?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "Visalux", src: "https://images.unsplash.com/photo-1550859492-45b1cdcdcece?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "Luwak", src: "https://images.unsplash.com/photo-1493134365851-933e49818ae3?auto=format&fit=crop&q=80&w=400&h=160" },
+  { name: "Delovery", src: "https://images.unsplash.com/photo-1509343256512-d803980a03d6?auto=format&fit=crop&q=80&w=400&h=160" },
 ];
 
 export default function Clients() {

@@ -91,7 +91,7 @@ export default function BlogRecommendation() {
                         className="group cursor-pointer lg:row-span-2"
                     >
                         <Link href={featured.href} className="block h-full">
-                            <div className="relative overflow-hidden rounded-3xl h-full min-h-[400px] lg:min-h-full bg-neutral-900">
+                            <div className="relative overflow-hidden h-full min-h-[400px] lg:min-h-full bg-neutral-900 border border-theme">
                                 <img
                                     src={featured.image}
                                     alt={featured.title}
@@ -144,7 +144,7 @@ export default function BlogRecommendation() {
                                 className="flex gap-6 items-start rounded-2xl bg-white/5 border border-white/10 p-5 transition-colors duration-300 hover:bg-white/10 h-full"
                             >
                                 {/* Thumbnail */}
-                                <div className="relative overflow-hidden rounded-xl w-32 h-32 sm:w-40 sm:h-40 flex-none bg-neutral-800">
+                                <div className="relative overflow-hidden w-32 h-32 sm:w-40 sm:h-40 flex-none bg-neutral-800 border border-theme">
                                     <img
                                         src={post.image}
                                         alt={post.title}

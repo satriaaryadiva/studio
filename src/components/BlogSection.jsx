@@ -158,7 +158,7 @@ function PostCard({ post, index }) {
                 </div>
 
                 {/* Image */}
-                <div className="relative overflow-hidden rounded-2xl aspect-[4/3] bg-neutral-900 mb-5">
+                <div className="relative overflow-hidden aspect-[4/3] bg-neutral-900 mb-5 border border-theme">
                     <img
                         src={post.image}
                         alt={post.title}

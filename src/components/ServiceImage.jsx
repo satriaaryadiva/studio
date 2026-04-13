@@ -6,7 +6,7 @@ import clsx from "clsx";
 
 const ServiceImage = ({ src, alt = "", className, aspect = "aspect-[4/3]" }) => {
     return (
-        <div className={clsx("relative group overflow-hidden rounded-3xl", className)}>
+        <div className={clsx("relative group overflow-hidden", className)}>
             <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
@@ -31,7 +31,7 @@ const ServiceImage = ({ src, alt = "", className, aspect = "aspect-[4/3]" }) => 
                 <div className="absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                 {/* Aceternity-style accent border */}
-                <div className="absolute inset-0 rounded-3xl border border-white/10" />
+                <div className="absolute inset-0 border border-white/10" />
             </motion.div>
 
             {/* Floating element decorative */}

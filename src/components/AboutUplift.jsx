@@ -58,7 +58,7 @@ export default function AboutUplift() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true }}
-              className="relative aspect-[4/5] rounded-[3rem] overflow-hidden bg-neutral-900 border border-theme shadow-2xl group"
+              className="relative aspect-[4/5] overflow-hidden bg-neutral-900 border border-theme shadow-2xl group"
             >
               <img 
                 src="https://images.unsplash.com/photo-1542744173-8e7e5141b2b1?auto=format&fit=crop&q=80&w=1200" 

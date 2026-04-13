@@ -101,7 +101,7 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                             {content.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="group relative flex-shrink-0 overflow-hidden rounded-[3rem] bg-neutral-900 border border-white/5 transition-all duration-700 hover:border-[#9E8976]/30 shadow-2xl"
+                                    className="group relative flex-shrink-0 overflow-hidden bg-neutral-900 border border-theme transition-all duration-700 hover:border-[#9E8976]/30 shadow-2xl"
                                     style={{ width: `${ITEM_WIDTH}px`, height: `${CARD_HEIGHT}px` }}
                                 >
                                     {/* Image with parallax */}

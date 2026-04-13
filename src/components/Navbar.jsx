@@ -16,6 +16,8 @@ import { MagneticButton } from "./Hero";
 import ThemeToggle from "./ThemeToggle";
 import { useTheme } from "./ThemeContext";
 
+
+
 const Header = ({
     panelId,
     invert = false,
@@ -70,7 +72,7 @@ const Header = ({
 
                 <MagneticButton
                     href={"/contact"}
-                    invert={invert}
+                    
                     onClick={() => expanded && onToggle()}
                 >
                     Contact us
@@ -84,7 +86,7 @@ const Header = ({
                     aria-controls={panelId}
                     className={clsx(
                         "md:hidden group -m-2.5 rounded-full p-3 transition-colors duration-300",
-                        invert ? "hover:bg-white/10" : (isLight ? "hover:bg-[#1A1612]/8" : "hover:bg-neutral-950/10")
+                        invert ? "hover:bg-white/10" : (isLight ? "hover:bg-[#1A1612]" : "hover:bg-neutral-950/10")
                     )}
                     aria-label="Toggle navigation"
                 >
@@ -304,7 +306,7 @@ export default function Navbar() {
 
     return (
         <>
-            <header className="fixed inset-x-2 sm:inset-x-6 md:inset-x-10 lg:inset-x-14 top-0 z-[90] pointer-events-none">
+            <header className="fixed inset-x-0 top-0 z-[90] pointer-events-none">
                 <motion.div
                     initial={{ y: "-100%" }}
                     animate={{ y: hidden && !expanded ? "-100%" : "0%" }}

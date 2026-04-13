@@ -122,7 +122,7 @@ function MobileServiceCard({ s, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
       viewport={{ once: true }}
-      className="rounded-[2rem] overflow-hidden border border-theme bg-theme-surface"
+      className="overflow-hidden border border-theme bg-theme-surface"
       style={{ boxShadow: "var(--theme-card-shadow)" }}
     >
       {/* Image */}
@@ -258,7 +258,7 @@ export default function OurServices() {
 
           {/* Right: Image panel — sticky, always visible while scrolling left list */}
           <div className="md:col-span-5 sticky top-28 self-start">
-            <div className="relative rounded-[3rem] overflow-hidden bg-neutral-900 border border-white/5 shadow-2xl" style={{ aspectRatio: "10/12", maxHeight: "calc(100vh - 9rem)" }}>
+            <div className="relative overflow-hidden bg-neutral-900 border border-theme shadow-2xl" style={{ aspectRatio: "10/12", maxHeight: "calc(100vh - 9rem)" }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}

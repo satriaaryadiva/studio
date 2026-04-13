@@ -125,7 +125,7 @@ function ProjectCard({ project, index }) {
       transition={{ duration: 0.6, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative rounded-2xl overflow-hidden bg-neutral-900 cursor-pointer"
+      className="group relative -2xl overflow-hidden bg-neutral-900 cursor-pointer"
     >
       {/* Image */}
       <div className="aspect-[4/3] overflow-hidden relative">

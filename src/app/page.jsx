@@ -8,7 +8,6 @@ import FAQ from "@/components/FAQ";
 import Clients from "@/components/Clients";
 import ConsultationForm from "@/components/ConsultationForm";
 import ParallaxScroll from "@/components/ParallaxScroll";
-import SectionDivider from "@/components/SectionDivider";
 import WhyUplift from "@/components/WhyUplift";
 import PortfolioCarousel from "@/components/PortfolioCarousel";
 
@@ -64,7 +63,6 @@ export default function Home() {
 
 
       {/* 4 · Services — detailed accordion */}
-      <SectionDivider rows={["OMNICHANNEL AGENCY CREATIVE", "DIGITAL MARKETING"]} />
       <OurServices />
 
       {/* 5 · Industries */}
@@ -76,7 +74,6 @@ export default function Home() {
       <FAQ />
 
       {/* 7 · Consultation Form */}
-      <SectionDivider rows={["CREATIVE AGENCY MEDAN", "DIGITAL MARKETING MEDAN", "OMNICHANNEL"]} />
       <ConsultationForm />
     </main>
   );

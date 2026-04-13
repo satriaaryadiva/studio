@@ -46,7 +46,7 @@ function StepRow({ s, index }) {
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         viewport={{ once: true }}
-        className="w-full lg:col-span-6 overflow-hidden rounded-[2.5rem] aspect-[16/10] bg-neutral-900 border border-white/5 relative group"
+        className="w-full lg:col-span-6 overflow-hidden aspect-[16/10] bg-neutral-900 border border-theme relative group"
       >
         <img
           src={s.image}

@@ -91,7 +91,7 @@ function PortfolioCard({ item, index }) {
       viewport={{ once: true }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative flex-none w-[220px] md:w-[260px] aspect-[9/16] rounded-3xl overflow-hidden bg-neutral-900 cursor-pointer shadow-xl"
+      className="group relative flex-none w-[220px] md:w-[260px] aspect-[9/16] overflow-hidden bg-neutral-900 cursor-pointer shadow-xl"
     >
       {/* Video (when available) */}
       {item.video ? (
@@ -253,7 +253,7 @@ export default function PortfolioCarousel() {
         {/* "See all" end card */}
         <Link
           href="/work"
-          className="flex-none w-[180px] md:w-[200px] aspect-[9/16] rounded-3xl border border-white/10 flex flex-col items-center justify-center gap-4 hover:border-[#9E8976]/40 group transition-all duration-500"
+          className="flex-none w-[180px] md:w-[200px] aspect-[9/16] border border-theme flex flex-col items-center justify-center gap-4 hover:border-[#9E8976]/40 group transition-all duration-500"
           style={{ scrollSnapAlign: "start" }}
         >
           <div className="w-12 h-12 rounded-full border border-white/20 group-hover:border-[#9E8976] flex items-center justify-center transition-colors duration-300">

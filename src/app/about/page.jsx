@@ -154,7 +154,7 @@ export default function AboutPage() {
             {/* Left: Image */}
             <div className="lg:col-span-6">
               <FadeUp>
-                <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-neutral-900 border border-theme shadow-2xl">
+                <div className="relative aspect-[4/5]  overflow-hidden bg-neutral-900 border border-theme shadow-2xl">
                   <img 
                     src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" 
                     alt="UPLIFT workspace"
@@ -283,7 +283,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {team.map((member, i) => (
               <FadeUp key={i} delay={i * 0.08}>
-                <div className="group relative aspect-[3/4] rounded-2xl overflow-hidden bg-neutral-900">
+                <div className="group relative aspect-[3/4] overflow-hidden bg-neutral-900 border border-theme">
                   <img
                     src={member.image}
                     alt={member.name}
