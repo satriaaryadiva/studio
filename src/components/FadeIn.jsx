@@ -12,10 +12,10 @@ const FadeIn = (props) => {
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 15 },
+        hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 40 },
         visible: { opacity: 1, y: 0 },
       }}
-      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
       {...(isInStaggerGroup
         ? {}
         : {
@@ -35,7 +35,7 @@ export const FadeInStagger = ({ faster = false, ...props }) => {
         initial="hidden"
         whileInView="visible"
         viewport={viewport}
-        transition={{ staggerChildren: faster ? 0.12 : 0.2 }}
+        transition={{ staggerChildren: faster ? 0.15 : 0.3 }}
         {...props}
       />
     </FadeInStaggerContext.Provider>

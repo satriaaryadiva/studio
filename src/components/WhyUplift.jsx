@@ -86,7 +86,7 @@ const itemVariants = {
 
 export default function WhyUplift() {
   return (
-    <section id="why-uplift" className="bg-theme py-28   border-t border-theme overflow-hidden">
+    <section id="why-uplift" className="bg-[#505F62] py-18 border-t border-white/10 overflow-hidden">
       <Container>
 
         {/* ── Centered Header ── */}
@@ -96,7 +96,7 @@ export default function WhyUplift() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="inline-block text-[11px] font-sans font-black uppercase tracking-[0.6em] text-[#9E8976] mb-6"
+            className="inline-block text-[11px] font-sans font-black uppercase tracking-[0.6em] text-[#E5D5C5] mb-6"
           >
             Why Choose Us
           </motion.span>
@@ -106,10 +106,10 @@ export default function WhyUplift() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl lg:text-[3.6rem] font-black font-freight uppercase tracking-tighter leading-[0.9] text-theme mb-6"
+            className="text-4xl md:text-5xl lg:text-[3.6rem] font-black font-freight uppercase tracking-tighter leading-[0.9] text-white mb-6"
           >
             Kenapa Brand Memilih{" "}
-            <em className="not-italic text-[#9E8976]">UPLIFT</em>
+            <em className="not-italic text-[#E5D5C5]">UPLIFT</em>
           </motion.h2>
 
           <motion.p
@@ -117,53 +117,53 @@ export default function WhyUplift() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
-            className="text-base md:text-lg text-theme-2 font-sans leading-relaxed"
+            className="text-base md:text-lg text-white/80 font-sans leading-relaxed"
           >
             Satu ekosistem yang menghubungkan strategi, eksekusi, dan pertumbuhan — secara{" "}
-            <span className="text-theme font-semibold">repeatable & scalable</span>.
+            <span className="text-[#E5D5C5] font-semibold">repeatable & scalable</span>.
           </motion.p>
         </div>
 
         {/* ── Grid of Cards ── */}
-        <div className="border-t border-theme">
+        <div className="border-t border-white/10">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-5% 0px" }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y divide-theme sm:divide-y-0 lg:divide-y-0"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y divide-white/10 sm:divide-y-0 lg:divide-y-0"
           >
             {reasons.map((r, i) => (
               <motion.div
                 key={r.num}
                 variants={itemVariants}
-                className={`group relative p-8 md:p-10 hover:bg-[#9E8976]/[0.04] transition-colors duration-500 border-b border-theme
-                  ${i % 3 === 0 || i % 3 === 1 ? "lg:border-r" : ""} border-theme
-                  ${i % 2 === 0 ? "sm:border-r" : ""} border-theme
+                className={`group relative p-8 md:p-10 hover:bg-[#E5D5C5]/5 transition-colors duration-500 border-b border-white/10
+                  ${i % 3 === 0 || i % 3 === 1 ? "lg:border-r border-white/10" : ""}
+                  ${i % 2 === 0 ? "sm:border-r border-white/10" : ""}
                 `}
               >
               {/* Number + Icon row */}
               <div className="flex items-center justify-between mb-6">
-                <span className="text-4xl md:text-5xl font-black font-freight tracking-tighter leading-none text-theme-3 group-hover:text-[#9E8976]/30 transition-colors duration-500">
+                <span className="text-4xl md:text-5xl font-black font-freight tracking-tighter leading-none text-white/20 group-hover:text-[#E5D5C5]/40 transition-colors duration-500">
                   {r.num}
                 </span>
-                <div className="w-10 h-10 rounded-xl border border-theme-md flex items-center justify-center text-theme-2 group-hover:border-[#9E8976]/30 group-hover:text-[#9E8976] transition-all duration-500">
+                <div className="w-10 h-10 rounded-xl border border-white/10 flex items-center justify-center text-white/50 group-hover:border-[#E5D5C5]/30 group-hover:text-[#E5D5C5] transition-all duration-500">
                   {r.icon}
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className="text-lg md:text-xl font-black font-freight uppercase tracking-tight text-theme leading-snug mb-4 group-hover:text-[#9E8976] transition-colors duration-400">
+              <h3 className="text-lg md:text-xl font-black font-freight uppercase tracking-tight text-[#E5D5C5] leading-snug mb-4 group-hover:text-white transition-colors duration-400">
                 {r.title}
               </h3>
 
               {/* Body */}
-              <p className="text-sm text-theme-2 leading-relaxed font-sans">
+              <p className="text-sm text-white/70 leading-relaxed font-sans">
                 {r.body}
               </p>
 
               {/* Bottom accent line */}
-              <div className="absolute bottom-0 left-8 right-8 h-px bg-[#9E8976] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              <div className="absolute bottom-0 left-8 right-8 h-px bg-[#E5D5C5] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
             </motion.div>
             ))}
           </motion.div>
@@ -179,14 +179,14 @@ export default function WhyUplift() {
         >
           <a
             href="/contact"
-            className="group inline-flex items-center gap-4 bg-[#9E8976] text-white px-10 py-5 rounded-full text-[11px] font-sans font-black uppercase tracking-[0.3em] hover:bg-[#1A1612] transition-all duration-500 shadow-xl shadow-[#9E8976]/20"
+            className="group inline-flex items-center gap-4 bg-[#E5D5C5] text-black px-10 py-5 rounded-full text-[11px] font-sans font-black uppercase tracking-[0.3em] hover:bg-white transition-all duration-500 shadow-xl shadow-[#E5D5C5]/10"
           >
             Mulai Konsultasi Gratis
             <svg viewBox="0 0 16 6" className="h-2 w-5 transition-transform group-hover:translate-x-1.5" fill="currentColor">
               <path d="M16 3 10 .5v2H0v1h10v2L16 3Z" />
             </svg>
           </a>
-          <span className="text-[11px] font-sans text-theme-2 uppercase tracking-widest">
+          <span className="text-[11px] font-sans text-white/60 uppercase tracking-widest">
             Tanpa kontrak awal · Respon 1–2 hari kerja
           </span>
         </motion.div>

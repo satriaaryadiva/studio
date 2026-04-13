@@ -70,13 +70,14 @@ const Header = ({
                 {/* Theme toggle — only on main header (not inside fullscreen menu) */}
                 {!invert && <ThemeToggle />}
 
-                <MagneticButton
-                    href={"/contact"}
-                    
-                    onClick={() => expanded && onToggle()}
-                >
-                    Contact us
-                </MagneticButton>
+                <div className="hidden md:block">
+                    <MagneticButton
+                        href={"/contact"}
+                        onClick={() => expanded && onToggle()}
+                    >
+                        Contact us
+                    </MagneticButton>
+                </div>
                 {/* Hamburger — mobile only */}
                 <button
                     ref={toggleRef}
