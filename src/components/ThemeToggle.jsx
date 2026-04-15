@@ -11,25 +11,22 @@ export default function ThemeToggle({ className = "" }) {
     <button
       onClick={toggleTheme}
       aria-label={`Switch to ${isLight ? "dark" : "light"} theme`}
-      className={`relative flex items-center gap-2 rounded-full px-3 py-2 transition-all duration-300 group ${
-        isLight
-          ? "bg-[#1A1612]/8 hover:bg-[#1A1612]/12 border border-[#9E8976]/20"
-          : "bg-white/8 hover:bg-white/12 border border-white/10"
-      } ${className}`}
+      className={`relative flex items-center gap-2 rounded-full px-3 py-2 transition-all duration-300 group ${isLight
+          ? "bg-brand-gray hover:bg-brand-gray border border-brand-gray"
+          : "bg-brand-gray hover:bg-brand-gray border border-brand-gray"
+        } ${className}`}
     >
       {/* Track */}
       <div
-        className={`relative w-9 h-5 rounded-full transition-colors duration-400 flex-none ${
-          isLight ? "bg-[#9E8976]" : "bg-white/15"
-        }`}
+        className={`relative w-9 h-5 rounded-full transition-colors duration-400 flex-none ${isLight ? "bg-[#9E8976]" : "bg-white/15"
+          }`}
       >
         {/* Knob */}
         <motion.div
           animate={{ x: isLight ? 16 : 2 }}
           transition={{ type: "spring", stiffness: 400, damping: 28 }}
-          className={`absolute top-0.5 w-4 h-4 rounded-full shadow-sm flex items-center justify-center ${
-            isLight ? "bg-white" : "bg-white"
-          }`}
+          className={`absolute top-0.5 w-4 h-4 rounded-full shadow-sm flex items-center justify-center ${isLight ? "bg-white" : "bg-white"
+            }`}
         >
           <AnimatePresence mode="wait">
             {isLight ? (
@@ -70,9 +67,8 @@ export default function ThemeToggle({ className = "" }) {
 
       {/* Label */}
       <span
-        className={`text-[9px] font-bold uppercase tracking-[0.3em] hidden sm:block ${
-          isLight ? "text-[#505F62]" : "text-white/40"
-        }`}
+        className={`text-[9px] font-bold uppercase tracking-[0.3em] hidden sm:block ${isLight ? "text-white" : "text-white "
+          }`}
       >
         {isLight ? "Light" : "Dark"}
       </span>

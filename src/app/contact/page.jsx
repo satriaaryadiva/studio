@@ -119,7 +119,7 @@ export default function ContactPage() {
               <div className="space-y-6">
                 {contacts.map((c) => (
                   <div key={c.label} className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center flex-none text-base shadow-sm">
+                    <div className="w-10 h-10 rounded-full bg-white border border-neutral-200 flex items-center justify-center flex-none text-base  ">
                       {c.icon}
                     </div>
                     <div>
@@ -165,7 +165,7 @@ export default function ContactPage() {
             transition={{ duration: 1.2, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-8"
           >
-            <div className="bg-white rounded-3xl shadow-xl shadow-neutral-200/60 p-8 md:p-12">
+            <div className="bg-white    shadow-neutral-200/60 p-8 md:p-12">
               {sent ? (
                 <div className="flex flex-col items-center justify-center py-16 text-center gap-6">
                   <div className="w-16 h-16 rounded-full bg-[#9E8976]/10 flex items-center justify-center">

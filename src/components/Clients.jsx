@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Container from "./Container";
 import Link from "next/link";
+import { useRef } from "react";
 
 const clientLogos = [
   { name: "Pupuk Kaltim", src: "https://images.unsplash.com/photo-1606011387228-4ce9a6b107e?auto=format&fit=crop&q=80&w=400&h=160" },
@@ -19,75 +20,112 @@ const clientLogos = [
   { name: "Delovery", src: "https://images.unsplash.com/photo-1509343256512-d803980a03d6?auto=format&fit=crop&q=80&w=400&h=160" },
 ];
 
-export default function Clients() {
+function LogoMarquee({ logos, reverse = false, duration = 40 }) {
+  const doubledLogos = [...logos, ...logos, ...logos]; // Triple for safety in wide screens
+  
   return (
-    <section id="clients" className="bg-theme-muted py-24 md:py-40">
+    <div className="relative flex overflow-hidden py-10 select-none group">
+      <motion.div
+        animate={{
+          x: reverse ? [0, -1035] : [-1035, 0], // Approximate width calculation, will adjust to % later or just large enough
+        }}
+        transition={{
+          duration: duration,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+        className="flex whitespace-nowrap min-w-full gap-20 items-center pr-20"
+        style={{ width: "fit-content" }}
+      >
+        {doubledLogos.map((logo, i) => (
+          <div
+            key={`${logo.name}-${i}`}
+            className="flex-none w-32 md:w-40 lg:w-48 transition-all duration-500 hover:scale-110"
+            style={{ opacity: 0.5 }}
+          >
+            <img
+              src={logo.src}
+              alt={logo.name}
+              className="w-full h-auto object-contain brightness-0 invert theme-invert-0 theme-brightness-100" // Adaptive via global CSS / data-theme
+              style={{ filter: "var(--logo-filter)" }}
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+export default function Clients() {
+  const row1 = clientLogos.slice(0, 6);
+  const row2 = clientLogos.slice(6);
+
+  return (
+    <section id="clients" className="bg-theme py-24 md:py-40 border-t border-theme-md overflow-hidden">
       <Container>
-        <div className="max-w-4xl mx-auto text-center mb-20 md:mb-28">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
+        {/* Header Section */}
+        <div className="max-w-4xl mx-auto text-center mb-10 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="block text-[11px] font-sans font-bold uppercase tracking-[0.6em] text-[#9E8976] mb-6"
+            className="flex items-center justify-center gap-4 mb-8"
           >
-            Partnerships
-          </motion.span>
+            <div className="h-px w-8 bg-[#9E8976]" />
+            <span className="text-[11px] font-sans font-bold uppercase tracking-[0.6em] text-[#9E8976]">
+              Trusted Partnerships
+            </span>
+            <div className="h-px w-8 bg-[#9E8976]" />
+          </motion.div>
+
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl lg:text-6xl font-black text-theme tracking-tighter leading-[0.9] font-freight uppercase"
+            className="text-4xl md:text-5xl lg:text-7xl font-black text-theme tracking-tighter leading-[0.9] font-freight uppercase"
           >
-            We've also proudly<br />
-            <span className="text-[#9E8976]">partnered with</span>
+            Driving Growth for<br />
+            <span className="text-[#9E8976]">Industry Leaders</span>
           </motion.h2>
-        </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-12 md:gap-x-16 md:gap-y-20 items-center justify-items-center">
-          {clientLogos.map((client, i) => (
-            <motion.div
-              key={client.name}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              viewport={{ once: true }}
-              className="w-full max-w-[140px] flex items-center justify-center group"
-              style={{ opacity: 0.45 }}
-              onMouseEnter={e => e.currentTarget.style.opacity = 1}
-              onMouseLeave={e => e.currentTarget.style.opacity = 0.45}
-            >
-              {/* Filter adapts via CSS variable: dark=invert, light=grayscale */}
-              <img
-                src={client.src}
-                alt={client.name}
-                className="max-h-12 md:max-h-14 w-auto object-contain group-hover:scale-110 transition-transform duration-500"
-                style={{ filter: "var(--logo-filter)" }}
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.nextSibling.style.display = "block";
-                }}
-              />
-              <span className="hidden text-[10px] font-sans font-bold uppercase tracking-widest text-[#9E8976]/60 text-center select-none">
-                {client.name}
-              </span>
-            </motion.div>
-          ))}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mt-8 text-base md:text-lg text-theme-2 font-sans max-w-xl mx-auto"
+          >
+            Kami telah membantu lebih dari 50+ brand membangun sistem pertumbuhan yang stabil dan terukur.
+          </motion.p>
         </div>
+      </Container>
 
+      {/* Marquee Rows — Advance Design */}
+      <div className="relative mt-8 md:mt-16 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+          <LogoMarquee logos={row1} duration={35} />
+          <LogoMarquee logos={row2} reverse duration={45} />
+          
+          {/* Gradient Edges for "Gallery" feel */}
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-theme to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-theme to-transparent z-10 pointer-events-none" />
+      </div>
+
+      <Container>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="mt-28 md:mt-40 text-center"
+          className="mt-16 md:mt-24 text-center"
         >
           <Link
             href="/work"
-            className="group relative inline-flex items-center gap-4 px-12 py-6 bg-[#9E8976] rounded-full text-[11px] font-sans font-bold uppercase tracking-[0.2em] text-white hover:bg-[#1A1612] transition-all duration-500 shadow-2xl shadow-[#9E8976]/20"
+            className="group inline-flex items-center gap-4 bg-[#9E8976] text-white px-10 py-5 rounded-full text-[11px] font-sans font-black uppercase tracking-[0.3em] hover:bg-theme-surface hover:text-[#9E8976] transition-all duration-500 shadow-xl shadow-[#9E8976]/20 border border-transparent hover:border-theme-md"
           >
-            See What Works
+            Explore Case Studies
             <svg viewBox="0 0 16 6" className="h-2 w-5 transition-transform group-hover:translate-x-1.5" fill="currentColor">
               <path d="M16 3 10 .5v2H0v1h10v2L16 3Z" />
             </svg>

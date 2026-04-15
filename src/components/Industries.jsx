@@ -90,7 +90,7 @@ export default function Industries() {
                 {/* QR Code */}
                 <div className="relative group-hover:scale-105 transition-transform duration-500">
                   <div className="absolute inset-0 bg-[#9E8976]/20 blur-xl rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative w-28 h-28 rounded-2xl bg-white p-3 shadow-lg border border-[#9E8976]/10">
+                  <div className="relative w-28 h-28 rounded-2xl bg-theme-surface p-3 shadow-lg border border-theme-md">
                     <svg viewBox="0 0 100 100" className="w-full h-full" fill="none">
                       <rect x="10" y="10" width="28" height="28" rx="4" fill="#111" />
                       <rect x="15" y="15" width="18" height="18" rx="2" fill="white" />

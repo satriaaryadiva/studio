@@ -204,15 +204,15 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           3. STATS — always dark
       ══════════════════════════════════════════════ */}
-      <section className="bg-[#0a0a0a] py-20 md:py-28 border-b border-white/5">
+      <section className="bg-theme-muted py-20 md:py-28 border-b border-theme-md">
         <Container>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-white/8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-theme-md">
             {stats.map((s, i) => (
-              <FadeUp key={i} delay={i * 0.07} className="px-8 py-6 text-center first:pl-0 last:pr-0">
-                <p className="text-4xl md:text-6xl font-black font-freight text-white tracking-tighter leading-none">
+              <FadeUp key={i} delay={i * 0.07} className="md:px-8 py-6 text-center">
+                <p className="text-4xl md:text-6xl font-black font-freight text-theme tracking-tighter leading-none">
                   {s.value}
                 </p>
-                <p className="text-[10px] font-sans font-bold uppercase tracking-[0.35em] text-white/40 mt-3">
+                <p className="text-[10px] font-sans font-bold uppercase tracking-[0.35em] text-theme-3 mt-3">
                   {s.label}
                 </p>
               </FadeUp>
@@ -304,12 +304,12 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           6. CULTURE — always dark
       ══════════════════════════════════════════════ */}
-      <section className="bg-[#0a0a0a] py-28 md:py-44 border-b border-white/5">
+      <section className="bg-theme-surface py-28 md:py-44 border-b border-theme-md">
         <Container>
           <div className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
             <FadeUp>
               <span className="text-[11px] font-sans font-black uppercase tracking-[0.6em] text-[#9E8976] block mb-6">Our Culture</span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white text-center leading-[0.9] tracking-tighter font-freight uppercase">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-theme text-center leading-[0.9] tracking-tighter font-freight uppercase">
                 Menyeimbangkan kreativitas<br /><span className="text-[#9E8976]">dengan hasil nyata.</span>
               </h2>
             </FadeUp>
@@ -318,12 +318,12 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {cultureItems.map((c, i) => (
               <FadeUp key={c.title} delay={i * 0.1}>
-                <div className="bg-white/[0.03] border border-white/8 p-10 rounded-[2rem] hover:border-[#9E8976]/30 transition-all duration-500 group">
-                  <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white/50 group-hover:text-[#9E8976] group-hover:border-[#9E8976]/30 transition-all duration-500 mb-6">
+                <div className="bg-theme-muted border border-theme-md p-10 rounded-[2rem] hover:border-[#9E8976]/30 transition-all duration-500 group">
+                  <div className="w-12 h-12 rounded-xl bg-theme border border-theme-md flex items-center justify-center text-theme-3 group-hover:text-[#9E8976] group-hover:border-[#9E8976]/30 transition-all duration-500 mb-6">
                     {c.icon}
                   </div>
-                  <h3 className="text-2xl font-black text-white tracking-tight uppercase font-freight mb-5 group-hover:text-[#9E8976] transition-colors">{c.title}</h3>
-                  <p className="text-sm md:text-base text-white/40 font-sans leading-relaxed">{c.description}</p>
+                  <h3 className="text-2xl font-black text-theme tracking-tight uppercase font-freight mb-5 group-hover:text-[#9E8976] transition-colors">{c.title}</h3>
+                  <p className="text-sm md:text-base text-theme-2 font-sans leading-relaxed">{c.description}</p>
                 </div>
               </FadeUp>
             ))}
@@ -344,25 +344,24 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           9. VISION CTA — always dark
       ══════════════════════════════════════════════ */}
-      <section className="relative bg-[#0a0a0a] py-28 md:py-44 overflow-hidden">
+      <section className="relative bg-theme-muted py-28 md:py-44 overflow-hidden border-b border-theme-md">
         {/* Background visual */}
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200" 
             alt=""
-            className="w-full h-full object-cover opacity-20 grayscale brightness-50"
+            className="w-full h-full object-cover opacity-10 grayscale"
           />
-          <div className="absolute inset-0 bg-neutral-950/80" />
         </div>
 
         <Container className="relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
               <span className="text-[11px] font-sans font-black uppercase tracking-[0.6em] text-[#9E8976] block mb-8">Our Vision</span>
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black font-freight uppercase tracking-tighter leading-[0.85] text-white mb-10">
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-black font-freight uppercase tracking-tighter leading-[0.85] text-theme mb-10">
                 Menjadi Growth Partner<br /><span className="text-[#9E8976]">Pilihan Pertama</span><br />Brand Indonesia
               </h2>
-              <p className="text-base md:text-lg text-white/50 font-sans leading-relaxed max-w-2xl mx-auto mb-14">
+              <p className="text-base md:text-lg text-theme-2 font-sans leading-relaxed max-w-2xl mx-auto mb-14">
                 Bukan sekadar vendor. Kami ingin menjadi bagian dari perjalanan pertumbuhan jangka panjang setiap brand yang kami dampingi.
               </p>
             </FadeUp>
@@ -370,12 +369,12 @@ export default function AboutPage() {
             <FadeUp delay={0.15} className="flex flex-col sm:flex-row items-center justify-center gap-5">
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-4 bg-[#9E8976] text-white px-10 py-5 rounded-full text-[11px] font-sans font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all duration-500 shadow-xl shadow-[#9E8976]/20"
+                className="group inline-flex items-center gap-4 bg-[#9E8976] text-white px-10 py-5 rounded-full text-[11px] font-sans font-black uppercase tracking-[0.3em] hover:bg-theme-surface hover:text-[#9E8976] transition-all duration-500 shadow-xl shadow-[#9E8976]/20 border border-transparent hover:border-theme-md"
               >
                 Mulai Bersama Kami
                 <svg viewBox="0 0 16 6" fill="currentColor" className="w-4 h-2 group-hover:translate-x-1.5 transition-transform"><path d="M16 3 10 .5v2H0v1h10v2L16 3Z" /></svg>
               </Link>
-              <Link href="/services" className="text-[11px] font-sans font-black uppercase tracking-[0.4em] text-white/40 hover:text-white transition-colors">
+              <Link href="/services" className="text-[11px] font-sans font-black uppercase tracking-[0.4em] text-theme-3 hover:text-theme transition-colors">
                 Lihat Layanan →
               </Link>
             </FadeUp>

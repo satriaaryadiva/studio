@@ -25,39 +25,38 @@ const Header = ({
     expanded,
     onToggle,
     toggleRef,
-    isFloating = false
+    isFloating = false,
+    isAtTop = false
 }) => {
     const { theme } = useTheme();
     const isLight = theme === "light";
 
     const desktopLinks = [
-        { href: "/about", label: "About Us" },
+        { href: "/about", label: "About" },
         { href: "/services", label: "Services" },
-        { href: "/work", label: "Portfolio" },
+        { href: "/work", label: "Work" },
         { href: "/blog", label: "Blog" },
         { href: "/contact", label: "Contact" },
     ];
 
     const content = (
-        <div className="flex items-center justify-between">
-            {/* Logo */}
-            <Link href={"/"} aria-label="Home" className="z-50" onClick={() => expanded && onToggle()}>
+        <div className="relative  flex items-center justify-between">
+            {/* Logo — left */}
+            <Link href={"/"} aria-label="Home" className="z-50 flex-none" onClick={() => expanded && onToggle()}>
                 <Logo invert={invert}>Uplift Agency</Logo>
             </Link>
 
-            {/* Desktop: inline nav links */}
-            <nav className="hidden md:flex items-center gap-x-8">
+            {/* Desktop: centered nav links */}
+            <nav className="hidden md:flex items-center gap-x-8 absolute left-1/2 -translate-x-1/2">
                 {desktopLinks.map((link) => (
                     <Link
                         key={link.href}
                         href={link.href}
                         className={clsx(
-                            "text-sm font-bold uppercase tracking-[0.15em] transition-colors duration-200",
+                            "text-[15px] font-sans font-bold uppercase tracking-[0.2em] transition-colors",
                             invert
-                                ? "text-white hover:text-[#9E8976]"
-                                : (isLight
-                                    ? "text-[#1A1612] hover:text-[#9E8976]"
-                                    : "text-white hover:text-[#9E8976]")
+                                ? "text-white hover:text-white/70"
+                                : "text-theme hover:text-[#9E8976]"
                         )}
                     >
                         {link.label}
@@ -66,7 +65,7 @@ const Header = ({
             </nav>
 
             {/* Right: Theme Toggle + CTA + hamburger */}
-            <div className="flex items-center gap-x-3 md:gap-x-4 z-50">
+            <div className="flex items-center gap-x-3 md:gap-x-4 z-50 flex-none">
                 {/* Theme toggle — only on main header (not inside fullscreen menu) */}
                 {!invert && <ThemeToggle />}
 
@@ -87,7 +86,7 @@ const Header = ({
                     aria-controls={panelId}
                     className={clsx(
                         "md:hidden group -m-2.5 rounded-full p-3 transition-colors duration-300",
-                        invert ? "hover:bg-white/10" : (isLight ? "hover:bg-[#1A1612]" : "hover:bg-neutral-950/10")
+                        invert ? "hover:bg-white/10" : "hover:bg-theme-muted"
                     )}
                     aria-label="Toggle navigation"
                 >
@@ -95,10 +94,8 @@ const Header = ({
                         className={clsx(
                             "h-7 w-7 transition-all duration-300 group-hover:scale-110",
                             invert
-                                ? "fill-white group-hover:fill-[#9E8976]"
-                                : (isLight
-                                    ? "fill-[#1A1612] group-hover:fill-[#9E8976]"
-                                    : "fill-neutral-950 group-hover:fill-yellow-600")
+                                ? "fill-white"
+                                : "fill-[var(--theme-text)] group-hover:fill-[#9E8976]"
                         )}
                     />
                 </button>
@@ -109,13 +106,16 @@ const Header = ({
     if (isFloating) {
         return (
             <div
-                className="w-full backdrop-blur-2xl border-b shadow-sm transition-colors duration-500"
+                className={`w-full border-b transition-all duration-500 ${isAtTop ? "shadow-none" : "shadow-sm"
+                    }`}
                 style={{
-                    backgroundColor: invert ? "rgba(10,10,10,0.75)" : "var(--theme-navbar-bg)",
-                    borderColor: invert ? "rgba(255,255,255,0.05)" : "var(--theme-navbar-border)",
+                    backgroundColor: isAtTop ? "transparent" : (invert ? "rgba(10,10,10,0.85)" : "var(--theme-navbar-bg)"),
+                    borderColor: isAtTop ? "transparent" : (invert ? "rgba(255,255,255,0.05)" : "var(--theme-navbar-border)"),
+                    backdropFilter: isAtTop ? "none" : "blur(20px)",
+                    WebkitBackdropFilter: isAtTop ? "none" : "blur(20px)",
                 }}
             >
-                <Container className="py-5">{content}</Container>
+                <Container className="py-4 md:py-5">{content}</Container>
             </div>
         );
     }
@@ -134,7 +134,7 @@ const NavigationItem = ({ href, children, index, onClick }) => {
             <Link
                 href={href}
                 onClick={onClick}
-                className="group relative inline-block text-5xl md:text-8xl font-black tracking-tighter text-white uppercase overflow-hidden"
+                className="group relative inline-block text-4xl md:text-6xl font-black tracking-tighter  text-theme uppercase overflow-hidden"
             >
                 <motion.span
                     className="inline-block transition-transform duration-500 group-hover:translate-x-6"
@@ -176,12 +176,12 @@ const FullScreenMenu = ({ expanded, setExpanded, panelId, closeRef }) => {
                     initial={{ opacity: 0, clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
                     animate={{ opacity: 1, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
                     exit={{ opacity: 0, clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
-                    transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
-                    className="fixed inset-0 z-[100] bg-neutral-950 overflow-hidden flex flex-col pointer-events-auto"
+                    transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+                    className="fixed inset-0 z-[100] bg-theme overflow-hidden flex flex-col pointer-events-auto"
                 >
                     <div className="absolute inset-x-0 top-0 z-[110]">
                         <Header
-                            invert={true}
+                            invert={false}
                             panelId={panelId}
                             icon={IoMdClose}
                             toggleRef={closeRef}
@@ -206,19 +206,19 @@ const FullScreenMenu = ({ expanded, setExpanded, panelId, closeRef }) => {
                             className="mt-24 md:mt-0 flex flex-col justify-end relative z-10"
                         >
                             <div className="mb-12">
-                                <h2 className="font-display text-base font-semibold text-white/50 uppercase tracking-widest mb-6">
+                                <h2 className="font-sans text-xs font-bold text-theme-3 uppercase tracking-widest mb-6">
                                     Our offices
                                 </h2>
                                 <Offices
-                                    invert
+                                    invert={false}
                                     className="grid grid-cols-1 gap-8 sm:grid-cols-2"
                                 />
                             </div>
                             <div>
-                                <h2 className="font-display text-base font-semibold text-white/50 uppercase tracking-widest mb-6">
+                                <h2 className="font-sans text-xs font-bold text-theme-3 uppercase tracking-widest mb-6">
                                     Follow us
                                 </h2>
-                                <SocialMedia className="" invert />
+                                <SocialMedia className="" invert={false} />
                             </div>
                         </motion.div>
 
@@ -237,11 +237,11 @@ const FullScreenMenu = ({ expanded, setExpanded, panelId, closeRef }) => {
 
                         <motion.div
                             initial={{ opacity: 0, y: 100 }}
-                            animate={{ opacity: 0.02, y: 0 }}
-                            transition={{ duration: 1, delay: 0.5 }}
+                            animate={{ opacity: 0.05, y: 0 }}
+                            transition={{ duration: 1, delay: 0.2 }}
                             className="absolute bottom-0 left-0 right-0 pointer-events-none overflow-hidden flex justify-center z-0"
                         >
-                            <span className="text-[25vw] font-black uppercase tracking-tighter text-white leading-none">
+                            <span className="text-[25vw] font-black uppercase tracking-tighter text-theme leading-none select-none">
                                 UPLIFT
                             </span>
                         </motion.div>
@@ -257,6 +257,7 @@ export default function Navbar() {
     const panelId = useId();
     const [expanded, setExpanded] = useState(false);
     const [hidden, setHidden] = useState(false);
+    const [isAtTop, setIsAtTop] = useState(true);
     const [isInitialLoad, setIsInitialLoad] = useState(true);
     const openRef = useRef();
     const closeRef = useRef();
@@ -279,6 +280,11 @@ export default function Navbar() {
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious();
+
+        // Handle transparency
+        setIsAtTop(latest < 50);
+
+        // Handle show/hide logic
         if (latest > previous && latest > 150) {
             setHidden(true);
         } else {
@@ -318,6 +324,7 @@ export default function Navbar() {
                 >
                     <Header
                         isFloating={true}
+                        isAtTop={isAtTop}
                         invert={false}
                         panelId={panelId}
                         icon={HiMenuAlt4}

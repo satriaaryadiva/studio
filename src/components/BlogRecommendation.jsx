@@ -59,7 +59,7 @@ export default function BlogRecommendation() {
     const [featured, ...rest] = popularPosts;
 
     return (
-        <section className="bg-[#0a0a0a] py-20 sm:py-28">
+        <section className="bg-theme-muted py-20 sm:py-28 border-y border-theme-md">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 {/* Section Label */}
                 <motion.div

@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import FadeIn from "./FadeIn";
 
 export default function ParallaxScroll({ content, title, subtitle }) {
     const containerRef = useRef(null);
@@ -21,172 +20,119 @@ export default function ParallaxScroll({ content, title, subtitle }) {
     });
 
     const isMobile = windowWidth < 768;
-    const ITEM_WIDTH = isMobile ? 300 : 480;
-    const GAP = isMobile ? 24 : 56;
-    const CARD_HEIGHT = isMobile ? 420 : 580;
+    const ITEM_WIDTH = isMobile ? 260 : 380;
+    const GAP = isMobile ? 60 : 140;
 
-    const itemsCount = content.length + 1;
-    const totalDistance = (itemsCount - 1) * (ITEM_WIDTH + GAP);
+    const itemsCount = content.length;
+    const totalDistance = itemsCount * (ITEM_WIDTH + GAP);
 
-    const x = useTransform(scrollYProgress, [0.15, 0.78], [0, -totalDistance]);
+    const x = useTransform(scrollYProgress, [0.1, 0.85], [0, -totalDistance]);
     const smoothX = useSpring(x, { stiffness: 100, damping: 30, mass: 1 });
 
-    const introOpacity = useTransform(scrollYProgress, [0, 0.05, 0.12, 0.18], [0, 1, 1, 0]);
-    const introY = useTransform(scrollYProgress, [0, 0.18], [20, -20]);
+    const introOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
+    const introY = useTransform(scrollYProgress, [0, 0.08], [0, -40]);
 
-    const trackOpacity = useTransform(scrollYProgress, [0.12, 0.20, 0.78, 0.88], [0, 1, 1, 0]);
+    const trackOpacity = useTransform(scrollYProgress, [0.05, 0.12, 0.82, 0.9], [0, 1, 1, 0]);
 
-    const outroY = useTransform(scrollYProgress, [0.80, 0.95], ["100vh", "0vh"]);
-    const outroOpacity = useTransform(scrollYProgress, [0.80, 0.85], [0, 1]);
-    const outroScale = useTransform(scrollYProgress, [0.85, 1], [0.95, 1]);
+    const outroY = useTransform(scrollYProgress, [0.85, 0.95], ["30vh", "0vh"]);
+    const outroOpacity = useTransform(scrollYProgress, [0.85, 0.95], [0, 1]);
 
-    const imageParallax = useTransform(scrollYProgress, [0.15, 0.78], [100, -100]);
-
-    // ── PROGRESS INDICATOR LOGIC ──
-    const rawProgress = useTransform(scrollYProgress, [0.15, 0.78], [0, 1]);
-    const smoothProgress = useSpring(rawProgress, { stiffness: 100, damping: 30, mass: 1 });
-    const progressPercentage = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
+    const rawProgress = useTransform(scrollYProgress, [0.1, 0.85], [0, 1]);
 
     return (
-        <div ref={containerRef} className="relative h-[850vh] bg-theme font-freight" style={{ overflowX: "clip" }}>
+        <div ref={containerRef} className="relative h-[550vh] bg-theme" style={{ overflowX: "clip" }}>
+            <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden pointer-events-none">
 
-            <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden pointer-events-none pt-20">
-
-                {/* 1. INTRO PHASE */}
+                {/* ── INTRO ── Resn-style minimal */}
                 <motion.section
                     style={{ opacity: introOpacity, y: introY }}
-                    className="absolute inset-x-0 top-0 bottom-0 z-30 flex flex-col justify-center items-center text-center px-8 overflow-hidden"
+                    className="absolute inset-0 z-30 flex flex-col justify-center items-center text-center px-8"
                 >
-                    <span className="text-sm tracking-[0.5em] font-black uppercase text-[#9E8976] block mb-6 px-6 py-2 rounded-full border border-[#9E8976]/20 bg-[#9E8976]/8">
-                        {subtitle || "SERVICE EXPERTISE"}
+                    <span className="block text-[10px] font-sans font-bold uppercase tracking-[0.5em] text-theme-3 mb-5">
+                        {subtitle || "Case Studies"}
                     </span>
-                    <h1 className="text-6xl md:text-9xl font-black text-theme tracking-tighter uppercase leading-none font-freight">
-                        {title || "What UPLIFT Do"}
+                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-freight font-black tracking-tighter text-theme uppercase leading-[0.9]">
+                        {title || "Selected Works"}
                     </h1>
-                    <div className="mt-12 flex flex-col items-center gap-4">
-                        <div className="w-px h-12 bg-gradient-to-b from-[#9E8976] to-transparent animate-pulse" />
-                        <span className="text-theme-2 text-[10px] font-black uppercase tracking-[0.4em]">
-                            Scroll to uncover
-                        </span>
-                    </div>
                 </motion.section>
 
-                {/* 2. HORIZONTAL TRACK PHASE */}
+                {/* ── GALLERY TRACK ── Clean, borderless, floating images */}
                 <motion.div
                     style={{ opacity: trackOpacity }}
-                    className="relative z-20 w-full flex items-center justify-center pointer-events-auto"
+                    className="relative z-20 w-full flex items-center h-full pointer-events-auto"
                 >
-                    <div
-                        className="relative mx-auto flex items-center justify-start overflow-visible"
-                        style={{ width: `${ITEM_WIDTH}px` }}
-                    >
+                    <div className="relative flex items-center justify-start w-full pl-[12vw] md:pl-[20vw] h-full">
                         <motion.div
-                            className="flex will-change-transform"
+                            className="flex items-end will-change-transform"
                             style={{ x: smoothX, gap: `${GAP}px` }}
                         >
-                            {/* SLIDE 0: TITLE CARD — light themed */}
-                            <div
-                                className="flex-shrink-0 flex flex-col justify-center items-center text-center p-8 rounded-[3rem] bg-theme-surface border border-theme backdrop-blur-3xl relative overflow-hidden group"
-                                style={{ width: `${ITEM_WIDTH}px`, height: `${CARD_HEIGHT}px`, boxShadow: "var(--theme-card-shadow)" }}
-                            >
-                                <div className="absolute inset-0 bg-gradient-to-br from-[#9E8976]/10 via-transparent to-transparent opacity-50" />
-                                <h2 className="text-4xl md:text-6xl font-black text-theme tracking-tighter uppercase leading-[0.85] z-10 font-freight">
-                                    {title || "What UPLIFT Do"}
-                                </h2>
-                                <div className="mt-10 w-20 h-[2px] bg-gradient-to-r from-transparent via-[#9E8976] to-transparent z-10" />
-                                <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#9E8976]/5 blur-[100px] rounded-full" />
-                            </div>
+                            {content.map((item, index) => {
+                                // Alternate between taller and wider aspect ratios for visual rhythm
+                                const aspects = ["aspect-[3/4]", "aspect-[4/3]", "aspect-[3/4]", "aspect-[1/1]", "aspect-[4/5]", "aspect-[3/4]", "aspect-[4/3]"];
+                                const aspect = aspects[index % aspects.length];
+                                // Stagger vertical positions like resn.co.nz
+                                const offsets = [0, -60, 20, -40, 10, -70, 30];
+                                const yOffset = isMobile ? 0 : offsets[index % offsets.length];
 
-                            {/* SLIDES 1 to N: IMAGE CARDS — always dark (photo bg) */}
-                            {content.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className="group relative flex-shrink-0 overflow-hidden bg-neutral-900 border border-theme transition-all duration-700 hover:border-[#9E8976]/30 shadow-2xl"
-                                    style={{ width: `${ITEM_WIDTH}px`, height: `${CARD_HEIGHT}px` }}
-                                >
-                                    {/* Image with parallax */}
-                                    <motion.div
-                                        style={{ x: imageParallax }}
-                                        className="absolute inset-y-0 -left-10 -right-10 z-0 transition-transform duration-1000 group-hover:scale-110"
+                                return (
+                                    <div
+                                        key={index}
+                                        className="relative flex-shrink-0 flex flex-col group cursor-pointer"
+                                        style={{
+                                            width: `${ITEM_WIDTH}px`,
+                                            transform: `translateY(${yOffset}px)`,
+                                        }}
                                     >
-                                        <div className="w-full h-full grayscale-[0.5] group-hover:grayscale-0 transition-all duration-1000">
-                                            {item.content}
+                                        {/* Image — no border, no card, just floating */}
+                                        <div className={`relative w-full ${aspect} overflow-hidden`}>
+                                            <div className="w-full h-full group-hover:scale-[1.04] transition-transform duration-[1.2s] ease-out">
+                                                {item.content}
+                                            </div>
                                         </div>
-                                    </motion.div>
 
-                                    {/* Gradient overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-80" />
-
-                                    {/* Text content */}
-                                    <div className="absolute bottom-10 left-10 z-10 pr-10">
-                                        <span className="text-[10px] font-sans font-black text-[#9E8976] mb-4 block tracking-[0.4em] uppercase">
-                                            0{index + 1} / {item.category || "Service"}
-                                        </span>
-                                        <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase leading-[0.9] mb-5 font-freight">
-                                            {item.title}
-                                        </h2>
-                                        <p className="text-white/40 text-sm leading-relaxed max-w-[320px] font-sans">
-                                            {item.description}
-                                        </p>
+                                        {/* Typography — resn.co.nz style: centered, uppercase title + lighter category */}
+                                        <div className="mt-5 text-center">
+                                            <h2 className="text-[11px] md:text-[13px] font-sans font-black text-theme uppercase tracking-[0.2em] leading-tight">
+                                                {item.title}
+                                            </h2>
+                                            <span className="text-[10px] md:text-[11px] font-sans font-normal text-theme-3 tracking-[0.15em] mt-1 block">
+                                                {item.category || "Project"}
+                                            </span>
+                                        </div>
                                     </div>
-
-                                    {/* Ghost number */}
-                                    <div className="absolute top-8 right-10 z-10 opacity-5 group-hover:opacity-10 transition-opacity duration-700">
-                                        <span className="text-7xl font-black text-white tracking-tighter font-freight italic">0{index + 1}</span>
-                                    </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </motion.div>
                     </div>
 
-                    {/* Progress indicator — Scrub Line & Knob */}
-                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-8 w-[240px] md:w-[320px]">
-                        <span className="text-[10px] font-black text-theme-3 tracking-widest uppercase flex-none">01</span>
-                        
-                        <div className="flex-1 h-8 flex items-center relative">
-                            {/* Track background */}
-                            <div className="absolute inset-x-0 h-px bg-theme-border-md opacity-20" />
-                            
-                            {/* Active track filling */}
-                            <motion.div 
-                                className="absolute left-0 h-px bg-[#9E8976] origin-left"
-                                style={{ width: progressPercentage }}
-                            />
-                            
-                            {/* Knob / dot */}
-                            <motion.div 
-                                className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#9E8976] border-2 border-theme-surface shadow-lg"
-                                style={{ left: progressPercentage, x: "-50%" }}
+                    {/* Minimal progress indicator — just a thin line */}
+                    <div className="absolute bottom-10 md:bottom-14 left-1/2 -translate-x-1/2 w-24 md:w-32 z-30 pointer-events-none">
+                        <div className="w-full h-px bg-theme-md relative overflow-hidden">
+                            <motion.div
+                                className="absolute top-0 left-0 h-full bg-theme-3 origin-left"
+                                style={{ scaleX: rawProgress }}
                             />
                         </div>
-
-                        <span className="text-[10px] font-black text-theme-3 tracking-widest uppercase flex-none">0{content.length}</span>
                     </div>
                 </motion.div>
 
-                {/* 3. OUTRO PHASE */}
+                {/* ── OUTRO ── */}
                 <motion.section
-                    style={{ y: outroY, opacity: outroOpacity, scale: outroScale }}
-                    className="absolute inset-0 z-40 flex flex-col justify-center items-center text-center bg-theme px-8"
+                    style={{ y: outroY, opacity: outroOpacity }}
+                    className="absolute inset-0 z-40 flex flex-col justify-center items-center text-center px-8 pointer-events-auto"
                 >
-                    <motion.div className="relative overflow-hidden">
-                        <span className="text-white dark:text-[#9E8976] text-[15rem] md:text-[30rem] font-black tracking-tighter font-freight uppercase leading-none select-none">
-                            UPLIFT
-                        </span>
-                    </motion.div>
-
-                    <div className="flex flex-col gap-3 -mt-10 md:-mt-32">
-                        <p className="text-theme text-2xl font-black uppercase tracking-[0.6em] animate-pulse">
-                            Omnichannel Marketing Agency in Medan
-                        </p>
-                        <div className="mt-4 flex items-center justify-center gap-6">
-                            <div className="h-px w-8 border-theme-md opacity-50" />
-                            <p className="text-theme-2 text-[10px] uppercase tracking-[1em] font-medium opacity-50">
-                                Available 2024
-                            </p>
-                            <div className="h-px w-8 border-theme-md opacity-50" />
-                        </div>
-                    </div>
+                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-freight font-black text-theme tracking-tighter mb-10 max-w-2xl leading-[1.05] uppercase">
+                        We orchestrate growth<br />for modern brands.
+                    </h2>
+                    <a
+                        href="/services"
+                        className="group inline-flex items-center gap-3 text-[11px] font-sans font-bold uppercase tracking-[0.3em] text-theme-3 hover:text-theme transition-colors duration-300"
+                    >
+                        Explore Services
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4 transition-transform group-hover:translate-x-1">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
                 </motion.section>
             </div>
         </div>
