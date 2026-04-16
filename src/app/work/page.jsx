@@ -103,8 +103,8 @@ function FadeUp({ children, delay = 0, className = "" }) {
   );
 }
 
-// ─── Project Card — parallax smooth scroll ───────────────────────────
-function ProjectCard({ project, index }) {
+// ─── Project Card — parallax + staggered sizes ───────────────────────
+function ProjectCard({ project, index, size = "default" }) {
   const cardRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -117,6 +117,13 @@ function ProjectCard({ project, index }) {
   const scale = useTransform(scrollYProgress, [0, 0.3], [0.92, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
+  // Aspect ratio based on size — compact proportions
+  const aspectClass = size === "large"
+    ? "aspect-[3/5]"
+    : size === "wide"
+      ? "aspect-[16/9]"
+      : "aspect-[3/2]";
+
   return (
     <motion.div
       ref={cardRef}
@@ -127,7 +134,7 @@ function ProjectCard({ project, index }) {
       className="group cursor-pointer will-change-transform"
     >
       {/* Image with parallax */}
-      <div className="aspect-[4/3] overflow-hidden relative">
+      <div className={`${aspectClass} overflow-hidden relative`}>
         <motion.img
           src={project.image}
           alt={project.brand}
@@ -171,6 +178,20 @@ function ProjectCard({ project, index }) {
     </motion.div>
   );
 }
+
+// ─── Staggered Layout Helper — assigns size and column offset ─────────
+// Creates a scattered, organic layout like electranetwork.id
+// Pattern: large-left + small-right, then small-left + large-right, etc.
+const layoutPattern = [
+  { size: "wide", colSpan: "md:col-span-7", offset: "" },
+  { size: "default", colSpan: "md:col-span-5", offset: "md:mt-24" },
+  { size: "default", colSpan: "md:col-span-5", offset: "" },
+  { size: "wide", colSpan: "md:col-span-7", offset: "md:mt-16" },
+  { size: "wide", colSpan: "md:col-span-6", offset: "md:mt-10" },
+  { size: "default", colSpan: "md:col-span-6", offset: "md:mt-32" },
+  { size: "wide", colSpan: "md:col-span-7", offset: "" },
+  { size: "default", colSpan: "md:col-span-5", offset: "md:mt-20" },
+];
 
 // ─── Page ────────────────────────────────────────────────────────────
 export default function WorkPage() {
@@ -242,12 +263,21 @@ export default function WorkPage() {
             </div>
           </FadeUp>
 
-          {/* Grid — 2 columns, generous spacing */}
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-14 gap-y-14 md:gap-y-20">
+          {/* Grid — staggered masonry layout */}
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-12 gap-x-6 md:gap-x-10 gap-y-14 md:gap-y-8">
             <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, i) => (
-                <ProjectCard key={project.id} project={project} index={i} />
-              ))}
+              {filteredProjects.map((project, i) => {
+                const pattern = layoutPattern[i % layoutPattern.length];
+                return (
+                  <motion.div
+                    key={project.id}
+                    layout
+                    className={`${pattern.colSpan} ${pattern.offset}`}
+                  >
+                    <ProjectCard project={project} index={i} size={pattern.size} />
+                  </motion.div>
+                );
+              })}
             </AnimatePresence>
           </motion.div>
 

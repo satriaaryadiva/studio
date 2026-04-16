@@ -10,6 +10,7 @@ import ParallaxScroll from "@/components/ParallaxScroll";
 import WhyUplift from "@/components/WhyUplift";
 import PortfolioCarousel from "@/components/PortfolioCarousel";
 import Pricing from "@/components/Pricing";
+import BigCTA from "@/components/BigCTA";
 
 import { servicesData } from "@/constants";
 
@@ -43,8 +44,8 @@ export default function Home() {
       {/* ─ 5. Parallax Scroll — Visual showcase of capabilities ─ */}
       <ParallaxScroll
         content={whatWeDo}
-        title="Selected Works"
-        subtitle="Our Portfolio"
+        title="WHAT UPLIFT Do ?"
+        subtitle=" check out our Services"
       />
 
       {/* ─ 6. Portfolio — Project cards carousel ─ */}
@@ -65,6 +66,8 @@ export default function Home() {
       {/* ─ 10. Consultation — Final conversion ─ */}
       <ConsultationForm />
 
+      {/* ─ 11. Big CTA — Cinematic Closer ─ */}
+      <BigCTA />
     </main>
   );
 }

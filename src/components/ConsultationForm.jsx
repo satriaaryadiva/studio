@@ -47,7 +47,7 @@ const contactItems = [
     ),
     color: "bg-[#505F62]",
     label: "ALAMAT KANTOR",
-    value: "Jl. Gatot Subroto No. 19, Medan",
+    value: "Jalan Gatot Subroto No. 19, Medan Petisah, Sumatera Utara",
     href: null,
   },
 ];

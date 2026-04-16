@@ -7,9 +7,9 @@ import GridPattern from "./GridPattern";
 
 const Pricing = () => {
     return (
-        <div className="relative isolate mt-0 overflow-hidden bg-theme-muted py-24 sm:py-32 border-y border-theme-md">
+        <div className="relative isolate mt-0 overflow-hidden bg-theme-muted py-24   border-y border-theme-md">
             <GridPattern
-                className="absolute inset-0 -z-10 h-full w-full fill-[#9E8976]/5 stroke-theme-md [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
+                className="absolute inset-0 -z-10 h-full w-full fill-[#9E8976]/3 stroke-theme-md [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
                 yOffset={-256}
             />
             <Container>

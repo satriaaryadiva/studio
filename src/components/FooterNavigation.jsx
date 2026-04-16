@@ -7,15 +7,15 @@ const FooterNavigation = () => {
       <ul role="list" className="grid grid-cols-2 gap-8 sm:grid-cols-3">
         {navigation.map((item) => (
           <li key={item.title}>
-            <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-500">
+            <div className="font-sans text-[10px] font-black uppercase tracking-[0.3em] text-theme-3 mb-6">
               {item.title}
             </div>
-            <ul role="list" className="mt-6 text-sm">
+            <ul role="list" className="space-y-4">
               {item.links.map((link) => (
-                <li key={link.href} className="mt-3">
+                <li key={typeof link.title === 'string' ? link.title : link.href}>
                   <Link
                     href={link.href}
-                    className="text-neutral-400 transition hover:text-white"
+                    className="text-sm font-sans font-medium text-theme-2 transition-all duration-300 hover:text-theme hover:translate-x-1 inline-block"
                   >
                     {link.title}
                   </Link>

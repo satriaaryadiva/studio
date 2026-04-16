@@ -14,7 +14,7 @@ const portfolioItems = [
     brand: "Kedai Bumi Nusantara",
     category: "Social Media",
     image: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: null,
+    video: "https://framerusercontent.com/assets/FyZhtiW9uobVlnTcXf3eUXBz4H0.mp4",
     href: "/work",
   },
   {
@@ -22,7 +22,7 @@ const portfolioItems = [
     brand: "Medan Craft Co.",
     category: "Branding",
     image: "https://images.unsplash.com/photo-1558655146-9f4f7b6b5d5a?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: null,
+    video: "https://framerusercontent.com/assets/ZI6xeRkEVlcDsB7X4pcBR6WSlI.mp4",
     href: "/work",
   },
   {
@@ -30,7 +30,7 @@ const portfolioItems = [
     brand: "Elevate Skincare",
     category: "Content Production",
     image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: null,
+    video: "https://framerusercontent.com/assets/weaoH2wOBvctUQNtwh2PKfcS0bU.mp4",
     href: "/work",
   },
   {
@@ -80,16 +80,12 @@ function PortfolioCard({ item, index }) {
 
   const imageY = useTransform(scrollYProgress, [0, 1], [20, -20]);
 
-  // Autoplay on hover
+  // Ensure video autoplays when mounted (some browsers need a nudge)
   useEffect(() => {
-    if (!videoRef.current) return;
-    if (hovered) {
-      videoRef.current.play().catch(() => { });
-    } else {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
     }
-  }, [hovered]);
+  }, []);
 
   return (
     <motion.div
@@ -100,9 +96,9 @@ function PortfolioCard({ item, index }) {
       viewport={{ once: true }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative flex-none w-[220px] md:w-[260px] aspect-[9/16] overflow-hidden bg-theme-surface cursor-pointer"
+      className="group relative flex-none   w-[220px] md:w-[260px] aspect-[9/16] overflow-hidden bg-theme-surface cursor-pointer"
     >
-      {/* Video (when available) */}
+      {/* Video (when available) — always playing */}
       {item.video ? (
         <motion.video
           ref={videoRef}
@@ -166,6 +162,12 @@ export default function PortfolioCarousel() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
+  // --- Drag-to-scroll state ---
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+  const hasDragged = useRef(false);
+
   const checkScroll = useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -187,8 +189,49 @@ export default function PortfolioCarousel() {
     el.scrollBy({ left: dir * 320, behavior: "smooth" });
   };
 
+  // --- Drag handlers for mouse swipe ---
+  const handlePointerDown = (e) => {
+    const el = trackRef.current;
+    if (!el) return;
+    isDragging.current = true;
+    hasDragged.current = false;
+    dragStartX.current = e.pageX - el.offsetLeft;
+    dragScrollLeft.current = el.scrollLeft;
+    el.style.cursor = "grabbing";
+    el.style.userSelect = "none";
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDragging.current) return;
+    const el = trackRef.current;
+    if (!el) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - dragStartX.current) * 1.5; // multiplier for sensitivity
+    if (Math.abs(walk) > 5) hasDragged.current = true;
+    el.scrollLeft = dragScrollLeft.current - walk;
+  };
+
+  const handlePointerUp = () => {
+    isDragging.current = false;
+    const el = trackRef.current;
+    if (el) {
+      el.style.cursor = "grab";
+      el.style.removeProperty("user-select");
+    }
+  };
+
+  // Prevent link navigation when finishing a drag
+  const handleClickCapture = (e) => {
+    if (hasDragged.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      hasDragged.current = false;
+    }
+  };
+
   return (
-    <section id="portfolio" className="bg-theme py-20 md:py-32 overflow-hidden border-t border-theme-md">
+    <section id="portfolio" className="bg-theme md:px-20 py-20 overflow-hidden border-t border-theme-md">
 
       {/* ── Header ── */}
       <Container>
@@ -244,11 +287,20 @@ export default function PortfolioCarousel() {
         </div>
       </Container>
 
-      {/* ── Carousel track (full-bleed) ── */}
+      {/* ── Carousel track (full-bleed, draggable) ── */}
       <div
         ref={trackRef}
-        className="flex gap-4 md:gap-5 overflow-x-auto scrollbar-hide px-4 md:px-8 lg:px-16 pb-4"
-        style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+        className="flex gap-4 md:gap-5 overflow-x-auto scrollbar-hide px-8 md:px-16 lg:px-24 pb-4"
+        style={{
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+          cursor: "grab",
+        }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerUp}
+        onClickCapture={handleClickCapture}
       >
         {portfolioItems.map((item, i) => (
           <Link
@@ -256,6 +308,7 @@ export default function PortfolioCarousel() {
             href={item.href}
             className="flex-none"
             style={{ scrollSnapAlign: "start" }}
+            draggable={false}
           >
             <PortfolioCard item={item} index={i} />
           </Link>
@@ -266,6 +319,7 @@ export default function PortfolioCarousel() {
           href="/work"
           className="flex-none w-[180px] md:w-[200px] aspect-[9/16] border border-theme-md flex flex-col items-center justify-center gap-4 hover:border-[#9E8976]/40 group transition-all duration-500"
           style={{ scrollSnapAlign: "start" }}
+          draggable={false}
         >
           <div className="w-12 h-12 rounded-full border border-theme-border group-hover:border-[#9E8976] flex items-center justify-center transition-colors duration-300">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5 text-theme-3 group-hover:text-[#9E8976] transition-colors">
