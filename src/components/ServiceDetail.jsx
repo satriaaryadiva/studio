@@ -146,7 +146,7 @@ const ServiceDetail = ({
                                 whileInView={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
                                 transition={{ duration: 1, ease: [0.165, 0.84, 0.44, 1] }}
                                 viewport={{ once: true }}
-                                className="mt-12 overflow-hidden rounded-3xl shadow-2xl relative"
+                                className="mt-12 overflow-hidden shadow-2xl relative"
                             >
                                 <ServiceImage src={secondaryImage} alt={`${title} secondary`} aspect="aspect-[21/9]" />
                                 <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-3xl" />

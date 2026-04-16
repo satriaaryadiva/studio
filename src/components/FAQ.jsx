@@ -37,11 +37,10 @@ function FAQItem({ faq, index }) {
         <motion.div
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.25 }}
-          className={`flex-none mt-0.5 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${
-            open
+          className={`flex-none mt-0.5 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${open
               ? "border-[#9E8976] text-[#9E8976]"
               : "border-theme-md text-theme-3 group-hover:border-theme-pill group-hover:text-theme-2"
-          }`}
+            }`}
         >
           <svg viewBox="0 0 16 16" fill="currentColor" className="w-3 h-3">
             <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
@@ -114,7 +113,7 @@ export default function FAQ() {
           </div>
         </div>
 
-        <div className="max-w-4xl">
+        <div className="max-w-4xl mx-auto">
           {faqs.map((faq, i) => <FAQItem key={i} faq={faq} index={i} />)}
           <div style={{ borderTopColor: "var(--theme-faq-border)" }} className="border-t" />
         </div>

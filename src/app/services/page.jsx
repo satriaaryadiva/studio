@@ -185,7 +185,7 @@ export default function ServicesPage() {
 
             {/* Right: sticky image panel */}
             <div className="hidden lg:block lg:col-span-5 sticky top-28 self-start">
-              <div className="relative rounded-[3rem] overflow-hidden bg-neutral-900 border border-white/5 shadow-2xl" style={{ aspectRatio: "10/13", maxHeight: "calc(100vh - 9rem)" }}>
+              <div className="relative overflow-hidden bg-neutral-900 border border-theme shadow-2xl" style={{ aspectRatio: "10/13", maxHeight: "calc(100vh - 9rem)" }}>
                 <AnimatePresence mode="wait">
                   {activeId && (
                     <motion.div

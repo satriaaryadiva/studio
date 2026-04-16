@@ -14,7 +14,7 @@ const portfolioItems = [
     brand: "Kedai Bumi Nusantara",
     category: "Social Media",
     image: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: null,
+    video: "https://framerusercontent.com/assets/FyZhtiW9uobVlnTcXf3eUXBz4H0.mp4",
     href: "/work",
   },
   {
@@ -22,7 +22,7 @@ const portfolioItems = [
     brand: "Medan Craft Co.",
     category: "Branding",
     image: "https://images.unsplash.com/photo-1558655146-9f4f7b6b5d5a?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: null,
+    video: "https://framerusercontent.com/assets/ZI6xeRkEVlcDsB7X4pcBR6WSlI.mp4",
     href: "/work",
   },
   {
@@ -30,7 +30,7 @@ const portfolioItems = [
     brand: "Elevate Skincare",
     category: "Content Production",
     image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: null,
+    video: "https://framerusercontent.com/assets/weaoH2wOBvctUQNtwh2PKfcS0bU.mp4",
     href: "/work",
   },
   {
@@ -67,60 +67,67 @@ const portfolioItems = [
   },
 ];
 
-// A single video/image card
+// A single video/image card with parallax
 function PortfolioCard({ item, index }) {
   const videoRef = useRef(null);
+  const cardRef = useRef(null);
   const [hovered, setHovered] = useState(false);
 
-  // Autoplay on hover
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], [20, -20]);
+
+  // Ensure video autoplays when mounted (some browsers need a nudge)
   useEffect(() => {
-    if (!videoRef.current) return;
-    if (hovered) {
+    if (videoRef.current) {
       videoRef.current.play().catch(() => {});
-    } else {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
     }
-  }, [hovered]);
+  }, []);
 
   return (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
       viewport={{ once: true }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="group relative flex-none w-[220px] md:w-[260px] aspect-[9/16] rounded-3xl overflow-hidden bg-neutral-900 cursor-pointer shadow-xl"
+      className="group relative flex-none   w-[220px] md:w-[260px] aspect-[9/16] overflow-hidden bg-theme-surface cursor-pointer"
     >
-      {/* Video (when available) */}
+      {/* Video (when available) — always playing */}
       {item.video ? (
-        <video
+        <motion.video
           ref={videoRef}
           src={item.video}
           loop
           muted
           playsInline
           autoPlay
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ y: imageY, scale: 1.1 }}
         />
       ) : (
-        <img
+        <motion.img
           src={item.image}
           alt={item.brand}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ y: imageY, scale: 1.1 }}
           loading="lazy"
         />
       )}
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
       {/* Hover overlay */}
       <motion.div
         animate={{ opacity: hovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
-        className="absolute inset-0 bg-[#9E8976]/20 flex items-center justify-center"
+        className="absolute inset-0 bg-[#9E8976]/15 flex items-center justify-center"
       >
         <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
           <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-5 h-5">
@@ -155,6 +162,12 @@ export default function PortfolioCarousel() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
+  // --- Drag-to-scroll state ---
+  const isDragging = useRef(false);
+  const dragStartX = useRef(0);
+  const dragScrollLeft = useRef(0);
+  const hasDragged = useRef(false);
+
   const checkScroll = useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
@@ -176,8 +189,49 @@ export default function PortfolioCarousel() {
     el.scrollBy({ left: dir * 320, behavior: "smooth" });
   };
 
+  // --- Drag handlers for mouse swipe ---
+  const handlePointerDown = (e) => {
+    const el = trackRef.current;
+    if (!el) return;
+    isDragging.current = true;
+    hasDragged.current = false;
+    dragStartX.current = e.pageX - el.offsetLeft;
+    dragScrollLeft.current = el.scrollLeft;
+    el.style.cursor = "grabbing";
+    el.style.userSelect = "none";
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDragging.current) return;
+    const el = trackRef.current;
+    if (!el) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - dragStartX.current) * 1.5; // multiplier for sensitivity
+    if (Math.abs(walk) > 5) hasDragged.current = true;
+    el.scrollLeft = dragScrollLeft.current - walk;
+  };
+
+  const handlePointerUp = () => {
+    isDragging.current = false;
+    const el = trackRef.current;
+    if (el) {
+      el.style.cursor = "grab";
+      el.style.removeProperty("user-select");
+    }
+  };
+
+  // Prevent link navigation when finishing a drag
+  const handleClickCapture = (e) => {
+    if (hasDragged.current) {
+      e.preventDefault();
+      e.stopPropagation();
+      hasDragged.current = false;
+    }
+  };
+
   return (
-    <section id="portfolio" className="bg-[#0a0a0a] py-20 md:py-32 overflow-hidden border-t border-white/5">
+    <section id="portfolio" className="bg-theme md:px-20 py-20 overflow-hidden border-t border-theme-md">
 
       {/* ── Header ── */}
       <Container>
@@ -197,7 +251,7 @@ export default function PortfolioCarousel() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-black font-freight uppercase tracking-tighter text-white leading-none"
+              className="text-4xl md:text-5xl font-black font-freight uppercase tracking-tighter text-theme leading-none"
             >
               Karya Kami
             </motion.h2>
@@ -208,7 +262,7 @@ export default function PortfolioCarousel() {
             <button
               onClick={() => scroll(-1)}
               disabled={!canScrollLeft}
-              className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 disabled:opacity-20 hover:border-[#9E8976] hover:text-[#9E8976] transition-all duration-300"
+              className="w-10 h-10 rounded-full border border-theme-border flex items-center justify-center text-theme-3 disabled:opacity-20 hover:border-[#9E8976] hover:text-[#9E8976] transition-all duration-300"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -217,7 +271,7 @@ export default function PortfolioCarousel() {
             <button
               onClick={() => scroll(1)}
               disabled={!canScrollRight}
-              className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/40 disabled:opacity-20 hover:border-[#9E8976] hover:text-[#9E8976] transition-all duration-300"
+              className="w-10 h-10 rounded-full border border-theme-border flex items-center justify-center text-theme-3 disabled:opacity-20 hover:border-[#9E8976] hover:text-[#9E8976] transition-all duration-300"
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
                 <path d="M5 12h14M12 5l7 7-7 7" />
@@ -225,7 +279,7 @@ export default function PortfolioCarousel() {
             </button>
             <Link
               href="/work"
-              className="ml-2 text-[10px] font-sans font-black uppercase tracking-[0.4em] text-white/40 hover:text-[#9E8976] transition-colors"
+              className="ml-2 text-[10px] font-sans font-black uppercase tracking-[0.4em] text-theme-3 hover:text-[#9E8976] transition-colors"
             >
               Lihat Semua →
             </Link>
@@ -233,11 +287,20 @@ export default function PortfolioCarousel() {
         </div>
       </Container>
 
-      {/* ── Carousel track (full-bleed) ── */}
+      {/* ── Carousel track (full-bleed, draggable) ── */}
       <div
         ref={trackRef}
-        className="flex gap-4 md:gap-5 overflow-x-auto scrollbar-hide px-4 md:px-8 lg:px-16 pb-4"
-        style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
+        className="flex gap-4 md:gap-5 overflow-x-auto scrollbar-hide px-8 md:px-16 lg:px-24 pb-4"
+        style={{
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+          cursor: "grab",
+        }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerUp}
+        onClickCapture={handleClickCapture}
       >
         {portfolioItems.map((item, i) => (
           <Link
@@ -245,6 +308,7 @@ export default function PortfolioCarousel() {
             href={item.href}
             className="flex-none"
             style={{ scrollSnapAlign: "start" }}
+            draggable={false}
           >
             <PortfolioCard item={item} index={i} />
           </Link>
@@ -253,15 +317,16 @@ export default function PortfolioCarousel() {
         {/* "See all" end card */}
         <Link
           href="/work"
-          className="flex-none w-[180px] md:w-[200px] aspect-[9/16] rounded-3xl border border-white/10 flex flex-col items-center justify-center gap-4 hover:border-[#9E8976]/40 group transition-all duration-500"
+          className="flex-none w-[180px] md:w-[200px] aspect-[9/16] border border-theme-md flex flex-col items-center justify-center gap-4 hover:border-[#9E8976]/40 group transition-all duration-500"
           style={{ scrollSnapAlign: "start" }}
+          draggable={false}
         >
-          <div className="w-12 h-12 rounded-full border border-white/20 group-hover:border-[#9E8976] flex items-center justify-center transition-colors duration-300">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5 text-white/40 group-hover:text-[#9E8976] transition-colors">
+          <div className="w-12 h-12 rounded-full border border-theme-border group-hover:border-[#9E8976] flex items-center justify-center transition-colors duration-300">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5 text-theme-3 group-hover:text-[#9E8976] transition-colors">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </div>
-          <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-white/30 group-hover:text-[#9E8976] transition-colors text-center px-4">
+          <span className="text-[10px] font-sans font-bold uppercase tracking-widest text-theme-3 group-hover:text-[#9E8976] transition-colors text-center px-4">
             Lihat<br />Semua Karya
           </span>
         </Link>

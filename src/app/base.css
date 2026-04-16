@@ -19,18 +19,18 @@
    Define tokens here with @theme to generate utilities.
 ======================================================= */
 @theme {
-  --font-orinoe:   "Arinoe", Georgia, serif;
+  --font-orinoe: "Arinoe", Georgia, serif;
   --font-headline: "Arinoe", Georgia, serif;
-  --font-display:  "Arinoe", Georgia, serif;
-  --font-freight:  "Arinoe", Georgia, serif;
-  --font-serif:    "Arinoe", Georgia, serif;
+  --font-display: "Arinoe", Georgia, serif;
+  --font-freight: "Arinoe", Georgia, serif;
+  --font-serif: "Arinoe", Georgia, serif;
 
-  --font-sans:     var(--font-poppins), "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-body:     var(--font-poppins), "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-poppins), "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-poppins), "Poppins", ui-sans-serif, system-ui, sans-serif;
 
   --color-brand-cream: #F9F2E7;
   --color-brand-brown: #9E8976;
-  --color-brand-gray:  #505F62;
+  --color-brand-gray: #505F62;
   --color-brand-taupe: #9E8976;
   --color-brand-slate: #505F62;
 }
@@ -42,99 +42,220 @@
 :root {
   --brand-cream: #F9F2E7;
   --brand-brown: #9E8976;
-  --brand-gray:  #505F62;
+  --brand-gray: #505F62;
 
-  /* ── DARK THEME (default) ─────────────────────────── */
-  --theme-bg:              #000000;
-  --theme-surface:         #000000;
-  --theme-muted-bg:        #000000;
-  --theme-text:            #ffffff;
-  --theme-text-2:          rgba(255,255,255,0.50);
-  --theme-text-3:          rgba(255,255,255,0.25);
-  --theme-border:          rgba(255,255,255,0.05);
-  --theme-border-md:       rgba(255,255,255,0.10);
-  --theme-watermark:       rgba(255,255,255,0.025);
-  --theme-chip-bg:         rgba(255,255,255,0.03);
-  --theme-chip-border:     rgba(255,255,255,0.08);
-  --theme-chip-text:       rgba(255,255,255,0.40);
-  --theme-glow:            rgba(158,137,118,0.05);
-  --theme-input-bg:        rgba(255,255,255,0.05);
-  --theme-select-bg:       #262626;
-  --theme-card-shadow:     none;
-  --theme-navbar-bg:       rgba(10,10,10,0.75);
-  --theme-navbar-border:   rgba(255,255,255,0.05);
-  --theme-pill-bg:         rgba(255,255,255,0.05);
-  --theme-pill-border:     rgba(255,255,255,0.10);
-  --theme-pill-text:       rgba(255,255,255,0.50);
-  --theme-logo-color:      #ffffff;
-  --theme-marquee-text:    rgba(255,255,255,0.35);
-  --theme-marquee-text-2:  rgba(255,255,255,0.20);
-  --theme-service-inactive:rgba(255,255,255,0.30);
-  --theme-faq-border:      rgba(255,255,255,0.10);
-  --theme-divider-text:    rgba(249,242,231,0.06);
-  --theme-divider-stroke:  rgba(249,242,231,0.08);
-  --logo-filter:           invert(1) brightness(2) grayscale(1);
+  /* ── DARK THEME (default) — Grey-Dark Palette ──────── */
+  /* Rich charcoal instead of pure black for depth & warmth */
+  --theme-bg: #111111;
+  --theme-surface: #1A1A1A;
+  --theme-muted-bg: #161616;
+
+  /* Text — warm white tones, not harsh */
+  --theme-text: #F0EDE8;
+  --theme-text-2: rgba(240, 237, 232, 0.55);
+  --theme-text-3: rgba(240, 237, 232, 0.30);
+
+  /* Borders — visible but subtle */
+  --theme-border: rgba(255, 255, 255, 0.06);
+  --theme-border-md: rgba(255, 255, 255, 0.12);
+
+  /* Decorative */
+  --theme-watermark: rgba(255, 255, 255, 0.025);
+  --theme-glow: rgba(158, 137, 118, 0.08);
+
+  /* Chips / Pills / Tags */
+  --theme-chip-bg: rgba(255, 255, 255, 0.04);
+  --theme-chip-border: rgba(255, 255, 255, 0.10);
+  --theme-chip-text: rgba(255, 255, 255, 0.45);
+  --theme-pill-bg: rgba(255, 255, 255, 0.05);
+  --theme-pill-border: rgba(255, 255, 255, 0.12);
+  --theme-pill-text: rgba(255, 255, 255, 0.55);
+
+  /* Inputs */
+  --theme-input-bg: rgba(255, 255, 255, 0.05);
+  --theme-select-bg: #222222;
+
+  /* Cards — subtle dark elevation */
+  --theme-card-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.4);
+
+  /* Navbar — frosted dark glass */
+  --theme-navbar-bg: rgba(17, 17, 17, 0.80);
+  --theme-navbar-border: rgba(255, 255, 255, 0.06);
+
+  /* Logo */
+  --theme-logo-color: #F0EDE8;
+
+  /* Marquee text */
+  --theme-marquee-text: rgba(240, 237, 232, 0.38);
+  --theme-marquee-text-2: rgba(240, 237, 232, 0.22);
+
+  /* Services & interactive */
+  --theme-service-inactive: rgba(240, 237, 232, 0.30);
+
+  /* FAQ */
+  --theme-faq-border: rgba(255, 255, 255, 0.10);
+
+  /* Dividers */
+  --theme-divider-text: rgba(249, 242, 231, 0.06);
+  --theme-divider-stroke: rgba(249, 242, 231, 0.08);
+
+  /* Logo filter */
+  --logo-filter: invert(1) brightness(2) grayscale(1);
 }
 
-/* ── LIGHT THEME ────────────────────────────────────── */
+/* ── LIGHT THEME — Warm Cream Premium ────────────────── */
 [data-theme="light"] {
-  --theme-bg:              #ffffff;
-  --theme-surface:         #ffffff;
-  --theme-muted-bg:        #F9F9F9;
-  --theme-text:            #000000;
-  --theme-text-2:          #111111;
-  --theme-text-3:          rgba(0,0,0,0.60);
-  --theme-border:          rgba(0,0,0,0.12);
-  --theme-border-md:       rgba(0,0,0,0.22);
-  --theme-watermark:       rgba(0,0,0,0.05);
-  --theme-chip-bg:         rgba(0,0,0,0.06);
-  --theme-chip-border:     rgba(0,0,0,0.18);
-  --theme-chip-text:       #000000;
-  --theme-glow:            rgba(158,137,118,0.15);
-  --theme-input-bg:        #ffffff;
-  --theme-select-bg:       #ffffff;
-  --theme-card-shadow:     0 20px 50px -12px rgba(0,0,0,0.12);
-  --theme-navbar-bg:       rgba(255,255,255,0.98);
-  --theme-navbar-border:   rgba(0,0,0,0.10);
-  --theme-pill-bg:         rgba(0,0,0,0.06);
-  --theme-pill-border:     rgba(0,0,0,0.18);
-  --theme-pill-text:       #000000;
-  --theme-logo-color:      #000000;
-  --theme-marquee-text:    rgba(0,0,0,0.55);
-  --theme-marquee-text-2:  rgba(0,0,0,0.35);
-  --theme-service-inactive:rgba(0,0,0,0.38);
-  --theme-faq-border:      rgba(0,0,0,0.14);
-  --theme-divider-text:    rgba(158,137,118,0.10);
-  --theme-divider-stroke:  rgba(158,137,118,0.12);
-  --logo-filter:           grayscale(1) brightness(0);
+  /* Backgrounds — layered warmth with clear hierarchy */
+  --theme-bg: #FAF4EA;
+  --theme-surface: #FFFFFF;
+  --theme-muted-bg: #F2E9DB;
+
+  /* Text — rich espresso tones for readability */
+  --theme-text: #16120E;
+  --theme-text-2: #5C6B6E;
+  --theme-text-3: rgba(22, 18, 14, 0.52);
+
+  /* Borders — refined, warm, not muddy */
+  --theme-border: rgba(158, 137, 118, 0.18);
+  --theme-border-md: rgba(158, 137, 118, 0.30);
+
+  /* Decorative */
+  --theme-watermark: rgba(158, 137, 118, 0.08);
+  --theme-glow: rgba(158, 137, 118, 0.18);
+
+  /* Chips / Pills / Tags */
+  --theme-chip-bg: rgba(158, 137, 118, 0.08);
+  --theme-chip-border: rgba(158, 137, 118, 0.20);
+  --theme-chip-text: #2C2420;
+  --theme-pill-bg: rgba(158, 137, 118, 0.08);
+  --theme-pill-border: rgba(158, 137, 118, 0.20);
+  --theme-pill-text: #2C2420;
+
+  /* Inputs */
+  --theme-input-bg: #FFFFFF;
+  --theme-select-bg: #FFFFFF;
+
+  /* Cards — warm layered shadow */
+  --theme-card-shadow: 0 4px 24px -4px rgba(158, 137, 118, 0.12),
+                       0 12px 48px -8px rgba(158, 137, 118, 0.10);
+
+  /* Navbar — frosted glass with warmth */
+  --theme-navbar-bg: rgba(250, 244, 234, 0.82);
+  --theme-navbar-border: rgba(158, 137, 118, 0.12);
+
+  /* Logo */
+  --theme-logo-color: #16120E;
+
+  /* Marquee text */
+  --theme-marquee-text: rgba(22, 18, 14, 0.72);
+  --theme-marquee-text-2: rgba(22, 18, 14, 0.50);
+
+  /* Services & interactive */
+  --theme-service-inactive: rgba(22, 18, 14, 0.38);
+
+  /* FAQ */
+  --theme-faq-border: rgba(158, 137, 118, 0.16);
+
+  /* Dividers */
+  --theme-divider-text: rgba(158, 137, 118, 0.25);
+  --theme-divider-stroke: rgba(158, 137, 118, 0.16);
+
+  /* Logo filter */
+  --logo-filter: grayscale(1) brightness(0);
 }
 
 /* ── Themed utility classes ─────────────────────────── */
 @layer utilities {
-  .bg-theme          { background-color: var(--theme-bg); }
-  .bg-theme-surface  { background-color: var(--theme-surface); }
-  .bg-theme-muted    { background-color: var(--theme-muted-bg); }
+  .bg-theme {
+    background-color: var(--theme-bg);
+  }
 
-  .text-theme        { color: var(--theme-text); }
-  .text-theme-2      { color: var(--theme-text-2); }
-  .text-theme-3      { color: var(--theme-text-3); }
-  .text-theme-watermark { color: var(--theme-watermark); }
+  .bg-theme-surface {
+    background-color: var(--theme-surface);
+  }
 
-  .border-theme      { border-color: var(--theme-border); }
-  .border-theme-md   { border-color: var(--theme-border-md); }
+  .bg-theme-muted {
+    background-color: var(--theme-muted-bg);
+  }
 
-  .bg-theme-input    { background-color: var(--theme-input-bg); }
-  .bg-theme-chip     { background-color: var(--theme-chip-bg); }
-  .border-theme-chip { border-color: var(--theme-chip-border); }
-  .text-theme-chip   { color: var(--theme-chip-text); }
-  .bg-theme-pill     { background-color: var(--theme-pill-bg); }
-  .border-theme-pill { border-color: var(--theme-pill-border); }
-  .text-theme-pill   { color: var(--theme-pill-text); }
-  .text-theme-marquee   { color: var(--theme-marquee-text); }
-  .text-theme-marquee-2 { color: var(--theme-marquee-text-2); }
+  .text-theme {
+    color: var(--theme-text);
+  }
+
+  .text-theme-2 {
+    color: var(--theme-text-2);
+  }
+
+  .text-theme-3 {
+    color: var(--theme-text-3);
+  }
+
+  .text-theme-watermark {
+    color: var(--theme-watermark);
+  }
+
+  .border-theme {
+    border-color: var(--theme-border);
+  }
+
+  .border-theme-md {
+    border-color: var(--theme-border-md);
+  }
+
+  .border-theme-border {
+    border-color: var(--theme-border);
+  }
+
+  .bg-theme-input {
+    background-color: var(--theme-input-bg);
+  }
+
+  .bg-theme-chip {
+    background-color: var(--theme-chip-bg);
+  }
+
+  .border-theme-chip {
+    border-color: var(--theme-chip-border);
+  }
+
+  .text-theme-chip {
+    color: var(--theme-chip-text);
+  }
+
+  .bg-theme-pill {
+    background-color: var(--theme-pill-bg);
+  }
+
+  .border-theme-pill {
+    border-color: var(--theme-pill-border);
+  }
+
+  .text-theme-pill {
+    color: var(--theme-pill-text);
+  }
+
+  .text-theme-marquee {
+    color: var(--theme-marquee-text);
+  }
+
+  .text-theme-marquee-2 {
+    color: var(--theme-marquee-text-2);
+  }
+
+  .bg-grid-brutalist {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, var(--theme-border) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--theme-border) 1px, transparent 1px);
+  }
 
   .text-freight {
     font-family: var(--font-freight), serif;
+  }
+
+  /* Shadow utility using theme token */
+  .shadow-theme-card {
+    box-shadow: var(--theme-card-shadow);
   }
 }
 
@@ -154,10 +275,22 @@ html {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--theme-bg, transparent); }
-::-webkit-scrollbar-thumb { background: #9E8976; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #b8a594; }
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-bg, transparent);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9E8976;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b8a594;
+}
 
 /* Body */
 body {
@@ -172,8 +305,15 @@ body {
 
 /* Custom cursor — desktop only */
 @media (pointer: fine) {
-  body { cursor: none; }
-  a, button, [role="button"] { cursor: none; }
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    cursor: none;
+  }
 }
 
 /* Focus visible */
@@ -183,7 +323,9 @@ body {
 }
 
 /* Global theme transition */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: 0.35s;
   transition-timing-function: ease;
@@ -196,5 +338,148 @@ body {
 }
 
 /* ── Scrollbar hide utility ── */
-.scrollbar-hide::-webkit-scrollbar { display: none; }
-.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================================
+   LIGHT THEME ENHANCEMENTS
+   Cascading polish that affects all sections automatically
+============================================================ */
+
+/* Surface cards get a warm lifted shadow */
+[data-theme="light"] .bg-theme-surface {
+  box-shadow: var(--theme-card-shadow);
+}
+
+/* Muted backgrounds — warm gradient overlay */
+[data-theme="light"] .bg-theme-muted {
+  background-image: linear-gradient(
+    135deg,
+    var(--theme-muted-bg) 0%,
+    rgba(158, 137, 118, 0.06) 100%
+  );
+}
+
+/* Input focus glow — warmer in light mode */
+[data-theme="light"] input:focus,
+[data-theme="light"] textarea:focus,
+[data-theme="light"] select:focus {
+  box-shadow: 0 0 0 3px rgba(158, 137, 118, 0.12);
+}
+
+/* Services section — subtle cream radial glow */
+[data-theme="light"] #services {
+  background-image: radial-gradient(
+    ellipse at 80% 20%,
+    rgba(158, 137, 118, 0.06) 0%,
+    transparent 60%
+  );
+}
+
+/* About section — warm ambient glow */
+[data-theme="light"] #about {
+  background-image: radial-gradient(
+    ellipse at 20% 80%,
+    rgba(158, 137, 118, 0.07) 0%,
+    transparent 55%
+  );
+}
+
+/* Why UPLIFT — warmer hover tint on cards */
+[data-theme="light"] #why-uplift .group:hover {
+  background-color: rgba(249, 242, 231, 0.8);
+}
+
+/* FAQ section — warm gradient fade */
+[data-theme="light"] #faq {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(249, 242, 231, 0.4) 100%
+  );
+}
+
+/* Consultation section — ambient radial glow */
+[data-theme="light"] #consultation {
+  background-image: radial-gradient(
+    ellipse at 70% 30%,
+    rgba(158, 137, 118, 0.12) 0%,
+    transparent 55%
+  );
+}
+
+/* Marquee strip — inset border highlights */
+[data-theme="light"] .bg-theme-muted.border-y {
+  border-color: rgba(158, 137, 118, 0.20);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+              inset 0 -1px 0 rgba(158, 137, 118, 0.10);
+}
+
+/* Selection — elegant brown highlight */
+[data-theme="light"] ::selection {
+  background-color: rgba(158, 137, 118, 0.25);
+  color: var(--theme-text);
+}
+
+/* ============================================================
+   DARK THEME ENHANCEMENTS — Grey-Dark Polish
+   Rich charcoal tones with warm brand accents
+============================================================ */
+
+/* Dark surfaces get a subtle dark glow */
+:root .bg-theme-surface {
+  box-shadow: var(--theme-card-shadow);
+}
+
+/* Services section — brand-tinted ambient glow */
+:root #services {
+  background-image: radial-gradient(
+    ellipse at 75% 15%,
+    rgba(158, 137, 118, 0.04) 0%,
+    transparent 55%
+  );
+}
+
+/* About section — warm dark glow */
+:root #about {
+  background-image: radial-gradient(
+    ellipse at 15% 75%,
+    rgba(158, 137, 118, 0.04) 0%,
+    transparent 50%
+  );
+}
+
+/* Why UPLIFT — hover tint in dark */
+:root #why-uplift .group:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* FAQ section — subtle gradient */
+:root #faq {
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(158, 137, 118, 0.03) 100%
+  );
+}
+
+/* Consultation section — warm glow */
+:root #consultation {
+  background-image: radial-gradient(
+    ellipse at 65% 25%,
+    rgba(158, 137, 118, 0.06) 0%,
+    transparent 50%
+  );
+}
+
+/* Marquee strip — dark inset borders */
+:root .bg-theme-muted.border-y {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03),
+              inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+}

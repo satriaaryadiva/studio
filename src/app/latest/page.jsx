@@ -10,7 +10,7 @@ export const metadata = {
 
 const LatestPage = () => {
   return (
-    <main className="bg-[#0a0a0a] min-h-screen">
+    <main className="bg-theme min-h-screen">
       <Container className="pt-24 sm:pt-32">
         <FadeIn>
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-neutral-500 mb-8">

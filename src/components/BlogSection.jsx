@@ -158,7 +158,7 @@ function PostCard({ post, index }) {
                 </div>
 
                 {/* Image */}
-                <div className="relative overflow-hidden rounded-2xl aspect-[4/3] bg-neutral-900 mb-5">
+                <div className="relative overflow-hidden aspect-[4/3] bg-neutral-900 mb-5 border border-theme">
                     <img
                         src={post.image}
                         alt={post.title}
@@ -202,7 +202,7 @@ function PostCard({ post, index }) {
 
 export default function BlogSection() {
     return (
-        <section className="bg-[#0a0a0a] py-20 sm:py-28">
+        <section className="bg-theme-muted py-20 sm:py-28 border-y border-theme-md">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 {/* Section Header */}
                 <motion.div

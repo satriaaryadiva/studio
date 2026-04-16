@@ -7,17 +7,17 @@ import GridPattern from "./GridPattern";
 
 const Pricing = () => {
     return (
-        <div className="relative isolate mt-24 overflow-hidden bg-neutral-950 py-24 sm:mt-32 sm:py-32 lg:mt-40">
+        <div className="relative isolate mt-0 overflow-hidden bg-theme-muted py-24   border-y border-theme-md">
             <GridPattern
-                className="absolute inset-0 -z-10 h-full w-full fill-neutral-100/5 stroke-white/5 [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
+                className="absolute inset-0 -z-10 h-full w-full fill-[#9E8976]/3 stroke-theme-md [mask-image:linear-gradient(to_bottom_left,white_40%,transparent_50%)]"
                 yOffset={-256}
             />
             <Container>
                 <FadeIn className="max-w-3xl">
-                    <h2 className="font-display text-4xl font-medium tracking-tight text-white sm:text-5xl">
+                    <h2 className="font-freight text-4xl font-black tracking-tighter text-theme uppercase sm:text-5xl">
                         Pilih Paket yang Sesuai dengan Kebutuhan Brand Anda
                     </h2>
-                    <p className="mt-6 text-xl text-neutral-400">
+                    <p className="mt-6 text-lg text-theme-2 font-sans leading-relaxed">
                         Transparansi adalah kunci. Kami menawarkan berbagai paket fleksibel
                         untuk membantu brand Anda tumbuh di setiap tahap.
                     </p>
@@ -28,41 +28,41 @@ const Pricing = () => {
                         <FadeIn
                             key={plan.name}
                             className={clsx(
-                                "relative flex flex-col rounded-3xl p-8 transition-all duration-300 hover:shadow-[0_0_50px_-12px_rgba(255,255,255,0.1)]",
+                                "relative flex flex-col rounded-3xl p-8 transition-all duration-300",
                                 plan.highlight
-                                    ? "bg-white text-neutral-950 ring-4 ring-white/10"
-                                    : "bg-white/5 text-white ring-1 ring-white/10"
+                                    ? "bg-[#9E8976] text-white ring-4 ring-[#9E8976]/20 shadow-2xl shadow-[#9E8976]/20"
+                                    : "bg-theme-surface text-theme ring-1 ring-theme-md hover:ring-[#9E8976]/30"
                             )}
                         >
                             {plan.highlight && (
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-neutral-900 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-white ring-1 ring-white/10">
+                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-theme px-4 py-1 text-[10px] font-black uppercase tracking-[0.3em] text-[#9E8976] border border-theme-md">
                                     Most Popular
                                 </div>
                             )}
                             <div className="flex-1">
-                                <h3 className="font-display text-lg font-semibold uppercase tracking-wider">
+                                <h3 className="font-freight text-lg font-black uppercase tracking-wider">
                                     {plan.name}
                                 </h3>
                                 <div className="mt-4 flex items-baseline gap-x-2">
-                                    <span className="text-4xl font-bold tracking-tight">
+                                    <span className="text-4xl font-black font-freight tracking-tight">
                                         {plan.price}
                                     </span>
                                     {plan.price !== "Custom" && (
-                                        <span className="text-sm font-semibold leading-6 opacity-70">
+                                        <span className="text-sm font-sans font-semibold leading-6 opacity-60">
                                             /bulan
                                         </span>
                                     )}
                                 </div>
-                                <p className="mt-6 text-sm leading-7 opacity-70">
+                                <p className="mt-6 text-sm leading-7 opacity-60 font-sans">
                                     {plan.description}
                                 </p>
-                                <ul role="list" className="mt-8 space-y-3 text-sm leading-6">
+                                <ul role="list" className="mt-8 space-y-3 text-sm leading-6 font-sans">
                                     {plan.features.map((feature) => (
                                         <li key={feature} className="flex gap-x-3">
                                             <svg
                                                 className={clsx(
                                                     "h-6 w-5 flex-none",
-                                                    plan.highlight ? "text-white" : "text-neutral-950"
+                                                    plan.highlight ? "text-white" : "text-[#9E8976]"
                                                 )}
                                                 viewBox="0 0 20 20"
                                                 fill="currentColor"
@@ -82,10 +82,10 @@ const Pricing = () => {
                             <a
                                 href="/contact"
                                 className={clsx(
-                                    "mt-8 block rounded-full px-6 py-3 text-center text-sm font-semibold transition-all duration-200",
+                                    "mt-8 block rounded-full px-6 py-3 text-center text-[11px] font-black uppercase tracking-widest transition-all duration-300",
                                     plan.highlight
-                                        ? "bg-white text-neutral-900 hover:bg-neutral-100"
-                                        : "bg-neutral-950 text-white hover:bg-neutral-800"
+                                        ? "bg-white text-[#9E8976] hover:bg-theme hover:text-theme"
+                                        : "bg-[#9E8976] text-white hover:bg-theme hover:text-[#9E8976] border border-transparent hover:border-theme-md"
                                 )}
                             >
                                 {plan.cta}

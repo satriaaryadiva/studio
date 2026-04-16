@@ -3,15 +3,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext({
-  theme: "dark",
+  theme: "light",
   toggleTheme: () => {},
 });
 
 export function ThemeProvider({ children }) {
-  // Initialize with "dark" as server default.
+  // Initialize with "light" as server default.
   // The inline script in layout.jsx sets data-theme on <html> before React
   // hydrates, so the CSS variables are already correct. We sync state here.
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     // Read the currently-active theme from the <html> attribute
@@ -19,7 +19,7 @@ export function ThemeProvider({ children }) {
     const current =
       document.documentElement.getAttribute("data-theme") ||
       localStorage.getItem("uplift-theme") ||
-      "dark";
+      "light";
     setTheme(current);
   }, []);
 

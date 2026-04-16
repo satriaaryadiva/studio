@@ -6,6 +6,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+
+
 const PageIntro = ({
   eyebrow,
   title,
@@ -68,7 +70,7 @@ const PageIntro = ({
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className={clsx(
-                "relative aspect-[16/9] overflow-hidden rounded-4xl bg-neutral-100 shadow-2xl lg:aspect-square",
+                "relative aspect-[16/9] overflow-hidden  bg-neutral-100 shadow-2xl lg:aspect-square",
                 imagePosition === "left" && "lg:order-1"
               )}
             >

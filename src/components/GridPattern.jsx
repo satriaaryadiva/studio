@@ -21,9 +21,9 @@ const GridPattern = ({ yOffset = 0, interactive = false, ...props }) => {
             d="M0 40V.5H40"
             fill="none"
             stroke="currentColor"
-            strokeOpacity="0.1"
+            strokeOpacity="0.3"
           />
-          <circle cx="0" cy="0" r="1" fill="currentColor" fillOpacity="0.2" />
+          <circle cx="0" cy="0" r="1" fill="currentColor" fillOpacity="0.4" />
         </pattern>
         <radialGradient id={`${id}-gradient`} cy="0" cx="50%" r="100%" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="white" />

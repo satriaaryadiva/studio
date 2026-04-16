@@ -39,7 +39,7 @@ export default function SectionDivider({
 }) {
     return (
         // SectionDivider stays dark intentionally — creates visual rhythm between sections
-        <section className="bg-[#1A1612] py-14 md:py-14 overflow-hidden border-y border-[#F9F2E7]/8">
+        <section className="bg-theme-muted py-14 md:py-14 overflow-hidden border-y border-theme-md">
             <div className="flex flex-col">
                 {rows.map((text, index) => (
                     <ScrollingRow
