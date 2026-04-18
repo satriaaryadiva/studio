@@ -1,6 +1,5 @@
 pipelines:
 # Automated pipeline for syncing Bitbucket repository with its GitHub mirror, ensuring real-time updates across platforms
-# Automated pipeline for syncing Bitbucket repository with its GitHub mirror, ensuring real-time updates across platforms.
   default:
     - step:
         name: Sync GitHub Mirror
@@ -10,3 +9,4 @@ pipelines:
         script:
           - git clone --mirror https://x-token-auth:"$BITBUCKET_VARIABLE"@bitbucket.org/_mpt/uplift-compro.git
           - cd uplift-compro.git
+          - git push --mirror https://x-token-auth:"$GITHUB_VARIABLE"@github.com/mpt-michaelpitter/uplift-compro.git
