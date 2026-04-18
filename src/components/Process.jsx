@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Container from "./Container";
+import BigCTA from "./BigCTA";
 
 const steps = [
   {
@@ -38,7 +39,7 @@ function StepRow({ s, index }) {
   const isEven = index % 2 === 0;
 
   return (
-    <div className={`flex flex-col lg:flex-row gap-12 lg:gap-24 items-center mb-32 lg:mb-48 ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
+    <div className={`flex flex-col lg:flex-row gap-12  items-center mb-32  ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
       
       {/* Image Panel */}
       <motion.div
@@ -51,7 +52,7 @@ function StepRow({ s, index }) {
         <img
           src={s.image}
           alt={s.title}
-          className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover    transition-all duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-30 transition-opacity" />
         
@@ -141,30 +142,16 @@ export default function Process() {
         </div>
 
         {/* Steps */}
-        <div className="mt-20">
+        <div className="mt-10">
           {steps.map((s, i) => (
             <StepRow key={s.id} s={s} index={i} />
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <motion.div
-           initial={{ opacity: 0, scale: 0.95 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-           viewport={{ once: true }}
-           className="mt-12 bg-theme-muted border border-theme-md rounded-[3rem] p-12 text-center"
-        >
-            <h3 className="text-2xl md:text-3xl font-black text-theme tracking-tight uppercase font-freight mb-6">
-                Ready to stabilize your brand growth?
-            </h3>
-            <a
-              href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-[#9E8976] rounded-full text-xs font-bold uppercase tracking-widest text-white hover:bg-theme-surface hover:text-[#9E8976] transition-all duration-300 shadow-xl shadow-[#9E8976]/20 border border-transparent hover:border-theme-md"
-            >
-              Start Discovery Session →
-            </a>
-        </motion.div>
+        <div className="mt-16">
+          <BigCTA />
+        </div>
 
       </Container>
     </section>

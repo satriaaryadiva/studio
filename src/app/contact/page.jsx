@@ -104,7 +104,7 @@ export default function ContactPage() {
       />
 
       {/* ── MAIN CONTENT ── */}
-      <Container className="py-20 md:py-32">
+      <Container className="py-20  ">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
 
           {/* LEFT: Contact Info */}
@@ -241,19 +241,19 @@ export default function ContactPage() {
       </Container>
 
       {/* ── MAP / LOCATION STRIP ── */}
-      <div className="bg-neutral-950 py-16">
+      <div className="bg-theme-muted py-16 border-t border-theme-border">
         <Container>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div>
               <p className="text-[10px] font-bold uppercase tracking-[0.5em] text-[#9E8976] mb-3">Kunjungi Kantor Kami</p>
-              <p className="text-white font-bold text-lg leading-tight">Jl. Gatot Subroto No. 19</p>
-              <p className="text-neutral-400 text-sm">Medan Petisah, Sumatera Utara — Indonesia</p>
+              <p className="text-theme font-bold text-lg leading-tight">Jl. Gatot Subroto No. 19</p>
+              <p className="text-theme-3 text-sm">Medan Petisah, Sumatera Utara — Indonesia</p>
             </div>
             <a
               href="https://maps.google.com/?q=Jl+Gatot+Subroto+No+19+Medan+Petisah"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-3 rounded-full border border-white/10 px-6 py-3 text-sm font-bold text-white hover:bg-white hover:text-neutral-950 transition-colors duration-300 flex-none"
+              className="inline-flex items-center gap-3 rounded-full border border-theme-border px-6 py-3 text-sm font-bold text-theme hover:bg-[#9E8976] hover:text-white transition-colors duration-300 flex-none"
             >
               Buka di Google Maps
               <svg viewBox="0 0 16 6" fill="currentColor" className="w-4 h-2">

@@ -71,7 +71,7 @@ function FAQItem({ faq, index }) {
 
 export default function FAQ() {
   return (
-    <section id="faq" className="bg-theme-surface py-28 md:py-44 border-t border-theme">
+    <section id="faq" className="bg-theme-surface py-20 border-t border-theme">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 mb-20">
           <div className="lg:col-span-6">

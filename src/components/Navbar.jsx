@@ -325,7 +325,7 @@ export default function Navbar() {
                     <Header
                         isFloating={true}
                         isAtTop={isAtTop}
-                        invert={false}
+                        invert={pathname !== "/" && isAtTop}
                         panelId={panelId}
                         icon={HiMenuAlt4}
                         toggleRef={openRef}

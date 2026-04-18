@@ -80,6 +80,7 @@ export default function Preloader() {
                }}
                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#9E8976] blur-[140px]" 
+               style={{ willChange: "transform, opacity" }}
              />
              <motion.div 
                animate={{ 
@@ -88,6 +89,7 @@ export default function Preloader() {
                }}
                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
                className="absolute bottom-[-15%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#9E8976] blur-[160px]" 
+               style={{ willChange: "transform, opacity" }}
              />
           </div>
 

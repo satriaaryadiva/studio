@@ -26,10 +26,10 @@ const serviceIcons = {
 
 export default function OurServices() {
   return (
-    <section id="services" className="relative py-32 bg-theme overflow-hidden border-b border-theme-md">
+    <section id="services" className="relative py-20 bg-theme overflow-hidden border-b border-theme-md">
       <Container>
         {/* Header */}
-        <div className="max-w-3xl mb-16 md:mb-24">
+        <div className="max-w-3xl mb-16 md:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}

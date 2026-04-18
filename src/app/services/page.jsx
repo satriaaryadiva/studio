@@ -158,7 +158,7 @@ export default function ServicesPage() {
       {/* ══════════════════════════════════════════════
           2. ALL SERVICES — full accordion list
       ══════════════════════════════════════════════ */}
-      <section className="py-28 md:py-44 border-b border-theme bg-theme-surface">
+      <section className="py-28   border-b border-theme bg-theme-surface">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
 

@@ -20,7 +20,7 @@ const loop = [...industries, ...industries];
 
 export default function Industries() {
   return (
-    <section id="industries" className="bg-theme py-28 md:py-44 overflow-hidden border-t border-theme">
+    <section id="industries" className="bg-theme py-20 overflow-hidden border-t border-theme">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
 

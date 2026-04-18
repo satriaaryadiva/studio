@@ -69,11 +69,12 @@ export default function BlogRecommendation() {
                     transition={{ duration: 0.8 }}
                     className="mb-12"
                 >
-                    <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-neutral-400">
-                        🔥 Populer Minggu Ini
+                    <span className="text-[11px] tracking-[0.5em] font-black uppercase text-[#9E8976] block mb-6">
+                        🔥 Trending Insights
                     </span>
-                    <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                        Rekomendasi untuk Anda
+                    <h2 className="font-freight text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-theme uppercase leading-[0.85]">
+                        Most <span className="text-[#9E8976]">Popular</span> <br />
+                        This Week.
                     </h2>
                 </motion.div>
 
@@ -83,90 +84,88 @@ export default function BlogRecommendation() {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-80px" }}
-                    className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+                    className="grid  grid-cols-1 lg:grid-cols-2 gap-6"
                 >
                     {/* Large Featured Post */}
                     <motion.article
                         variants={itemVariants}
-                        className="group cursor-pointer lg:row-span-2"
+                        className="group cursor-pointer lg:row-span-2 relative"
                     >
                         <Link href={featured.href} className="block h-full">
-                            <div className="relative overflow-hidden h-full min-h-[400px] lg:min-h-full bg-neutral-900 border border-theme">
-                                <img
+                            <div className="relative overflow-hidden h-full min-h-[500px] lg:min-h-full bg-neutral-950 border border-theme-md group-hover:border-[#9E8976]/40 transition-colors duration-500">
+                                <motion.img
                                     src={featured.image}
                                     alt={featured.title}
-                                    className="absolute inset-0 w-full h-full object-cover transition-all duration-[1.4s] ease-out group-hover:scale-105"
+                                    className="absolute inset-0 w-full h-full object-cover opacity-60 transition-all duration-[1.5s] ease-out group-hover:scale-110 group-hover:opacity-40"
+                                    style={{ willChange: "transform, opacity" }}
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent" />
 
-                                {/* Content overlay */}
-                                <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-10">
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <span className="inline-flex items-center rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 text-[9px] tracking-[0.2em] font-bold uppercase text-white">
+                                {/* Content overlay — High Contrast */}
+                                <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 lg:p-16">
+                                    <div className="flex items-center gap-4 mb-6">
+                                        <span className="inline-flex items-center rounded-full bg-[#9E8976] px-4 py-1.5 text-[10px] tracking-[0.3em] font-black uppercase text-white shadow-lg shadow-[#9E8976]/20">
                                             {featured.type}
                                         </span>
-                                        <span className="text-[9px] tracking-[0.2em] font-bold uppercase text-white/70">
-                                            {featured.readTime}
+                                        <div className="h-px w-8 bg-white/20" />
+                                        <span className="text-[10px] tracking-[0.3em] font-black uppercase text-white/50">
+                                            {featured.readTime} READ
                                         </span>
                                     </div>
-                                    <h3 className="text-white text-2xl sm:text-3xl font-bold leading-tight mb-2 transition-colors duration-300 group-hover:text-neutral-200">
+                                    <h3 className="text-white text-4xl sm:text-5xl lg:text-6xl font-black font-freight tracking-tighter leading-[0.9] mb-6 uppercase transition-transform duration-700 group-hover:-translate-y-2">
                                         {featured.title}
                                     </h3>
-                                    <p className="text-white/70 text-sm leading-relaxed max-w-md">
+                                    <p className="text-white/60 text-base leading-relaxed max-w-lg mb-8 font-sans">
                                         {featured.subtitle}
                                     </p>
-                                    <div className="mt-6 flex items-center gap-2 text-white text-xs font-bold uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-                                        Baca Selengkapnya
-                                        <svg
-                                            viewBox="0 0 16 6"
-                                            className="h-2 w-4 transition-transform group-hover:translate-x-1"
-                                        >
-                                            <path
-                                                d="M16 3 10 .5v2H0v1h10v2L16 3Z"
-                                                fill="currentColor"
-                                            />
+                                    
+                                    <div className="flex items-center gap-3 text-[#9E8976] text-[11px] font-black uppercase tracking-[0.4em] translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
+                                        Explore Article
+                                        <svg viewBox="0 0 16 6" className="h-2 w-5 transition-transform group-hover:translate-x-2" fill="currentColor">
+                                            <path d="M16 3 10 .5v2H0v1h10v2L16 3Z" />
                                         </svg>
                                     </div>
                                 </div>
                             </div>
                         </Link>
-                    </motion.article>
-
-                    {/* Side Posts */}
+                    </motion.article> 
+ 
                     {rest.map((post) => (
                         <motion.article
                             key={post.id}
                             variants={itemVariants}
-                            className="group cursor-pointer"
+                            className="group   cursor-pointer"
                         >
                             <Link
                                 href={post.href}
-                                className="flex gap-6 items-start rounded-2xl bg-white/5 border border-white/10 p-5 transition-colors duration-300 hover:bg-white/10 h-full"
+                                className="flex flex-col sm:flex-row gap-8 items-center rounded-[2rem] bg-theme-surface border border-theme-md p-6 transition-all duration-500 hover:border-[#9E8976]/30 hover:bg-theme-muted h-full"
                             >
                                 {/* Thumbnail */}
-                                <div className="relative overflow-hidden w-32 h-32 sm:w-40 sm:h-40 flex-none bg-neutral-800 border border-theme">
+                                <div className="relative overflow-hidden w-full sm:w-44 h-44 flex-none bg-theme-muted border border-theme-md rounded-2xl">
                                     <img
                                         src={post.image}
                                         alt={post.title}
-                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.2s] group-hover:scale-110"
+                                        style={{ willChange: "transform" }}
                                     />
+                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
                                 </div>
 
                                 {/* Text */}
-                                <div className="flex flex-col justify-center min-w-0 flex-1">
-                                    <div className="flex items-center gap-2 mb-3">
-                                        <span className="text-[9px] tracking-[0.2em] font-bold uppercase text-neutral-400">
+                                <div className="flex flex-col justify-center min-w-0 flex-1 py-2">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <span className="text-[10px] tracking-[0.3em] font-black uppercase text-[#9E8976]">
                                             {post.type}
                                         </span>
-                                        <span className="w-1 h-1 rounded-full bg-neutral-600" />
-                                        <span className="text-[9px] tracking-[0.2em] font-bold uppercase text-neutral-400">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-theme-md" />
+                                        <span className="text-[10px] tracking-[0.3em] font-black uppercase text-theme-3">
                                             {post.readTime}
                                         </span>
                                     </div>
-                                    <h3 className="text-white text-lg font-bold leading-snug mb-2 transition-colors group-hover:text-neutral-300">
+                                    <h3 className="text-theme text-2xl font-black font-freight tracking-tighter leading-tight mb-3 transition-colors group-hover:text-[#9E8976]">
                                         {post.title}
                                     </h3>
-                                    <p className="text-neutral-400 text-sm leading-relaxed line-clamp-2">
+                                    <p className="text-theme-2 text-sm leading-relaxed line-clamp-2 font-sans">
                                         {post.subtitle}
                                     </p>
                                 </div>
@@ -185,12 +184,12 @@ export default function BlogRecommendation() {
                 >
                     <Link
                         href="/blog"
-                        className="group flex items-center gap-3 rounded-full border border-white/20 px-8 py-4 text-sm font-bold text-white transition-all duration-300 hover:bg-white hover:text-neutral-950 hover:border-white"
+                        className="group flex items-center gap-6 rounded-full border border-theme-md px-12 py-5 text-xs font-black uppercase tracking-[0.4em] text-theme transition-all duration-500 hover:bg-[#9E8976] hover:text-white hover:border-[#9E8976] shadow-xl hover:shadow-[#9E8976]/20"
                     >
-                        Lihat Semua Artikel
+                        View Full Archives
                         <svg
                             viewBox="0 0 16 6"
-                            className="h-2 w-4 transition-transform duration-300 group-hover:translate-x-2"
+                            className="h-2 w-6 transition-transform duration-500 group-hover:translate-x-3"
                         >
                             <path d="M16 3 10 .5v2H0v1h10v2L16 3Z" fill="currentColor" />
                         </svg>

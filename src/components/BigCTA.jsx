@@ -65,7 +65,7 @@ export default function BigCTA() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          style={{ bottom: "20%", left: "8%" }}
+          style={{ bottom: "20%", left: "8%", willChange: "transform" }}
         >
           <div className="relative drop-shadow-2xl scale-90">
              <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor" stroke="var(--theme-bg)" strokeWidth="1">
@@ -89,6 +89,7 @@ export default function BigCTA() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ willChange: "transform" }}
         >
           <div className="bg-theme-surface border border-theme-md p-5 rounded-2xl rounded-tr-none shadow-theme-card relative">
             <p className="text-[10px] font-sans font-bold text-theme leading-relaxed">
@@ -110,6 +111,7 @@ export default function BigCTA() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ willChange: "transform" }}
         >
           <img 
             src="/images/cta/left.png" 
@@ -130,6 +132,7 @@ export default function BigCTA() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
+          style={{ willChange: "transform" }}
         >
           <img 
             src="/images/cta/right.png" 

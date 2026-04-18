@@ -78,6 +78,7 @@ export default function Hero() {
                     animate={{ scale: [1, 1.08, 1], opacity: [0.12, 0.2, 0.12] }}
                     transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
                     className="absolute w-[70vw] h-[70vw] max-w-[700px] max-h-[700px] rounded-full bg-[#9E8976] blur-[160px]"
+                    style={{ willChange: "transform, opacity" }}
                 />
 
                 {/* Morphing blob 1 — top right */}
@@ -88,6 +89,7 @@ export default function Hero() {
                     }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
                     className="absolute top-[10%] right-[12%] w-[380px] h-[380px] border-[2px] border-[#9E8976]/50 opacity-70"
+                    style={{ willChange: "transform, border-radius" }}
                 />
 
                 {/* Morphing blob 2 — bottom left */}
@@ -98,6 +100,7 @@ export default function Hero() {
                     }}
                     transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                     className="absolute bottom-[8%] left-[8%] w-[460px] h-[460px] border-[2px] border-[#9E8976]/35 opacity-60"
+                    style={{ willChange: "transform, border-radius" }}
                 />
 
                 {/* Orbiting rings */}
@@ -105,11 +108,13 @@ export default function Hero() {
                     animate={{ rotateZ: 360 }}
                     transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
                     className="absolute w-[600px] h-[600px] md:w-[800px] md:h-[800px] rounded-full border border-[#9E8976]/25"
+                    style={{ willChange: "transform" }}
                 />
                 <motion.div
                     animate={{ rotateZ: -360 }}
                     transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
                     className="absolute w-[480px] h-[480px] md:w-[640px] md:h-[640px] rounded-full border border-[#9E8976]/20 border-dashed"
+                    style={{ willChange: "transform" }}
                 />
 
                 {/* Floating particles */}
@@ -138,6 +143,7 @@ export default function Hero() {
                         y: { duration: 7, repeat: Infinity, ease: "easeInOut" }
                     }}
                     className="absolute hidden xl:block left-[5%] top-[25%] w-64 h-64 z-10 pointer-events-none"
+                    style={{ willChange: "transform" }}
                 >
                     <img 
                         src="/images/cta/hero-left.png" 
@@ -156,6 +162,7 @@ export default function Hero() {
                         y: { duration: 8, repeat: Infinity, ease: "easeInOut" }
                     }}
                     className="absolute hidden xl:block right-[5%] bottom-[20%] w-72 h-72 z-10 pointer-events-none"
+                    style={{ willChange: "transform" }}
                 >
                     <img 
                         src="/images/cta/hero-right.png" 

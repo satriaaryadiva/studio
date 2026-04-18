@@ -147,7 +147,7 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           2. STORY
       ══════════════════════════════════════════════ */}
-      <section className="py-28 md:py-44 border-b border-theme overflow-hidden">
+      <section className="py-20 md:py-20 border-b border-theme overflow-hidden">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
             
@@ -204,7 +204,7 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           3. STATS — always dark
       ══════════════════════════════════════════════ */}
-      <section className="bg-theme-muted py-20 md:py-28 border-b border-theme-md">
+      <section className="bg-theme-muted py-20  border-b border-theme-md">
         <Container>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-theme-md">
             {stats.map((s, i) => (
@@ -224,7 +224,7 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           4. VALUES
       ══════════════════════════════════════════════ */}
-      <section className="py-28 md:py-44 border-b border-theme bg-theme-surface">
+  <section className="py-2 border-b border-theme bg-theme-surface">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-24">
             <FadeUp className="lg:col-span-6">
@@ -269,7 +269,7 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           5. TEAM
       ══════════════════════════════════════════════ */}
-      <section className="py-28 md:py-44 border-b border-theme bg-theme">
+      <section className="py-20 border-b border-theme bg-theme">
         <Container>
           <div className="mb-16 md:mb-24">
             <FadeUp>
@@ -304,7 +304,7 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           6. CULTURE — always dark
       ══════════════════════════════════════════════ */}
-      <section className="bg-theme-surface py-28 md:py-44 border-b border-theme-md">
+      <section className="bg-theme-surface py-28  border-b border-theme-md">
         <Container>
           <div className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
             <FadeUp>
@@ -344,7 +344,7 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           9. VISION CTA — always dark
       ══════════════════════════════════════════════ */}
-      <section className="relative bg-theme-muted py-28 md:py-44 overflow-hidden border-b border-theme-md">
+      <section className="relative bg-theme-muted py-28  overflow-hidden border-b border-theme-md">
         {/* Background visual */}
         <div className="absolute inset-0 z-0">
           <img 

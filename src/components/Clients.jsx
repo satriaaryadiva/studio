@@ -34,7 +34,7 @@ function LogoMarquee({ logos, reverse = false, duration = 40 }) {
           repeat: Infinity,
           ease: "linear",
         }}
-        className="flex whitespace-nowrap min-w-full gap-20 items-center pr-20"
+        className="flex whitespace-nowrap min-w-full gap-10 items-center pr-20"
         style={{ width: "fit-content" }}
       >
         {doubledLogos.map((logo, i) => (
@@ -62,7 +62,7 @@ export default function Clients() {
   const row2 = clientLogos.slice(6);
 
   return (
-    <section id="clients" className="bg-theme py-24 md:py-40 border-t border-theme-md overflow-hidden">
+    <section id="clients" className="bg-theme py-20 border-t border-theme-md overflow-hidden">
       <Container>
         {/* Header Section */}
         <div className="max-w-4xl mx-auto text-center mb-10 md:mb-16">

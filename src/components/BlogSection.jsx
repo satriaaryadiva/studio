@@ -140,17 +140,16 @@ function PostCard({ post, index }) {
         <motion.article variants={cardVariants} className="group cursor-pointer">
             <Link href={post.href} className="block">
                 {/* Tag Row */}
-                <div className="flex items-center gap-3 mb-3">
+                <div className="flex items-center gap-4 mb-5">
                     <span
-                        className="text-[9px] tracking-[0.25em] font-bold uppercase"
-                        style={{ color: post.accent }}
+                        className="text-[10px] tracking-[0.3em] font-black uppercase text-[#9E8976]"
                     >
                         {post.type}
                     </span>
                     {post.readTime && (
                         <>
-                            <span className="w-1 h-1 rounded-full bg-neutral-600" />
-                            <span className="text-[9px] tracking-[0.2em] font-bold uppercase text-neutral-400">
+                            <div className="w-1 h-1 rounded-full bg-theme-md" />
+                            <span className="text-[10px] tracking-[0.2em] font-black uppercase text-theme-3">
                                 {post.readTime}
                             </span>
                         </>
@@ -175,15 +174,15 @@ function PostCard({ post, index }) {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-white text-base font-semibold leading-snug mb-1 transition-colors duration-300 group-hover:text-neutral-300">
+                <h3 className="text-theme text-2xl font-black font-freight tracking-tighter leading-tight mb-3 transition-colors duration-300 group-hover:text-[#9E8976] uppercase">
                     {post.title}
                 </h3>
-                <p className="text-neutral-400 text-sm leading-relaxed line-clamp-2">
+                <p className="text-theme-2 text-sm leading-relaxed line-clamp-2 font-sans">
                     {post.subtitle}
                 </p>
 
                 {/* Read more arrow */}
-                <div className="mt-4 flex items-center gap-2 text-white text-[10px] font-bold uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-1 group-hover:translate-y-0">
+                <div className="mt-4 flex items-center gap-2 text-theme text-[10px] font-bold uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-1 group-hover:translate-y-0 text-[#9E8976]">
                     Baca
                     <svg
                         viewBox="0 0 16 6"
@@ -210,28 +209,31 @@ export default function BlogSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="flex items-end justify-between mb-16 border-b border-white/10 pb-8"
+                    className="flex items-end justify-between mb-16 border-b border-theme-md pb-8"
                 >
                     <div>
-                        <span className="text-[10px] tracking-[0.3em] font-bold uppercase text-neutral-400 block mb-4">
-                            Semua Artikel
+                        <span className="text-[11px] tracking-[0.4em] font-black uppercase text-[#9E8976] block mb-4">
+                            All Resources
                         </span>
-                        <h2 className="font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-                            Insights & Resources
+                        <h2 className="font-freight text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-theme uppercase leading-[0.9]">
+                            Our <span className="text-[#9E8976]">Archives</span>
                         </h2>
                     </div>
-                    <span className="text-sm text-neutral-500 font-medium hidden sm:block">
-                        {allPosts.length} artikel
-                    </span>
+                    <div className="flex flex-col items-end gap-2">
+                        <span className="text-sm text-theme-3 font-medium hidden sm:block">
+                            Total {allPosts.length} articles published
+                        </span>
+                        <div className="h-1 w-24 bg-[#9E8976]/40 rounded-full" />
+                    </div>
                 </motion.div>
 
-                {/* Posts Grid */}
+                {/* Posts Grid - Editorial Staggered */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16"
                 >
                     {allPosts.map((post, index) => (
                         <PostCard key={post.id} post={post} index={index} />

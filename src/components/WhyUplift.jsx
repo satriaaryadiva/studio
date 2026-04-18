@@ -126,7 +126,7 @@ export default function WhyUplift() {
     const headingOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
     return (
-        <section ref={sectionRef} id="why-uplift" className="bg-theme-surface py-24 md:py-36 border-b border-theme-md overflow-hidden">
+        <section ref={sectionRef} id="why-uplift" className="bg-theme-surface py-20 border-b border-theme-md overflow-hidden">
             <Container>
 
                 {/* Centered Header with parallax */}

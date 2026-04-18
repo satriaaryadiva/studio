@@ -13,6 +13,7 @@ import Pricing from "@/components/Pricing";
 import BigCTA from "@/components/BigCTA";
 
 import { servicesData } from "@/constants";
+import BlogRecommendation from "@/components/BlogRecommendation";
 
 const whatWeDo = servicesData.map((service, index) => {
   const sizes = ["large", "small", "medium", "small", "large", "medium", "small"];
@@ -34,6 +35,7 @@ export default function Home() {
 
       {/* ─ 2. Marquee — Services & metrics info strip ─ */}
       <HeroMarquee />
+         <Clients />
 
       {/* ─ 3. About — Who we are (brief) ─ */}
       <AboutUplift />
@@ -44,8 +46,8 @@ export default function Home() {
       {/* ─ 5. Parallax Scroll — Visual showcase of capabilities ─ */}
       <ParallaxScroll
         content={whatWeDo}
-        title="WHAT UPLIFT Do ?"
-        subtitle=" check out our Services"
+        title="CREATIVE OMNICHANNEL MARKETING AGENCY"
+        subtitle="OUR EXPERTISE"
       />
 
       {/* ─ 6. Portfolio — Project cards carousel ─ */}
@@ -58,7 +60,7 @@ export default function Home() {
       <WhyUplift />
 
       {/* ─ 8. Clients — Trust signals ─ */}
-      <Clients />
+      <BlogRecommendation/> 
 
       {/* ─ 9. FAQ — Objection handling ─ */}
       <FAQ />

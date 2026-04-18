@@ -221,7 +221,7 @@ export default function WorkPage() {
       {/* ══════════════════════════════════════════════
           2. SECTION HEADER + FILTER + GRID
       ══════════════════════════════════════════════ */}
-      <section className="py-20 md:py-32 border-b border-theme-md">
+      <section className="py-20   border-b border-theme-md">
         <Container>
           {/* Section header */}
           <div className="max-w-2xl mb-16 md:mb-20">
@@ -298,7 +298,7 @@ export default function WorkPage() {
       {/* ══════════════════════════════════════════════
           3. STATS
       ══════════════════════════════════════════════ */}
-      <section className="bg-theme-muted py-20 md:py-28 border-b border-theme-md">
+      <section className="bg-theme-muted py-20  border-b border-theme-md">
         <Container>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-theme-md">
             {[
@@ -324,7 +324,7 @@ export default function WorkPage() {
       {/* ══════════════════════════════════════════════
           5. CTA
       ══════════════════════════════════════════════ */}
-      <section className="bg-theme py-28 md:py-40 border-t border-theme-md">
+      <section className="bg-theme py-20   border-t border-theme-md">
         <Container>
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
