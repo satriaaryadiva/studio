@@ -67,13 +67,13 @@ function VideoModal({ project, onClose }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 40, scale: 0.98 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative w-full h-[100dvh] sm:h-auto max-w-[1600px] sm:max-h-[min(90vh,900px)] flex flex-col md:flex-row bg-theme-surface shadow-2xl sm:rounded-3xl overflow-y-auto sm:overflow-hidden z-10 custom-scrollbar"
+        className="relative w-full h-dvh-auto max-w-[1600px] sm:max-h-[min(90vh,900px)] flex flex-col md:flex-row bg-theme-surface shadow-2xl sm:rounded-3xl overflow-y-auto sm:overflow-hidden z-10 custom-scrollbar"
         data-lenis-prevent="true"
       >
         {/* UNIFIED CLOSE BUTTON — High Visibility */}
         <button
           onClick={onClose}
-          className="fixed sm:absolute top-6 right-6 z-[1000000] w-12 h-12 rounded-full bg-theme-surface/40 backdrop-blur-xl border border-theme flex items-center justify-center text-theme shadow-2xl hover:bg-theme hover:text-theme-surface transition-all duration-300 group"
+          className="fixed sm:absolute top-6 right-6 z-1000000 w-12 h-12 rounded-full bg-theme-surface/40 backdrop-blur-xl border border-theme flex items-center justify-center text-theme shadow-2xl hover:bg-theme hover:text-theme-surface transition-all duration-300 group"
           aria-label="Close modal"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 group-hover:rotate-90 transition-transform">
@@ -82,7 +82,7 @@ function VideoModal({ project, onClose }) {
         </button>
 
         {/* MOBILE HEADER (Info Only) */}
-        <div className="flex md:hidden items-center px-6 py-5 bg-theme-surface border-b border-theme sticky top-0 z-[9999]">
+        <div className="flex md:hidden items-center px-6 py-5 bg-theme-surface border-b border-theme sticky top-0 z-9999">
           <div className="flex flex-col">
              <span className="text-[9px] font-sans font-black uppercase tracking-[0.2em] text-[#9E8976]">Viewing Project</span>
              <span className="text-4xl text-center font-freight font-black text-theme uppercase tracking-tight">{project.brand}</span>
@@ -90,7 +90,7 @@ function VideoModal({ project, onClose }) {
         </div>
 
         {/* 1. VIDEO SECTOR */}
-        <div className="relative flex-none md:flex-grow h-[35vh] md:h-auto bg-black flex items-center justify-center">
+        <div className="relative flex-none md:grow h-[35vh] md:h-auto bg-black flex items-center justify-center">
           {project.video ? (
             <video
               src={project.video}
@@ -110,7 +110,7 @@ function VideoModal({ project, onClose }) {
 
         {/* 2. INFO SECTOR */}
         <div 
-          className="flex-grow md:flex-none w-full md:w-[400px] lg:w-[480px] p-8 md:p-12 lg:p-16 flex flex-col justify-between bg-theme-surface border-t md:border-t-0 md:border-l border-theme sm:overflow-y-auto custom-scrollbar"
+          className="grow md:flex-none w-full md:w-[400px] lg:w-[480px] p-8 md:p-12 lg:p-16 flex flex-col justify-between bg-theme-surface border-t md:border-t-0 md:border-l border-theme sm:overflow-y-auto custom-scrollbar"
         >
           
           <div className="relative">
@@ -298,7 +298,7 @@ export default function WorkPage() {
       : projects.filter(p => p.tags.includes(activeFilter));
 
   return (
-    <main className={`bg-theme text-theme ${selectedProject ? "relative z-[10000]" : ""}`} style={{ overflowX: "clip" }}>
+    <main className={`bg-theme text-theme ${selectedProject ? "relative z-10000" : ""}`} style={{ overflowX: "clip" }}>
       
       {/* 1. HERO */}
       <PageHero

@@ -179,7 +179,7 @@ export default function Hero() {
                         playsInline
                         className="w-full h-full object-cover filter contrast-[1.15] brightness-[1.1]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-transparent pointer-events-none" />
                 </motion.div>
             </div>
 

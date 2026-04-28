@@ -71,7 +71,7 @@ export default function DiscoverSolutions() {
                 />
                 
                 {/* Gradient overlay for bottom text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Hover colored overlay */}
                 <div className="absolute inset-0 bg-[#9E8976]/0 group-hover:bg-[#9E8976]/20 transition-colors duration-500" />
