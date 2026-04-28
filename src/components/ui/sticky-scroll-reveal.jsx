@@ -72,7 +72,7 @@ export const StickyScroll = ({ content, title, subtitle }) => {
                             }}
                             className="order-1 lg:order-2"
                         >
-                            <div className="relative aspect-[4/3] md:aspect-[16/10] lg:aspect-square overflow-hidden bg-neutral-900 border border-theme shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)]">
+                            <div className="relative aspect-4/3d:aspect-[16/10] lg:aspect-square overflow-hidden bg-neutral-900 border border-theme shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)]">
                                 <div className="absolute inset-0 z-0">
                                     {item.content}
                                 </div>

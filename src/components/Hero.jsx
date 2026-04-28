@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import Container from "./Container";
 import Link from "next/link";
+import Noise from "./Noise";
 
 /* ─── Magnetic Button ─────────────────────────────────────────────── */
 export const MagneticButton = ({ children, href, className = "", onClick }) => {
@@ -26,7 +27,7 @@ export const MagneticButton = ({ children, href, className = "", onClick }) => {
             onMouseLeave={() => setPosition({ x: 0, y: 0 })}
             animate={position}
             transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-            className="flex-shrink-0"
+            className="shrink-0"
         >
             <Link
                 href={href}
@@ -69,7 +70,8 @@ export default function Hero() {
     const words2 = ["Systemize", "Your", "Brand."];
 
     return (
-        <section className="relative w-full min-h-[100svh] bg-theme flex flex-col justify-center overflow-hidden">
+        <section className="relative w-full min-h-svh bg-theme flex flex-col justify-center overflow-hidden">
+            <Noise opacity={1} />
 
             {/* ── Background ── */}
             <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
@@ -88,7 +90,7 @@ export default function Hero() {
                         borderRadius: ["30% 70% 70% 30% / 30% 30% 70% 70%", "50% 50% 20% 80% / 25% 80% 20% 75%", "70% 30% 50% 50% / 50% 20% 80% 50%", "30% 70% 70% 30% / 30% 30% 70% 70%"]
                     }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-[10%] right-[12%] w-[380px] h-[380px] border-[2px] border-[#9E8976]/50 opacity-70"
+                    className="absolute top-[10%] right-[12%] w-[380px] h-[380px] border-2 border-[#9E8976]/50 opacity-70"
                     style={{ willChange: "transform, border-radius" }}
                 />
 
@@ -99,7 +101,7 @@ export default function Hero() {
                         borderRadius: ["60% 40% 30% 70% / 60% 30% 70% 40%", "40% 60% 70% 30% / 50% 60% 30% 60%", "30% 70% 50% 50% / 70% 30% 50% 50%", "60% 40% 30% 70% / 60% 30% 70% 40%"]
                     }}
                     transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-[8%] left-[8%] w-[460px] h-[460px] border-[2px] border-[#9E8976]/35 opacity-60"
+                    className="absolute bottom-[8%] left-[8%] w-[460px] h-[460px] border-2 border-[#9E8976]/35 opacity-60"
                     style={{ willChange: "transform, border-radius" }}
                 />
 
@@ -132,43 +134,52 @@ export default function Hero() {
                         />
                     ))}
                 </div>
-                {/* ── Floating Hero Images ── */}
-                {/* Left Image */}
+
+                {/* ── Floating Hero Videos ── */}
+                {/* Left Video */}
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 0.8, x: 0, y: [0, -20, 0] }}
+                    animate={{ opacity: 1, x: 0, y: [0, -20, 0] }}
                     transition={{ 
                         opacity: { duration: 1.5, delay: 0.5 },
                         x: { duration: 1.5, delay: 0.5, ease: "easeOut" },
                         y: { duration: 7, repeat: Infinity, ease: "easeInOut" }
                     }}
-                    className="absolute hidden xl:block left-[5%] top-[25%] w-64 h-64 z-10 pointer-events-none"
+                    className="absolute hidden xl:block left-[5%] top-[25%] w-72 h-72 z-10 pointer-events-none overflow-hidden"
                     style={{ willChange: "transform" }}
                 >
-                    <img 
-                        src="/images/cta/hero-left.png" 
-                        alt="Build Concept" 
-                        className="w-full h-full object-contain filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
+                    <video 
+                        src="/videos/2025.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover filter contrast-[1.15] brightness-[1.1]"
                     />
+                    <div className="absolute inset-0  pointer-events-none" />
                 </motion.div>
 
-                {/* Right Image */}
+                {/* Right Video */}
                 <motion.div
                     initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 0.8, x: 0, y: [0, 25, 0] }}
+                    animate={{ opacity: 1, x: 0, y: [0, 25, 0] }}
                     transition={{ 
                         opacity: { duration: 1.5, delay: 0.7 },
                         x: { duration: 1.5, delay: 0.7, ease: "easeOut" },
                         y: { duration: 8, repeat: Infinity, ease: "easeInOut" }
                     }}
-                    className="absolute hidden xl:block right-[5%] bottom-[20%] w-72 h-72 z-10 pointer-events-none"
+                    className="absolute hidden xl:block right-[5%] bottom-[20%] w-80 h-80 z-10 pointer-events-none rounded-3xl overflow-hidden border border-[#9E8976]/40 bg-black shadow-2xl"
                     style={{ willChange: "transform" }}
                 >
-                    <img 
-                        src="/images/cta/hero-right.png" 
-                        alt="Connectivity Concept" 
-                        className="w-full h-full object-contain filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
+                    <video 
+                        src="/videos/shogun.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="w-full h-full object-cover filter contrast-[1.15] brightness-[1.1]"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent pointer-events-none" />
                 </motion.div>
             </div>
 
@@ -208,7 +219,7 @@ export default function Hero() {
                                     <motion.span
                                         key={i}
                                         variants={word}
-                                        className="inline-block font-freight font-thin text-[clamp(2.8rem,7vw,5.5rem)] leading-[1] tracking-[-0.03em] text-theme"
+                                        className="inline-block font-freight font-thin text-[clamp(2.8rem,7vw,5.5rem)] leading-none tracking-[-0.03em] text-theme"
                                     >
                                         {w}
                                     </motion.span>
@@ -227,7 +238,7 @@ export default function Hero() {
                                     <motion.span
                                         key={i}
                                         variants={word}
-                                        className={`inline-block font-freight leading-[1] tracking-[-0.03em] text-[clamp(2.8rem,7vw,5.5rem)] ${
+                                        className={`inline-block font-freight leading-none tracking-[-0.03em] text-[clamp(2.8rem,7vw,5.5rem)] ${
                                             i < 2
                                                 ? "font-black text-[#9E8976]"
                                                 : "font-black italic text-theme"
@@ -247,9 +258,9 @@ export default function Hero() {
                             animate="visible"
                             className="flex items-center justify-center gap-4 mb-10"
                         >
-                            <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-transparent to-[#9E8976]/40" />
+                            <div className="h-px flex-1 max-w-[80px] bg-linear-to-r from-transparent to-[#9E8976]/40" />
                             <div className="w-1.5 h-1.5 rounded-full bg-[#9E8976]" />
-                            <div className="h-px flex-1 max-w-[80px] bg-gradient-to-l from-transparent to-[#9E8976]/40" />
+                            <div className="h-px flex-1 max-w-[80px] bg-linear-to-l from-transparent to-[#9E8976]/40" />
                         </motion.div>
 
                         {/* Subheading */}
@@ -276,6 +287,19 @@ export default function Hero() {
                             <MagneticButton href="/contact">
                                 Free Consultation
                             </MagneticButton>
+
+                            <a
+                                href="https://wa.me/6282165101085"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group inline-flex items-center gap-3 px-8 py-4 text-[11px] font-sans font-black text-white uppercase tracking-[0.2em] rounded-full bg-[#25D366] hover:bg-[#20ba59] transition-all duration-300 shadow-lg shadow-[#25D366]/20"
+                            >
+                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.115 1.532 5.843L0 23l5.293-1.507A11.933 11.933 0 0 0 12 23c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.5c-1.99 0-3.847-.58-5.407-1.578l-.387-.23-4.017 1.143 1.161-3.899-.252-.4A9.45 9.45 0 0 1 2.5 12C2.5 6.201 7.201 1.5 12 1.5S21.5 6.201 21.5 12 16.799 21.5 12 21.5z" />
+                                </svg>
+                                WhatsApp Us
+                            </a>
 
                             <Link
                                 href="/work"
@@ -318,5 +342,3 @@ export default function Hero() {
         </section>
     );
 }
-
-

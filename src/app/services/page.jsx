@@ -66,7 +66,7 @@ function ServiceCard({ service, index, isActive, onClick }) {
       viewport={{ once: true }}
       onClick={onClick}
       className={`group relative cursor-pointer border-t border-theme py-8 md:py-10 transition-colors duration-700
-        ${isActive ? "bg-[#9E8976]/[0.04]" : "hover:bg-[#9E8976]/[0.02]"}`}
+        ${isActive ? "bg-[#9E8976]/4" : "hover:bg-[#9E8976]/2"}`}
     >
       {/* Left accent */}
       <div className={`absolute left-0 top-0 bottom-0 w-[2px] bg-[#9E8976] transition-transform duration-700 origin-top ${isActive ? "scale-y-100" : "scale-y-0"}`} />
@@ -202,7 +202,7 @@ export default function ServicesPage() {
                         className="w-full h-full object-cover"
                         style={{ filter: "grayscale(0.2) brightness(0.7)" }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-90" />
+                      <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-transparent to-transparent opacity-90" />
                     </motion.div>
                   )}
                 </AnimatePresence>

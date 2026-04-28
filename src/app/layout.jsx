@@ -1,5 +1,5 @@
 import RootLayout from "@/components/RootLayout";
-import "./globals.css";
+import "./base.css";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
 

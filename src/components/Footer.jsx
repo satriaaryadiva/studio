@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Container from "./Container";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Noise from "./Noise";
 
 // ─── Social Icons (inline SVG — no external deps) ───────────────────
 const socials = [
@@ -106,7 +107,8 @@ function Newsletter() {
 // ─── Main Footer ────────────────────────────────────────────────────
 export default function Footer() {
   return (
-    <footer className="bg-theme py-20 md:py-28 border-t border-theme-md">
+    <footer className="relative bg-theme py-20 md:py-20 border-t border-theme-md overflow-hidden">
+      <Noise opacity={0.92} />
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-12">
 
@@ -190,7 +192,7 @@ export default function Footer() {
         </div>
 
         {/* ── Divider band ── */}
-        <div className="mt-16 mb-10 h-px w-full bg-gradient-to-r from-[#9E8976]/40 via-[#9E8976]/10 to-transparent" />
+        <div className="mt-16 mb-10 h-px w-full bg-linear-to-r from-[#9E8976]/40 via-[#9E8976]/10 to-transparent" />
 
         {/* ── Bottom Bar ── */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">

@@ -71,7 +71,7 @@ const Header = ({
 
                 <div className="hidden md:block">
                     <MagneticButton
-                        href={"/contact"}
+                        href={"https://wa.me/6282165101085"}
                         onClick={() => expanded && onToggle()}
                     >
                         Contact us
@@ -95,7 +95,7 @@ const Header = ({
                             "h-7 w-7 transition-all duration-300 group-hover:scale-110",
                             invert
                                 ? "fill-white"
-                                : "fill-[var(--theme-text)] group-hover:fill-[#9E8976]"
+                                : "fill-(--theme-text) group-hover:fill-[#9E8976]"
                         )}
                     />
                 </button>
@@ -177,7 +177,7 @@ const FullScreenMenu = ({ expanded, setExpanded, panelId, closeRef }) => {
                     animate={{ opacity: 1, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
                     exit={{ opacity: 0, clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }}
                     transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-                    className="fixed inset-0 z-[100] bg-theme overflow-hidden flex flex-col pointer-events-auto"
+                    className="fixed inset-0 z-100 bg-theme overflow-hidden flex flex-col pointer-events-auto"
                 >
                     <div className="absolute inset-x-0 top-0 z-[110]">
                         <Header

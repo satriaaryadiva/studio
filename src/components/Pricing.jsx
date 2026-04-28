@@ -80,12 +80,14 @@ const Pricing = () => {
                                 </ul>
                             </div>
                             <a
-                                href="/contact"
+                                href={`https://wa.me/6282165101085?text=Halo UPLIFT! Saya tertarik dengan Paket ${plan.name}. Bisa bantu jelaskan lebih lanjut?`}
+                                target="_blank"
+                                rel="noreferrer"
                                 className={clsx(
-                                    "mt-8 block rounded-full px-6 py-3 text-center text-[11px] font-black uppercase tracking-widest transition-all duration-300",
+                                    "mt-8 block rounded-full px-6 py-3 text-center text-[11px] font-black uppercase tracking-widest transition-all duration-500",
                                     plan.highlight
-                                        ? "bg-white text-[#9E8976] hover:bg-theme hover:text-theme"
-                                        : "bg-[#9E8976] text-white hover:bg-theme hover:text-[#9E8976] border border-transparent hover:border-theme-md"
+                                        ? "bg-white text-[#9E8976] hover:bg-theme-muted hover:scale-[1.02]"
+                                        : "bg-[#9E8976] text-white hover:bg-[#827163] hover:scale-[1.02] shadow-lg shadow-[#9E8976]/20"
                                 )}
                             >
                                 {plan.cta}

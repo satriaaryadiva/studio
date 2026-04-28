@@ -192,7 +192,25 @@ export default function ContactPage() {
                     </h2>
                   </div>
 
-                  <form onSubmit={e => { e.preventDefault(); setSent(true); }} className="space-y-8">
+                  <form
+                    onSubmit={e => {
+                      e.preventDefault();
+                      const formData = new FormData(e.target);
+                      const name = formData.get("name");
+                      const brand = formData.get("brand");
+                      const industry = formData.get("industry");
+                      const phone = formData.get("phone");
+                      const challenge = formData.get("challenge");
+                      const service = formData.get("service");
+                      const budget = formData.get("budget");
+
+                      const text = `Halo UPLIFT! %0A%0ASaya ingin konsultasi:%0ANama: ${name}%0ABrand: ${brand}%0AIndustri: ${industry}%0AWA: ${phone}%0ALayanan: ${service}%0ABudget: ${budget}%0A%0ATantangan: ${challenge}`;
+                      
+                      window.open(`https://wa.me/6282165101085?text=${text}`, "_blank");
+                      setSent(true);
+                    }}
+                    className="space-y-8"
+                  >
                     {/* Row 1 */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                       <FloatingField label="Nama Lengkap *" name="name" required />
@@ -223,8 +241,8 @@ export default function ContactPage() {
                         type="submit"
                         className="w-full rounded-full bg-neutral-950 text-white py-4 px-8 text-sm font-bold uppercase tracking-widest hover:bg-[#9E8976] transition-colors duration-300 flex items-center justify-center gap-3"
                       >
-                        Kirim Permintaan Konsultasi
-                        <svg viewBox="0 0 16 6" fill="currentColor" className="w-4 h-2">
+                        Kirim Permintaan via WhatsApp
+                        <svg viewBox="0 0 16 6" fill="currentColor" className="w-4 h-2 translate-x-1">
                           <path d="M16 3 10 .5v2H0v1h10v2L16 3Z" />
                         </svg>
                       </button>

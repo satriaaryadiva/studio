@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import Container from "./Container";
 import clsx from "clsx";
+import Noise from "./Noise";
 
 /* ── Kinetic Typography Reveal Config ── */
 const wordReveal = {
@@ -55,15 +56,15 @@ export default function ParallaxScroll({ content, title, subtitle }) {
 
     const trackOpacity = useTransform(scrollYProgress, [0.05, 0.12, 0.82, 0.92], [0, 1, 1, 0]);
 
-    const outroY = useTransform(scrollYProgress, [0.85, 0.95], ["40vh", "0vh"]);
-    const outroOpacity = useTransform(scrollYProgress, [0.85, 0.95], [0, 1]);
+    const outroY = useTransform(scrollYProgress, [0.9, 0.98], ["100vh", "0vh"]);
+    const outroOpacity = useTransform(scrollYProgress, [0.9, 0.98], [0, 1]);
 
     const progressRaw = useTransform(scrollYProgress, [0.1, 0.85], [0, 1]);
     const progressPercent = useTransform(scrollYProgress, [0.1, 0.85], [0, 100]);
 
     return (
         <div ref={containerRef} className="relative h-[650vh] bg-theme" style={{ overflowX: "clip" }}>
-            <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden pointer-events-none">
+           <Noise opacity={1} /> <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden pointer-events-none">
 
                 {/* ── INTRO IMAGES (According to Screenshot Layout) ── */}
                 <motion.div
@@ -73,7 +74,7 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                     {/* Top Left (Large Asset) */}
                     <motion.img
                         initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 0.8 }}
+                        animate={{ scale: 1, opacity: 1}}
                         transition={{ duration: 1.5, delay: 0.2 }}
                         src="/images/parallax/omni1.png"
                         className="absolute left-[5%] top-[15%] w-[25vw] max-w-[400px] object-contain filter drop-shadow-2xl"
@@ -81,23 +82,23 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                     {/* Bottom Left (Medium Asset) */}
                     <motion.img
                         initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 0.6 }}
+                        animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 1.5, delay: 0.4 }}
                         src="/images/parallax/omni2.png"
                         className="absolute left-[20%] bottom-[12%] w-[18vw] max-w-[280px] object-contain filter drop-shadow-xl"
                     />
                     {/* Mid Right (Large Asset) */}
                     <motion.img
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 0.8 }}
+                        initial={{ scale: 1, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 1.5, delay: 0.6 }}
                         src="/images/parallax/omni3.png"
                         className="absolute right-[5%] top-[35%] w-[22vw] max-w-[350px] object-contain filter drop-shadow-2xl"
                     />
                     {/* Bottom Right (Small/Medium Asset) */}
                     <motion.img
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 0.5 }}
+                        initial={{ scale: 1, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 1.5, delay: 0.8 }}
                         src="/images/parallax/omni2.png"
                         className="absolute right-[25%] bottom-[10%] w-[15vw] max-w-[200px] object-contain filter drop-shadow-lg"
@@ -153,7 +154,7 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                     style={{ opacity: trackOpacity }}
                     className="relative z-20 w-full flex items-center h-full pointer-events-auto"
                 >
-                    <div className="relative flex items-center justify-start w-full pl-[12vw] md:pl-[20vw] h-full">
+                    <div className="relative flex items-center justify-start w-full pl-[12vw] md:pl-[20vw] h-full pb-24">
                         <motion.div
                             className="flex items-end will-change-transform"
                             style={{ x: smoothX, gap: `${GAP}px` }}
@@ -169,7 +170,7 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                                 return (
                                     <div
                                         key={index}
-                                        className="relative flex-shrink-0 flex flex-col group cursor-pointer"
+                                        className="relative shrink-0 flex-col group cursor-pointer"
                                         style={{
                                             width: `${ITEM_WIDTH}px`,
                                             transform: `translateY(${yOffset}px)`,
@@ -201,7 +202,7 @@ export default function ParallaxScroll({ content, title, subtitle }) {
 
 
                     {/* ── PROGRESS RAIL ── Bottom metadata bar */}
-                    <div className="absolute bottom-12 left-0 w-full px-8 md:px-14 z-40 flex justify-between items-end">
+                    <div className="absolute bottom-16 left-0 w-full px-8 md:px-14 z-40 flex justify-between items-end">
                         <div className="flex flex-col gap-3 flex-1 max-w-[300px]">
                             <div className="flex justify-between items-center text-[8px] font-sans font-black uppercase tracking-[0.5em] text-theme-3">
                                 <span>Archival Index</span>
@@ -233,6 +234,7 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                     style={{ y: outroY, opacity: outroOpacity }}
                     className="absolute inset-0 z-50 flex flex-col md:flex-row items-stretch pointer-events-auto bg-theme"
                 >
+                    <Noise opacity={1} />
                     {/* Left: Huge Editorial Image */}
                     <div className="hidden md:block w-1/2 relative overflow-hidden border-r border-theme-md">
                         <motion.div 
@@ -246,7 +248,7 @@ export default function ParallaxScroll({ content, title, subtitle }) {
                                 className="w-full h-full object-cover filter brightness-75 hover:brightness-100 transition-all duration-[2s]"
                             />
                             {/* Inner Vignette / Shadow Overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-theme/50 pointer-events-none" />
+                            <div className="absolute inset-0 bg-linear-to-r from-transparent to-theme/50 pointer-events-none" />
                         </motion.div>
                     </div>
 

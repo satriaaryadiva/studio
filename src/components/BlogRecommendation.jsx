@@ -99,7 +99,7 @@ export default function BlogRecommendation() {
                                     className="absolute inset-0 w-full h-full object-cover opacity-60 transition-all duration-[1.5s] ease-out group-hover:scale-110 group-hover:opacity-40"
                                     style={{ willChange: "transform, opacity" }}
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent" />
+                                <div className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/40 to-transparent" />
 
                                 {/* Content overlay — High Contrast */}
                                 <div className="absolute inset-0 flex flex-col justify-end p-8 sm:p-12 lg:p-16">
@@ -138,7 +138,7 @@ export default function BlogRecommendation() {
                         >
                             <Link
                                 href={post.href}
-                                className="flex flex-col sm:flex-row gap-8 items-center rounded-[2rem] bg-theme-surface border border-theme-md p-6 transition-all duration-500 hover:border-[#9E8976]/30 hover:bg-theme-muted h-full"
+                                className="flex flex-col sm:flex-row gap-8 items-center rounded-4xl bg-theme-surface border border-theme-md p-6 transition-all duration-500 hover:border-[#9E8976]/30 hover:bg-theme-muted h-full"
                             >
                                 {/* Thumbnail */}
                                 <div className="relative overflow-hidden w-full sm:w-44 h-44 flex-none bg-theme-muted border border-theme-md rounded-2xl">

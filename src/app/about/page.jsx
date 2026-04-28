@@ -224,7 +224,7 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════════
           4. VALUES
       ══════════════════════════════════════════════ */}
-  <section className="py-2 border-b border-theme bg-theme-surface">
+  <section className="py-20 border-b border-theme bg-theme-surface">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-24">
             <FadeUp className="lg:col-span-6">
@@ -283,7 +283,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {team.map((member, i) => (
               <FadeUp key={i} delay={i * 0.08}>
-                <div className="group relative aspect-[3/4] overflow-hidden bg-neutral-900 border border-theme">
+                <div className="group relative aspect-3/4 overflow-hidden bg-neutral-900 border border-theme">
                   <img
                     src={member.image}
                     alt={member.name}

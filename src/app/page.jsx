@@ -11,6 +11,7 @@ import WhyUplift from "@/components/WhyUplift";
 import PortfolioCarousel from "@/components/PortfolioCarousel";
 import Pricing from "@/components/Pricing";
 import BigCTA from "@/components/BigCTA";
+import DiscoverSolutions from "@/components/DiscoverSolutions";
 
 import { servicesData } from "@/constants";
 import BlogRecommendation from "@/components/BlogRecommendation";
@@ -39,6 +40,9 @@ export default function Home() {
 
       {/* ─ 3. About — Who we are (brief) ─ */}
       <AboutUplift />
+
+      {/* ─ 3.5. Discover Solutions — Quick Navigation Cards ─ */}
+      <DiscoverSolutions />
 
       {/* ─ 4. Services — What we do (detailed) ─ */}
       <OurServices />

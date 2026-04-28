@@ -46,9 +46,9 @@
 
   /* ── DARK THEME (default) — Grey-Dark Palette ──────── */
   /* Rich charcoal instead of pure black for depth & warmth */
-  --theme-bg: #111111;
-  --theme-surface: #1A1A1A;
-  --theme-muted-bg: #161616;
+  --theme-bg: #0D0D0D;
+  --theme-surface: #141414;
+  --theme-muted-bg: #111111;
 
   /* Text — warm white tones, not harsh */
   --theme-text: #F0EDE8;

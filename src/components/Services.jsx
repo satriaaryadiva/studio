@@ -31,7 +31,7 @@ const Services = () => {
             </FadeIn>
           </div>
           {/* List item */}
-          <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
+          <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-132 lg:pl-4">
             <ListItem title="Manajemen Media Sosial">
               Mengelola dan mengoptimalkan kehadiran brand Anda di berbagai
               platform untuk membangun audiens yang setia.

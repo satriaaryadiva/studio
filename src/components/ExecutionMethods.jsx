@@ -18,7 +18,7 @@ const MethodItem = ({ method, index, isOpen, onClick }) => {
                     <span className="text-sm font-black text-yellow-600 font-freight">
                         {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter text-[#9b7a60] uppercase font-freight transition-transform duration-500 group-hover:translate-x-4">
+                    <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter uppercase font-freight transition-transform duration-500 group-hover:translate-x-4">
                         {method.title}
                     </h3>
                 </div>
@@ -41,7 +41,7 @@ const MethodItem = ({ method, index, isOpen, onClick }) => {
                         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                     >
                         <div className="pb-12 md:pl-24">
-                            <div className="bg-white/5 rounded-[2rem] border border-white/10 p-8 md:p-12">
+                            <div className="bg-white/5 rounded-4xlrder border-white/10 p-8 md:p-12">
                                 {method.content}
                             </div>
                         </div>
@@ -76,7 +76,7 @@ export default function ExecutionMethods() {
 
                                 {/* Visual Accent */}
                                 <div className="mt-16 relative hidden lg:block">
-                                    <div className="w-px h-32 bg-gradient-to-b from-yellow-600 to-transparent absolute left-0 top-0" />
+                                    <div className="w-px h-32 bg-linear-to-b from-yellow-600 to-transparent absolute left-0 top-0" />
                                     <div className="pl-8 flex flex-col gap-6">
                                         <div className="text-xs font-bold text-white/20 tracking-widest uppercase font-freight">Iterative Design</div>
                                         <div className="text-xs font-bold text-white/20 tracking-widest uppercase font-freight">Strategic Execution</div>
@@ -107,7 +107,7 @@ export default function ExecutionMethods() {
             </Container>
 
             {/* Background Decorative */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-yellow-600/[0.02] rounded-full blur-[150px] translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-yellow-600/2 rounded-full blur-[150px] translate-x-1/2 -translate-y-1/2 pointer-events-none" />
         </section>
     );
 }

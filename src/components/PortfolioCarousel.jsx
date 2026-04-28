@@ -5,67 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import Container from "./Container";
 
-// Portfolio items — vertical video cards (9:16)
-// Replace `video` with actual hosted video URLs when available.
-// Falls back to `image` if video is absent.
-const portfolioItems = [
-  {
-    id: 1,
-    brand: "Kedai Bumi Nusantara",
-    category: "Social Media",
-    image: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: "https://framerusercontent.com/assets/FyZhtiW9uobVlnTcXf3eUXBz4H0.mp4",
-    href: "/work",
-  },
-  {
-    id: 2,
-    brand: "Medan Craft Co.",
-    category: "Branding",
-    image: "https://images.unsplash.com/photo-1558655146-9f4f7b6b5d5a?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: "https://framerusercontent.com/assets/ZI6xeRkEVlcDsB7X4pcBR6WSlI.mp4",
-    href: "/work",
-  },
-  {
-    id: 3,
-    brand: "Elevate Skincare",
-    category: "Content Production",
-    image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: "https://framerusercontent.com/assets/weaoH2wOBvctUQNtwh2PKfcS0bU.mp4",
-    href: "/work",
-  },
-  {
-    id: 4,
-    brand: "Sumatera Fresh",
-    category: "Ads Strategy",
-    image: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: null,
-    href: "/work",
-  },
-  {
-    id: 5,
-    brand: "Rumah Mode ID",
-    category: "Campaign Offline",
-    image: "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: null,
-    href: "/work",
-  },
-  {
-    id: 6,
-    brand: "Akar Kopi",
-    category: "E-Commerce",
-    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: null,
-    href: "/work",
-  },
-  {
-    id: 7,
-    brand: "Tekad Digital",
-    category: "Web Development",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=600&h=1067",
-    video: null,
-    href: "/work",
-  },
-];
+import { projects as portfolioItems } from "@/data/projects";
 
 // A single video/image card with parallax
 function PortfolioCard({ item, index }) {

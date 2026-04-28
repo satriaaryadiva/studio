@@ -1,90 +1,15 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
+import { useLenis } from "@studio-freight/react-lenis";
 import Container from "@/components/Container";
 import Link from "next/link";
 import ConsultationForm from "@/components/ConsultationForm";
 import Clients from "@/components/Clients";
 import PageHero from "@/components/PageHero";
 
-// ─── Portfolio Data ──────────────────────────────────────────────────
-const categories = ["All", "Social Media", "Branding", "Content", "Ads", "E-Commerce", "Web"];
-
-const projects = [
-  {
-    id: 1,
-    brand: "Kedai Bumi Nusantara",
-    category: "Social Media",
-    tags: ["Social Media", "Content"],
-    description: "Membangun ekosistem digital F&B dari nol — konten, community management, dan ads strategy terintegrasi.",
-    image: "https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?auto=format&fit=crop&q=80&w=800&h=600",
-    result: "+320% Engagement",
-  },
-  {
-    id: 2,
-    brand: "Medan Craft Co.",
-    category: "Branding",
-    tags: ["Branding", "Content"],
-    description: "Re-branding total untuk brand kerajinan lokal — identitas visual, packaging, dan brand guidelines.",
-    image: "https://images.unsplash.com/photo-1558655146-9f4f7b6b5d5a?auto=format&fit=crop&q=80&w=800&h=600",
-    result: "Brand Recall +65%",
-  },
-  {
-    id: 3,
-    brand: "Elevate Skincare",
-    category: "Content",
-    tags: ["Content", "Social Media"],
-    description: "Produksi konten premium untuk brand skincare — foto produk, video reels, dan storytelling visual.",
-    image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&q=80&w=800&h=600",
-    result: "2M+ Video Views",
-  },
-  {
-    id: 4,
-    brand: "Sumatera Fresh",
-    category: "Ads",
-    tags: ["Ads", "E-Commerce"],
-    description: "Kampanye iklan Meta & Google untuk brand makanan sehat — ROAS 4.2x dalam 3 bulan pertama.",
-    image: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&q=80&w=800&h=600",
-    result: "ROAS 4.2x",
-  },
-  {
-    id: 5,
-    brand: "Rumah Mode ID",
-    category: "Social Media",
-    tags: ["Social Media", "Branding"],
-    description: "Manajemen media sosial fashion brand — membangun komunitas 100K+ followers organik.",
-    image: "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&q=80&w=800&h=600",
-    result: "100K+ Followers",
-  },
-  {
-    id: 6,
-    brand: "Akar Kopi",
-    category: "E-Commerce",
-    tags: ["E-Commerce", "Ads"],
-    description: "Optimalisasi Shopee & Tokopedia — dari setup toko hingga ads management dengan conversion tracking.",
-    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800&h=600",
-    result: "+180% Revenue",
-  },
-  {
-    id: 7,
-    brand: "Tekad Digital",
-    category: "Web",
-    tags: ["Web", "Branding"],
-    description: "Website company profile dengan CMS — desain modern, performa tinggi, SEO-ready.",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=800&h=600",
-    result: "PageSpeed 98",
-  },
-  {
-    id: 8,
-    brand: "Warung Nusantara",
-    category: "Content",
-    tags: ["Content", "Social Media"],
-    description: "Produksi video storytelling brand kuliner — narasi emosional yang membangun koneksi dengan audiens.",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800&h=600",
-    result: "5M+ Impressions",
-  },
-];
+import { projects, categories } from "@/data/projects";
 
 // ─── Helpers ─────────────────────────────────────────────────────────
 function FadeUp({ children, delay = 0, className = "" }) {
@@ -103,85 +28,254 @@ function FadeUp({ children, delay = 0, className = "" }) {
   );
 }
 
+// ─── Video Modal Component ──────────────────────────────────────────
+function VideoModal({ project, onClose }) {
+  const lenis = useLenis();
+  
+  useEffect(() => {
+    if (project) {
+      if (lenis) lenis.stop();
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      if (lenis) lenis.start();
+      document.body.style.overflow = '';
+    };
+  }, [project, lenis]);
+
+  if (!project) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-1000000 flex items-center justify-center bg-black/95 sm:p-6 lg:p-12 overflow-hidden"
+    >
+      {/* Immersive Backdrop — Global Tap-to-Close */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="absolute inset-0 bg-theme/80 backdrop-blur-3xl z-0"
+      />
+
+      {/* Modal Container */}
+      <motion.div
+        initial={{ opacity: 0, y: 40, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 40, scale: 0.98 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="relative w-full h-[100dvh] sm:h-auto max-w-[1600px] sm:max-h-[min(90vh,900px)] flex flex-col md:flex-row bg-theme-surface shadow-2xl sm:rounded-3xl overflow-y-auto sm:overflow-hidden z-10 custom-scrollbar"
+        data-lenis-prevent="true"
+      >
+        {/* UNIFIED CLOSE BUTTON — High Visibility */}
+        <button
+          onClick={onClose}
+          className="fixed sm:absolute top-6 right-6 z-[1000000] w-12 h-12 rounded-full bg-theme-surface/40 backdrop-blur-xl border border-theme flex items-center justify-center text-theme shadow-2xl hover:bg-theme hover:text-theme-surface transition-all duration-300 group"
+          aria-label="Close modal"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5 group-hover:rotate-90 transition-transform">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* MOBILE HEADER (Info Only) */}
+        <div className="flex md:hidden items-center px-6 py-5 bg-theme-surface border-b border-theme sticky top-0 z-[9999]">
+          <div className="flex flex-col">
+             <span className="text-[9px] font-sans font-black uppercase tracking-[0.2em] text-[#9E8976]">Viewing Project</span>
+             <span className="text-4xl text-center font-freight font-black text-theme uppercase tracking-tight">{project.brand}</span>
+          </div>
+        </div>
+
+        {/* 1. VIDEO SECTOR */}
+        <div className="relative flex-none md:flex-grow h-[35vh] md:h-auto bg-black flex items-center justify-center">
+          {project.video ? (
+            <video
+              src={project.video}
+              autoPlay
+              loop
+              controls
+              className="w-full h-full object-contain"
+            />
+          ) : (
+            <img
+              src={project.image}
+              alt={project.brand}
+              className="w-full h-full object-contain"
+            />
+          )}
+        </div>
+
+        {/* 2. INFO SECTOR */}
+        <div 
+          className="flex-grow md:flex-none w-full md:w-[400px] lg:w-[480px] p-8 md:p-12 lg:p-16 flex flex-col justify-between bg-theme-surface border-t md:border-t-0 md:border-l border-theme sm:overflow-y-auto custom-scrollbar"
+        >
+          
+          <div className="relative">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              <div className="flex items-center gap-3 mb-6">
+                <span className="h-px w-6 bg-[#9E8976]" />
+                <span className="text-[10px] font-sans font-black uppercase tracking-[0.4em] text-[#9E8976]">
+                  {project.category}
+                </span>
+              </div>
+              
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-freight font-black text-theme uppercase tracking-tighter leading-[0.9] mb-8">
+                {project.brand}
+              </h2>
+
+              <div className="space-y-6">
+                <div>
+                  <h4 className="text-[10px] font-sans font-bold text-theme-3 uppercase tracking-[0.2em] mb-3">Tantangan & Solusi</h4>
+                  <p className="text-theme-2 font-sans text-sm md:text-base leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="pt-6 border-t border-theme">
+                  <h4 className="text-[10px] font-sans font-bold text-theme-3 uppercase tracking-[0.2em] mb-4">Hasil Terukur</h4>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-4xl lg:text-5xl font-freight font-black text-[#9E8976] uppercase italic tracking-tighter">
+                      {project.result}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="mt-12 pt-12 border-t border-theme flex flex-col gap-6"
+          >
+            <Link
+              href="/contact"
+              onClick={onClose}
+              className="w-full py-5 rounded-full text-[11px] font-sans font-black uppercase tracking-[0.3em] flex items-center justify-center hover:bg-[#9E8976] hover:text-white transition-all duration-500 shadow-xl"
+              style={{ backgroundColor: 'var(--theme-text)', color: 'var(--theme-bg)' }}
+            >
+              Ajukan Brief Serupa
+            </Link>
+            
+            <button
+              onClick={onClose}
+              className="text-[10px] font-sans font-black uppercase tracking-[0.4em] text-theme-3 hover:text-theme transition-colors text-center hidden md:block"
+            >
+              Kembali ke Galeri [ESC]
+            </button>
+          </motion.div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+
 // ─── Project Card — parallax + staggered sizes ───────────────────────
-function ProjectCard({ project, index, size = "default" }) {
+function ProjectCard({ project, index, size = "default", onClick }) {
   const cardRef = useRef(null);
+  const videoRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "end start"],
   });
 
-  // Parallax: image moves slower than scroll
-  const imageY = useTransform(scrollYProgress, [0, 1], [40, -40]);
-  // Scale reveal
-  const scale = useTransform(scrollYProgress, [0, 0.3], [0.92, 1]);
+  // Parallax: reduced movement to keep content visible
+  const imageY = useTransform(scrollYProgress, [0, 1], [20, -20]);
+  const scale = useTransform(scrollYProgress, [0, 0.3], [0.95, 1]);
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
-  // Aspect ratio based on size — compact proportions
+  // Aspect ratio based on size
   const aspectClass = size === "large"
-    ? "aspect-[3/5]"
+    ? "aspect-[3/4]"
     : size === "wide"
       ? "aspect-[16/9]"
-      : "aspect-[3/2]";
+      : "aspect-[4/3]";
 
   return (
-    <motion.div
-      ref={cardRef}
-      layout
-      style={{ scale, opacity }}
-      exit={{ opacity: 0, scale: 0.96 }}
-      transition={{ duration: 0.7, delay: index * 0.04, ease: [0.16, 1, 0.3, 1] }}
-      className="group cursor-pointer will-change-transform"
+    <div 
+      onClick={() => onClick(project)} 
+      className="block group cursor-pointer will-change-transform"
     >
-      {/* Image with parallax */}
-      <div className={`${aspectClass} overflow-hidden relative`}>
-        <motion.img
-          src={project.image}
-          alt={project.brand}
-          className="w-full h-full object-cover transition-[filter] duration-700 group-hover:brightness-90"
-          style={{ y: imageY, scale: 1.15 }}
-          loading="lazy"
-        />
+      <motion.div
+        ref={cardRef}
+        layout
+        style={{ scale, opacity }}
+        exit={{ opacity: 0, scale: 1 }}
+        transition={{ duration: 0.7, delay: index * 0.04, ease: [0.1, 1, 0.5, 1] }}
+      >
+        {/* Media Container */}
+        <div className={`${aspectClass} transition-all overflow-hidden relative bg-theme-muted rounded-sm  `}>
+          {possibleVideo(project) ? (
+            <motion.video
+              ref={videoRef}
+              src={project.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover transition-all duration-700  group-hover:brightness-90 dark:group-hover:brightness-75"
+              style={{ y: imageY }}
+            />
+          ) : (
+            <motion.img
+              src={project.image}
+              alt={project.brand}
+              className="w-full h-full object-cover transition-all 
+              duration-700 dark:group-hover:brightness-75"
+              style={{ y: imageY }}
+              loading="lazy"
+            />
+          )}
 
-        {/* Hover reveal overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-all duration-500 flex items-center justify-center">
-          <div className="w-12 h-12 rounded-full border border-white/40 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-500">
-            <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-5 h-5">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
+          {/* Hover Play Icon */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-13 h-13 rounded-full bg-theme border border-theme flex items-center justify-center opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 shadow-2xl">
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-theme ml-1 ">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Result badge — Premium glassmorphic style */}
+          <div className="absolute top-4 right-4 bg-theme-surface/60 backdrop-blur-md rounded-full px-4 py-2 z-10 border border-theme shadow-lg pointer-events-none transition-transform duration-500 group-hover:scale-105">
+            <span className="text-[10px] md:text-xs font-sans font-black text-theme uppercase tracking-[0.2em] whitespace-nowrap">
+              {project.result}
+            </span>
           </div>
         </div>
 
-        {/* Result badge */}
-        <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1.5">
-          <span className="text-[9px] font-sans font-bold text-white uppercase tracking-wider">{project.result}</span>
+        {/* Info block */}
+        <div className="mt-6">
+          <span className="text-[10px] font-sans font-bold uppercase tracking-[0.4em] text-[#9E8976] block mb-3">
+            {project.category}
+          </span>
+          <h3 className="text-2xl font-freight font-black text-theme uppercase tracking-tight leading-tight mb-3">
+            {project.brand}
+          </h3>
+          <p className="text-[13px] md:text-sm font-sans text-theme-2 leading-relaxed max-w-md line-clamp-2">
+            {project.description}
+          </p>
         </div>
-      </div>
-
-      {/* Info block — title, category, description */}
-      <div className="mt-5 md:mt-6">
-        {/* Category */}
-        <span className="text-[9px] md:text-[10px] font-sans font-bold uppercase tracking-[0.4em] text-[#9E8976] block mb-2">
-          {project.category}
-        </span>
-
-        {/* Brand name — large Arinoe */}
-        <h3 className="text-xl md:text-2xl font-freight font-black text-theme uppercase tracking-tight leading-tight mb-2">
-          {project.brand}
-        </h3>
-
-        {/* Description */}
-        <p className="text-[13px] md:text-sm font-sans text-theme-2 leading-relaxed max-w-md">
-          {project.description}
-        </p>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
 
-// ─── Staggered Layout Helper — assigns size and column offset ─────────
-// Creates a scattered, organic layout like electranetwork.id
-// Pattern: large-left + small-right, then small-left + large-right, etc.
+// Helper to check if project has video
+function possibleVideo(p) {
+  return p && p.video && p.video.length > 0;
+}
+
+// ─── Staggered Layout Helper ─────────────────────────────────────────
 const layoutPattern = [
   { size: "wide", colSpan: "md:col-span-7", offset: "" },
   { size: "default", colSpan: "md:col-span-5", offset: "md:mt-24" },
@@ -193,9 +287,10 @@ const layoutPattern = [
   { size: "default", colSpan: "md:col-span-5", offset: "md:mt-20" },
 ];
 
-// ─── Page ────────────────────────────────────────────────────────────
+// ─── Main Page ──────────────────────────────────────────────────────────
 export default function WorkPage() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const filteredProjects =
     activeFilter === "All"
@@ -203,11 +298,9 @@ export default function WorkPage() {
       : projects.filter(p => p.tags.includes(activeFilter));
 
   return (
-    <main className="bg-theme text-theme" style={{ overflowX: "clip" }}>
-
-      {/* ══════════════════════════════════════════════
-          1. HERO
-      ══════════════════════════════════════════════ */}
+    <main className={`bg-theme text-theme ${selectedProject ? "relative z-[10000]" : ""}`} style={{ overflowX: "clip" }}>
+      
+      {/* 1. HERO */}
       <PageHero
         label="Portfolio"
         title={<>Karya<br /><span className="text-[#9E8976]">Kami</span></>}
@@ -218,12 +311,9 @@ export default function WorkPage() {
         watermark="PORTFOLIO"
       />
 
-      {/* ══════════════════════════════════════════════
-          2. SECTION HEADER + FILTER + GRID
-      ══════════════════════════════════════════════ */}
-      <section className="py-20   border-b border-theme-md">
+      {/* 2. GRID SECTION */}
+      <section className="py-20 border-b border-theme-md">
         <Container>
-          {/* Section header */}
           <div className="max-w-2xl mb-16 md:mb-20">
             <FadeUp>
               <div className="flex items-center gap-4 mb-5">
@@ -237,12 +327,12 @@ export default function WorkPage() {
                 <span className="text-theme-2">Bicara Hasil</span>
               </h2>
               <p className="text-sm md:text-base font-sans text-theme-2 leading-relaxed max-w-lg">
-                Dari strategi hingga eksekusi — setiap proyek dirancang untuk dampak nyata. Filter berdasarkan layanan untuk menemukan karya yang relevan.
+                Klik proyek untuk melihat kampanye lengkap secara mendalam.
               </p>
             </FadeUp>
           </div>
 
-          {/* Filter bar — pill style */}
+          {/* Filter bar */}
           <FadeUp delay={0.1}>
             <div className="flex flex-wrap items-center gap-2 mb-14 md:mb-20">
               {categories.map(cat => (
@@ -252,7 +342,7 @@ export default function WorkPage() {
                   className={`text-[10px] font-sans font-bold uppercase tracking-[0.25em] px-5 py-2.5 rounded-full border transition-all duration-300
                     ${activeFilter === cat
                       ? "bg-[#9E8976] text-white border-[#9E8976]"
-                      : "bg-transparent text-theme-3 border-theme-md hover:border-[#9E8976] hover:text-[#9E8976]"}`}
+                      : "bg-transparent text-theme-3    hover:text-[#9E8976]"}`}
                 >
                   {cat}
                 </button>
@@ -263,8 +353,8 @@ export default function WorkPage() {
             </div>
           </FadeUp>
 
-          {/* Grid — staggered masonry layout */}
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-12 gap-x-6 md:gap-x-10 gap-y-14 md:gap-y-8">
+          {/* Grid */}
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-12 gap-x-6 md:gap-x-10 gap-y-14 md:gap-y-12">
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, i) => {
                 const pattern = layoutPattern[i % layoutPattern.length];
@@ -274,7 +364,12 @@ export default function WorkPage() {
                     layout
                     className={`${pattern.colSpan} ${pattern.offset}`}
                   >
-                    <ProjectCard project={project} index={i} size={pattern.size} />
+                    <ProjectCard 
+                      project={project} 
+                      index={i} 
+                      size={pattern.size} 
+                      onClick={setSelectedProject}
+                    />
                   </motion.div>
                 );
               })}
@@ -295,10 +390,8 @@ export default function WorkPage() {
         </Container>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          3. STATS
-      ══════════════════════════════════════════════ */}
-      <section className="bg-theme-muted py-20  border-b border-theme-md">
+      {/* 3. STATS */}
+      <section className="bg-theme-muted py-20 border-b border-theme-md">
         <Container>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-0 md:divide-x divide-theme-md">
             {[
@@ -316,15 +409,10 @@ export default function WorkPage() {
         </Container>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          4. CLIENTS
-      ══════════════════════════════════════════════ */}
       <Clients />
 
-      {/* ══════════════════════════════════════════════
-          5. CTA
-      ══════════════════════════════════════════════ */}
-      <section className="bg-theme py-20   border-t border-theme-md">
+      {/* 4. CTA */}
+      <section className="bg-theme py-20 border-t border-theme-md">
         <Container>
           <div className="max-w-4xl mx-auto text-center">
             <FadeUp>
@@ -353,11 +441,17 @@ export default function WorkPage() {
         </Container>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          6. CONSULTATION FORM
-      ══════════════════════════════════════════════ */}
       <ConsultationForm />
 
+      {/* Video Modal Overlay */}
+      <AnimatePresence >
+        {selectedProject && (
+          <VideoModal 
+            project={selectedProject} 
+            onClose={() => setSelectedProject(null)} 
+          />
+        )}
+      </AnimatePresence>
     </main>
   );
 }

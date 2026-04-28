@@ -14,7 +14,7 @@ export const processData = [
 
                 {/* Stats */}
                 <div className="flex gap-3 flex-wrap">
-                    <div className="rounded-full bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 px-4 py-2">
+                    <div className="rounded-full bg-linear-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 px-4 py-2">
                         <span className="text-cyan-600 text-xs font-bold">50+ Brand Audits</span>
                     </div>
                     <div className="rounded-full bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 px-4 py-2">

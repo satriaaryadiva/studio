@@ -210,7 +210,7 @@ const ServiceDetail = ({
 
                     {/* Decorative background elements ala Aceternity/Glassmorphism */}
                     <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-200/20 via-blue-200/10 to-transparent blur-3xl transition-all duration-1000 group-hover:from-indigo-300/30 group-hover:scale-125" />
-                    <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-gradient-to-tr from-rose-200/10 via-orange-200/5 to-transparent blur-3xl transition-all duration-1000 group-hover:from-rose-300/20" />
+                    <div className="absolute -left-20 -bottom-20 h-64 w-64 rounded-full bg-linear-to-tr from-rose-200/10 via-orange-200/5 to-transparent blur-3xl transition-all duration-1000 group-hover:from-rose-300/20" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.01),transparent)]" />
                     <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-neutral-950/5 to-transparent" />
                 </div>

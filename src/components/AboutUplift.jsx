@@ -55,7 +55,7 @@ export default function AboutUplift() {
 
           {/* Left: Image with parallax */}
           <div className="lg:col-span-5 relative order-2 lg:order-1">
-            <div className="relative aspect-[4/5] overflow-hidden bg-theme-surface border border-theme-md group">
+            <div className="relative aspect-4/5 overflow-hidden bg-theme-surface border border-theme-md group">
               <motion.img
                 src="https://images.unsplash.com/photo-1542744173-8e7e5141b2b1?auto=format&fit=crop&q=80&w=1200"
                 alt="UPLIFT Strategy"
